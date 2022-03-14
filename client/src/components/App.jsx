@@ -1,5 +1,5 @@
 import React from 'react';
-import Featured from './Featured/Featured';
+import Featured from './Feature/Feature';
 
 function App() {
   return (
