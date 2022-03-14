@@ -4,6 +4,8 @@ function App() {
   return (
     <div>
       Frenchie Connection
+      test commit squash 1
+
     </div>
   );
 }
