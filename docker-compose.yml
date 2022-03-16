@@ -1,0 +1,14 @@
+version: "3"
+
+networks:
+  nodeapp-network:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+    networks:
+     - nodeapp-network
+    ports:
+    - "80:3004"
