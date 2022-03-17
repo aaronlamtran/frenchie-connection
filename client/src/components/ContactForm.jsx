@@ -7,7 +7,7 @@ const firstState = {
 function ContactForm({ data }) {
   const [state, setState] = useState(firstState);
   const {
-    address, phone, email, instagram,
+    location, phone, email, instagram,
   } = data;
 
   const handleSubmit = (e) => {
@@ -44,6 +44,31 @@ function ContactForm({ data }) {
             <button type="submit">Send Message</button>
           </div>
         </form>
+      </div>
+
+      <div>
+        <h3>Contact Info</h3>
+        <p>
+          <span>
+            Address:
+          </span>
+          {' '}
+          {location.address}
+        </p>
+        <p>
+          <span>
+            Phone:
+          </span>
+          {' '}
+          {phone}
+        </p>
+        <p>
+          <span>
+            Email:
+          </span>
+          {' '}
+          {email}
+        </p>
       </div>
     </div>
   );
