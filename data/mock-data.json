@@ -1,0 +1,151 @@
+{
+  "Brand": {
+    "name": "Frenchie Collection",
+    "image-src": ""
+  },
+  "Featured Pups": [
+    {
+      "name": "Twix",
+      "photo": "https://...pic1"
+    },
+    {
+      "name": "Batman",
+      "photo": "https://...pic2"
+    }
+  ],
+  "Gallery": [
+    {
+      "name": "Nala",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Frenchie",
+      "color": "Brindle",
+      "price": "4500"
+    },
+    {
+      "name": "Sandy",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Frenchie",
+      "color": "Black",
+      "price": "4500"
+    },
+    {
+      "name": "Asessment Andy",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Frenchie",
+      "color": "Grey",
+      "price": "Free"
+    },
+    {
+      "name": "Bruh",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Frenchie",
+      "color": "Red",
+      "price": "8000"
+    },
+    {
+      "name": "Aaron",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Doberman",
+      "color": "Brindle",
+      "price": "2300"
+    },
+    {
+      "name": "Liz",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Chocolate Lab",
+      "color": "Brindle",
+      "price": "9000"
+    },
+    {
+      "name": "Zuki",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Pointer Mix",
+      "color": "Cow",
+      "price": "10000"
+    },
+    {
+      "name": "Lola",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "German Shepherd Cattle Dog Mix",
+      "color": "Black",
+      "price": "8000"
+    },
+    {
+      "name": "Jack",
+      "largeImage": "images/large.jpg",
+      "smallImage": "images/small.jpg",
+      "breed": "Poodle Terrier Mix",
+      "color": "Blonde",
+      "price": "7000"
+    }
+  ],
+  "What Our Owners Say": [
+    {
+      "img": "img/testimonials/person1.jpg",
+      "text": "\"Damn dawg them dawgs are pure af.\"",
+      "name": "Dr. Dre"
+    },
+    {
+      "img": "img/testimonials/person2.jpg",
+      "text": "\"No back problems for my pup\"",
+      "name": "Bob The Builder"
+    },
+    {
+      "img": "img/testimonials/person1.jpg",
+      "text": "\" I could tell he genuinely cared for his dogs as family members, and I felt I would receive a lot of ongoing support once I purchased one of his dogs.\"",
+      "name": "Scarlet Johanson"
+    },
+    {
+      "img": "img/testimonials/person1.jpg",
+      "text": "\"Zuki is a true family companion. Her loyalty and unconditional love makes her the ideal family member. She loves to travel and has accompanied us on various business and pleasure trips.\"",
+      "name": "Lizzette"
+    },
+    {
+      "img": "img/testimonials/person1.jpg",
+      "text": "\"Gracie learned quickly to sit, stay, shake, speak, and easily crate trained. She's been swimming since we brought her home at 7 weeks of age. Gracie joined our two German Wirehaired Pointers and she made herself right at home. She has stolen our hearts!\"",
+      "name": "Kim K."
+    }
+  ],
+  "Contact": {
+    "address": "43012 Carlsbad Dr. Carlsbad, CA 92800 ",
+    "phone": "(123)423-9128",
+    "email": "info@frenchieconnection.com",
+    "facebook": "fb.com",
+    "twitter": "twitter.com",
+    "youtube": "youtube.com",
+    "instagram": "frenchieconnection.instagram.com"
+  },
+  "Frequently Asked Questions": [
+    {
+      "question": "Do crossbred or mixed breed French Bulldogs make good pets?",
+      "answer": "Many do make good pets, yes, in the right homes. But before you choose ANY purebred, crossbreed, or mixed breed, you need to know what a purebred dog really IS and what crossbred and mixed breed dogs really are."
+    },
+    {
+      "question": "Can you help me decide whether the French Bulldog is the best breed for me?",
+      "answer": "Yes, I offer personal consultations on choosing the best breed for your family and lifestyle.."
+    },
+    {
+      "question": "How do I reserve a puppy?",
+      "answer": "Frenchie Collections requires a $600 deposit on all puppies as well as a puppy contract in order to reserve your puppy."
+    },
+    {
+      "question": "Which shots will my puppy come with?",
+      "answer": "The schedule of vaccinations that dogs really need has changed dramatically. Unfortunately most vets are not telling you the truth about this, because a good chunk of their income depends on frequent vaccinations. Please contact me for more information"
+    },
+    {
+      "question": "What are the pros and cons of spaying and neutering my French Bulldog, and when should it be done?",
+      "answer": "Spaying and neutering are often recommended too early, which can lead to health problems later in life."
+    }
+  ],
+  "About Us" : {
+    "text": "Frenchie Connection is a small family owned kennel nestled in Carlsbad. We understand the challenges that dog ownership can bring. We also know the joy, pleasure and pride in owning a well-behaved dog that is reliable at home and in public. People are our passion - we love working with you and your dog!"
+  }
+}
