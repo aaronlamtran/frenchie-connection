@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, setState } from 'react';
 
 const firstState = {
@@ -6,12 +7,18 @@ const firstState = {
 function ContactForm({ data }) {
   const [state, setState] = useState(firstState);
   const {
-    address, phone, email, facebook, twitter, youtube, instagram,
+    address, phone, email, instagram,
   } = data;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('will send an email to frenchie connection');
+    console.log(
+      `this will send an email to frenchie connection.
+      name:"${state.name}"
+      message:"${state.message}"
+      email:"${state.email}"
+      `,
+    );
   };
 
   const handleChange = (e) => {

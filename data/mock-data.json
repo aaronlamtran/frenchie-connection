@@ -121,7 +121,12 @@
     ]
   },
   "Contact": {
-    "address": "43012 Carlsbad Dr. Carlsbad, CA 92800 ",
+    "location": {
+      "address" : "43012 Carlsbad Dr. Carlsbad, CA 92800",
+      "city" : "Carlsbad",
+      "state" : "CA",
+      "zip" : "92800"
+    },
     "phone": "(123)423-9128",
     "email": "info@frenchieconnection.com",
     "facebook": "fb.com",
