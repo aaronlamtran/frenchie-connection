@@ -19,72 +19,72 @@
   "Gallery": [
     {
       "name": "Nala",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Frenchie",
       "color": "Brindle",
       "price": "4500"
     },
     {
       "name": "Sandy",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Frenchie",
       "color": "Black",
       "price": "4500"
     },
     {
       "name": "Asessment Andy",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Frenchie",
       "color": "Grey",
       "price": "Free"
     },
     {
       "name": "Bruh",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Frenchie",
       "color": "Red",
       "price": "8000"
     },
     {
       "name": "Aaron",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Doberman",
       "color": "Brindle",
       "price": "2300"
     },
     {
       "name": "Liz",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Chocolate Lab",
       "color": "Brindle",
       "price": "9000"
     },
     {
       "name": "Zuki",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Pointer Mix",
       "color": "Cow",
       "price": "10000"
     },
     {
       "name": "Lola",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
       "price": "8000"
     },
     {
       "name": "Jack",
-      "largeImage": "images/large.jpg",
-      "smallImage": "images/small.jpg",
+      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "smallImages": ["images/small.jpg", "images/small2.jpg"],
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
       "price": "7000"
@@ -122,10 +122,10 @@
   },
   "Contact": {
     "location": {
-      "address" : "43012 Carlsbad Dr. Carlsbad, CA 92800",
-      "city" : "Carlsbad",
-      "state" : "CA",
-      "zip" : "92800"
+      "address": "43012 Carlsbad Dr. Carlsbad, CA 92800",
+      "city": "Carlsbad",
+      "state": "CA",
+      "zip": "92800"
     },
     "phone": "(123)423-9128",
     "email": "info@frenchieconnection.com",
@@ -163,7 +163,7 @@
     ]
   },
   "About": {
-    "title" : "About Us",
+    "title": "About Us",
     "description": "Frenchie Connection is a small family owned kennel nestled in Carlsbad. We understand the challenges that dog ownership can bring. We also know the joy, pleasure and pride in owning a well-behaved dog that is reliable at home and in public. People are our passion - we love working with you and your dog!"
   }
 }
