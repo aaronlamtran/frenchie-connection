@@ -1,5 +1,8 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 const firstState = {
   message: '', email: '', name: '',
@@ -32,16 +35,23 @@ function ContactForm({ data }) {
       <div>
         <form name="message" onSubmit={handleSubmit}>
           <div>
-            <input type="text" id="name" name="name" placeholder="name" onChange={handleChange} />
+            <TextField id="standard-basic" name="name" label="name" onChange={handleChange} variant="standard" />
           </div>
           <div>
-            <input type="text" id="email" name="email" placeholder="email" onChange={handleChange} />
+            <TextField id="standard-basic" name="email" label="email" onChange={handleChange} variant="standard" />
           </div>
           <div>
-            <textarea type="text" id="message" name="message" placeholder="message" onChange={handleChange} />
+            <TextareaAutosize
+              aria-label="empty textarea"
+              required
+              placeholder="message"
+              style={{ width: 200, height: 200}}
+              name="message"
+              onChange={handleChange}
+            />
           </div>
           <div>
-            <button type="submit">Send Message</button>
+            <Button variant="contained" type="submit">Send Message</Button>
           </div>
         </form>
       </div>
