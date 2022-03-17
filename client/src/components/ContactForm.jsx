@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useState, setState } from 'react';
+import React, { useState } from 'react';
 
 const firstState = {
   message: '', email: '', name: '',

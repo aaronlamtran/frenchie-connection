@@ -132,7 +132,10 @@
     "facebook": "fb.com",
     "twitter": "twitter.com",
     "youtube": "youtube.com",
-    "instagram": "frenchieconnection.instagram.com"
+    "instagram": {
+      "url": "https://www.instagram.com/thefrenchieconnection.sd/",
+      "username": "thefrenchieconnection.sd"
+    }
   },
   "FAQ": {
     "title": "Frequently Asked Questions",
