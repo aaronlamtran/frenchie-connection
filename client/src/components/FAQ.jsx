@@ -7,6 +7,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function FAQcomponent(props) {
   const [expanded, setExpanded] = React.useState(false);
+  console.log(props.data)
+  console.log(props.data.title)
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -20,9 +22,6 @@ function FAQcomponent(props) {
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            General settings
-          </Typography>
           <Typography sx={{ color: 'text.secondary' }}>I am an accordion</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -38,7 +37,6 @@ function FAQcomponent(props) {
           aria-controls="panel2bh-content"
           id="panel2bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Users</Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             You are currently not an owner
           </Typography>
@@ -57,9 +55,6 @@ function FAQcomponent(props) {
           aria-controls="panel3bh-content"
           id="panel3bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Advanced settings
-          </Typography>
           <Typography sx={{ color: 'text.secondary' }}>
             Filtering has been entirely disabled for whole web server
           </Typography>
