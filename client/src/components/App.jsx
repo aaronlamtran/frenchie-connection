@@ -16,11 +16,8 @@ function App() {
     Testimonials: testimonialData,
   } = data;
   return (
-    <div style={{padding: 10}}>
-      <div>
-        Frenchie Connection
-      </div>
-      <Nav/>
+    <div style={{ padding: 10 }}>
+      <Nav />
       <FAQ data={FAQ_data} />
       <Contact data={contactData} />
     </div>
