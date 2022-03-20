@@ -7,7 +7,7 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 const firstState = {
   message: '', email: '', name: '',
 };
-function ContactForm({ data }) {
+function Contact({ data }) {
   const [state, setState] = useState(firstState);
   const {
     location, phone, email, instagram,
@@ -84,4 +84,4 @@ function ContactForm({ data }) {
   );
 }
 
-export default ContactForm;
+export default Contact;

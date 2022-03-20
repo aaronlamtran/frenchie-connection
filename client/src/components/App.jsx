@@ -1,20 +1,26 @@
 /* eslint-disable no-console */
 import React from 'react';
 import * as data from '../../../data/mock-data.json';
-import ContactForm from './ContactForm';
-import FAQcomponent from './FAQ';
+import Contact from './Contact';
+import FAQ from './FAQ';
 
 function App() {
   const {
-    Brand, About, Contact, Featured, FAQ, Gallery, Testimonials,
+    Brand: brandData,
+    About: aboutData,
+    Contact: contactData,
+    Featured: featuredData,
+    FAQ: FAQ_data,
+    Gallery: galleryData,
+    Testimonials: testimonialData,
   } = data;
   return (
     <div>
       <div>
         Frenchie Connection
       </div>
-      <FAQcomponent data={FAQ} />
-      <ContactForm data={Contact} />
+      <FAQ data={FAQ_data} />
+      <Contact data={contactData} />
     </div>
   );
 }
