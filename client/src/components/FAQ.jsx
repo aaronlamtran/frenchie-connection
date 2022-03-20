@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-function FAQcomponent(props) {
+function FAQ(props) {
   const [expanded, setExpanded] = React.useState(false);
   const { title, entries } = props.data;
 
@@ -40,4 +40,4 @@ function FAQcomponent(props) {
   );
 }
 
-export default FAQcomponent;
+export default FAQ;
