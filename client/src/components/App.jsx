@@ -3,6 +3,7 @@ import React from 'react';
 import * as data from '../../../data/mock-data.json';
 import Contact from './Contact';
 import FAQ from './FAQ';
+import Nav from './Nav';
 
 function App() {
   const {
@@ -15,10 +16,8 @@ function App() {
     Testimonials: testimonialData,
   } = data;
   return (
-    <div>
-      <div>
-        Frenchie Connection
-      </div>
+    <div style={{ padding: 10 }}>
+      <Nav />
       <FAQ data={FAQ_data} />
       <Contact data={contactData} />
     </div>
