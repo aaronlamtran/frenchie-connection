@@ -14,7 +14,11 @@ function FAQ(props) {
   };
 
   const accordian = (entries, key) => (
-    <Accordion key={key} expanded={expanded === `panel${key}`} onChange={handleChange(`panel${key}`)}>
+    <Accordion
+      key={key}
+      expanded={expanded === `panel${key}`}
+      onChange={handleChange(`panel${key}`)}
+    >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1bh-content"
@@ -35,7 +39,9 @@ function FAQ(props) {
   return (
     <div>
       <h3>{title}</h3>
-      {entries.length && entries.map((ele, i) => accordian(ele, i))}
+      <div>
+        {entries.length && entries.map((ele, i) => accordian(ele, i))}
+      </div>
     </div>
   );
 }
