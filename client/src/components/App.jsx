@@ -1,10 +1,12 @@
 /* eslint-disable no-console */
 import React from 'react';
+import Container from '@mui/material/Container';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import * as data from '../../../data/mock-data.json';
 import Contact from './Contact';
 import FAQ from './FAQ';
 import Nav from './Nav';
-import Container from '@mui/material/Container';
+import About from './About';
 
 function App() {
   const {
@@ -16,15 +18,24 @@ function App() {
     Gallery: galleryData,
     Testimonials: testimonialData,
   } = data;
-  const style = {
-    padding: 10, maxWidth: 901, alignItms: 'center', justifyContent: 'center',
-  };
+
+  const theme = createTheme({
+    palette: {
+      mode: 'light',
+      primary: {
+        main: '#FFFFFF',
+      },
+    },
+  });
   return (
-    <Container >
-      <Nav />
-      <FAQ data={FAQ_data} />
-      <Contact data={contactData} />
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Nav />
+        <About data={aboutData} />
+        <FAQ data={FAQ_data} />
+        <Contact data={contactData} />
+      </Container>
+    </ThemeProvider>
   );
 }
 
