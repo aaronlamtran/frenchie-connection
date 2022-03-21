@@ -7,6 +7,7 @@ import Contact from './Contact';
 import FAQ from './FAQ';
 import Nav from './Nav';
 import About from './About';
+import Testimonials from './Testimonials';
 
 function App() {
   const {
@@ -32,6 +33,7 @@ function App() {
       <Container>
         <Nav />
         <About data={aboutData} />
+        <Testimonials data={testimonialData} />
         <FAQ data={FAQ_data} />
         <Contact data={contactData} />
       </Container>
