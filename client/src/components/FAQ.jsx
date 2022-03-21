@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Container from '@mui/material/Container';
 
 function FAQ(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -37,12 +38,12 @@ function FAQ(props) {
   );
 
   return (
-    <div>
+    <Container>
       <h3>{title}</h3>
       <div>
         {entries.length && entries.map((ele, i) => accordian(ele, i))}
       </div>
-    </div>
+    </Container>
   );
 }
 

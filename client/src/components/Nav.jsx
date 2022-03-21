@@ -11,7 +11,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Logo from './Logo';
-
+import LogoText from './LogoText';
+// console
 const pages = ['About', 'Contact', 'Featured', 'FAQ', 'Gallery', 'Testimonials'];
 
 function Nav() {
@@ -44,7 +45,7 @@ function Nav() {
               component="div"
               sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
             >
-              <Logo />
+              <LogoText />
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

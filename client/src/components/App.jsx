@@ -4,6 +4,7 @@ import * as data from '../../../data/mock-data.json';
 import Contact from './Contact';
 import FAQ from './FAQ';
 import Nav from './Nav';
+import Container from '@mui/material/Container';
 
 function App() {
   const {
@@ -15,12 +16,15 @@ function App() {
     Gallery: galleryData,
     Testimonials: testimonialData,
   } = data;
+  const style = {
+    padding: 10, maxWidth: 901, alignItms: 'center', justifyContent: 'center',
+  };
   return (
-    <div style={{ padding: 10 }}>
+    <Container >
       <Nav />
       <FAQ data={FAQ_data} />
       <Contact data={contactData} />
-    </div>
+    </Container>
   );
 }
 

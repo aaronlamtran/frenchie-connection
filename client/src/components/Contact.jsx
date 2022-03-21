@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import Container from '@mui/material/Container';
 
 const firstState = {
   message: '', email: '', name: '',
@@ -29,7 +30,7 @@ function Contact({ data }) {
     setState((previousState) => ({ ...previousState, [name]: value }));
   };
   return (
-    <div>
+    <Container>
       <h3>Contact Us</h3>
       <p>Drop your contact information to send us an email. We finna get back to you asap.</p>
       <div>
@@ -80,7 +81,7 @@ function Contact({ data }) {
           {email}
         </p>
       </div>
-    </div>
+    </Container>
   );
 }
 
