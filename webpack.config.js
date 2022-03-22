@@ -10,7 +10,7 @@ module.exports = {
     rules: [
       { test: /\.(js|jsx)$/, use: 'babel-loader' },
       {
-        test: /\.(jpg|png|svg)$/,
+        test: /\.(png|svg|jpg|gif|jpe?g)$/,
         loader: 'file-loader',
         options: {
           name: '[path][name].[hash].[ext]',

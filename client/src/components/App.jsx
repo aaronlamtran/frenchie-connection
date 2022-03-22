@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import * as data from '../../../data/mock-data.json';
@@ -10,6 +10,11 @@ import About from './About';
 import Testimonials from './Testimonials';
 
 function App() {
+  const [landingPageData, setLandingPageData] = useState({});
+  useEffect(() => {
+    setLandingPageData(data);
+  }, []);
+
   const {
     Brand: brandData,
     About: aboutData,
@@ -33,7 +38,7 @@ function App() {
       <Container>
         <Nav />
         <About data={aboutData} />
-        <Testimonials data={testimonialData} />
+        <Testimonials data={testimonialData} test={landingPageData.Testimonials}/>
         <FAQ data={FAQ_data} />
         <Contact data={contactData} />
       </Container>

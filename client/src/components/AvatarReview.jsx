@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-function AvatarReview({ data: { text, img, name } }) {
+function AvatarReview({ data: { text, img, name }}) {
   const [isTextLong, setIsTextLong] = useState(false);
   const blurb = useMemo(() => {
     if (text.length <= 130) {
