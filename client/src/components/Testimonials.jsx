@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import AvatarReview from './AvatarReview';
 
 function Testimonials(props) {
   const { title, entries } = props.data;
+
   return (
     <Container>
       <h3>
@@ -16,16 +16,7 @@ function Testimonials(props) {
         {entries.map((person) => (
           <div key={person.name}>
             <Stack direction="row" spacing={0.5}>
-              <Avatar
-                alt={person.name}
-                src={person.img}
-              />
-              <Typography variant="body1">
-                {person.text}
-                -
-                {' '}
-                {person.name}
-              </Typography>
+              <AvatarReview data={person} />
             </Stack>
           </div>
         ))}
