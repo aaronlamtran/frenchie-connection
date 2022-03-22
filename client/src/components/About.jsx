@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@mui/material/Container';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageList from '@mui/material/ImageList';
-import AboutPic from '../../../assets/images/AboutUs.png';
+import AboutPic from '../assets/images/AboutUs.png';
 
 function About(props) {
   const { title, description } = props.data;

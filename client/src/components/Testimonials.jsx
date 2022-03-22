@@ -13,10 +13,10 @@ function Testimonials(props) {
       </h3>
 
       <Stack direction="column" spacing={0.5}>
-        {entries.map((person) => (
+        {entries.map((person, idx) => (
           <div key={person.name}>
             <Stack direction="row" spacing={0.5}>
-              <AvatarReview data={person} />
+              <AvatarReview data={{...person, idx: idx}} />
             </Stack>
           </div>
         ))}

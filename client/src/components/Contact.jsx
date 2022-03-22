@@ -41,12 +41,13 @@ function Contact({ data }) {
           <div>
             <TextField id="standard-basic" name="email" label="email" onChange={handleChange} variant="standard" />
           </div>
+          <br />
           <div>
             <TextareaAutosize
               aria-label="empty textarea"
               required
               placeholder="message"
-              style={{ width: 200, height: 200}}
+              style={{ width: 200, height: 200 }}
               name="message"
               onChange={handleChange}
             />
