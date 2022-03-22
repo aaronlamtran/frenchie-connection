@@ -8,11 +8,8 @@ import Container from '@mui/material/Container';
 const firstState = {
   message: '', email: '', name: '',
 };
-function Contact({ data }) {
+function Contact({ data : { location, phone, email, instagram }}) {
   const [state, setState] = useState(firstState);
-  const {
-    location, phone, email, instagram,
-  } = data;
 
   const handleSubmit = (e) => {
     e.preventDefault();

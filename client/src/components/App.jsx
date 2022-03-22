@@ -10,11 +10,6 @@ import About from './About';
 import Testimonials from './Testimonials';
 
 function App() {
-  const [landingPageData, setLandingPageData] = useState({});
-  useEffect(() => {
-    setLandingPageData(data);
-  }, []);
-
   const {
     Brand: brandData,
     About: aboutData,
@@ -38,7 +33,7 @@ function App() {
       <Container>
         <Nav />
         <About data={aboutData} />
-        <Testimonials data={testimonialData} test={landingPageData.Testimonials}/>
+        <Testimonials data={testimonialData} />
         <FAQ data={FAQ_data} />
         <Contact data={contactData} />
       </Container>

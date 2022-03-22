@@ -6,9 +6,8 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Container from '@mui/material/Container';
 
-function FAQ(props) {
+function FAQ({ data: { title, entries } }) {
   const [expanded, setExpanded] = React.useState(false);
-  const { title, entries } = props.data;
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);

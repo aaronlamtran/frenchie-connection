@@ -19,8 +19,9 @@ function AvatarReview({ data: { text, img, name, idx }}) {
   };
 
   const keys = Object.keys(IMAGES);
-  const doesExistLocally = IMAGES[keys[idx]] !== undefined && IMAGES[keys[idx]] !== '';
-  const image = doesExistLocally ? IMAGES[keys[idx]] : img;
+  const localImage = IMAGES[keys[idx]];
+  const doesExistLocally = localImage !== undefined && localImage !== '';
+  const image = doesExistLocally ? localImage : img;
 
   return (
     <>
