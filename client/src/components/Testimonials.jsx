@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import AvatarReview from './AvatarReview';
 
 function Testimonials(props) {
