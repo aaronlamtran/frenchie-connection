@@ -10,7 +10,7 @@ function AvatarReview({ data: { text, img, name } }) {
     }
     const trimedBlurb = text.slice(0, Math.max(0, text.slice(0, 130).lastIndexOf(' ')));
     setIsTextLong(true);
-    return `${trimedBlurb}..." Read More...`;
+    return `${trimedBlurb}... Read More`;
   }, [text]);
   const toggleReadMore = (e) => {
     e.preventDefault();
@@ -25,8 +25,11 @@ function AvatarReview({ data: { text, img, name } }) {
       />
       <Typography variant="body1" onClick={toggleReadMore}>
         {isTextLong ? blurb : text}
-        -
-        {name}
+        <br />
+        <Typography variant="span" align="right">
+          -
+          {name}
+        </Typography>
       </Typography>
     </>
   );
