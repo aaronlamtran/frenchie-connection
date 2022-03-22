@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import IMAGES from '../assets/images/imageExports';
 
-function AvatarReview({ data: { text, img, name }}) {
+function AvatarReview({ data: { text, img, name, idx }}) {
   const [isTextLong, setIsTextLong] = useState(false);
   const blurb = useMemo(() => {
     if (text.length <= 130) {
@@ -16,12 +17,17 @@ function AvatarReview({ data: { text, img, name }}) {
     e.preventDefault();
     setIsTextLong(!isTextLong);
   };
+
+  const keys = Object.keys(IMAGES);
+  const doesExistLocally = IMAGES[keys[idx]] !== undefined && IMAGES[keys[idx]] !== '';
+  const image = doesExistLocally ? IMAGES[keys[idx]] : img;
+
   return (
     <>
       <Avatar
         onClick={toggleReadMore}
         alt={name}
-        src={img}
+        src={image}
       />
       <Typography variant="body1" onClick={toggleReadMore}>
         {isTextLong ? blurb : text}
