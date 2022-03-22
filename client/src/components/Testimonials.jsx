@@ -11,25 +11,25 @@ function Testimonials(props) {
       <h3>
         {title}
       </h3>
-      <Stack direction="column" spacing={2}>
+
+      <Stack direction="column" spacing={0.5}>
         {entries.map((person) => (
           <div key={person.name}>
-
-            <Avatar
-              alt={person.name}
-              src={person.img}
-            />
-            <Typography>
-              {person.text}
-            </Typography>
-            <Typography>
-              -
-              {person.name}
-            </Typography>
+            <Stack direction="row" spacing={0.5}>
+              <Avatar
+                alt={person.name}
+                src={person.img}
+              />
+              <Typography variant="body1">
+                {person.text}
+                -
+                {' '}
+                {person.name}
+              </Typography>
+            </Stack>
           </div>
-        )) }
+        ))}
       </Stack>
-
     </Container>
   );
 }
