@@ -1,5 +1,5 @@
 build project:
-  image: node:14-bullseye
+  image: node:14
   script:
     - npm install
     - npm build
