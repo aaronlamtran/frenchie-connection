@@ -10,13 +10,20 @@ const firstState = {
   email: "",
   name: "",
 };
-function Contact({ data: { location, phone, email, instagram : { url , username } } }) {
+function Contact({
+  data: {
+    location,
+    phone,
+    email,
+    instagram: { url, username },
+  },
+}) {
   const [state, setState] = useState(firstState);
 
   const openInNewTab = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    if (newWindow) newWindow.opener = null
-  }
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,7 +99,7 @@ function Contact({ data: { location, phone, email, instagram : { url , username 
           <span>Email:</span> {email}
         </p>
       </div>
-      <InstagramIcon onClick={() => openInNewTab(url)}/>
+      <InstagramIcon onClick={() => openInNewTab(url)} />
     </Container>
   );
 }
