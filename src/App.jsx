@@ -9,6 +9,7 @@ import FAQ from './components/FAQ';
 import Nav from './components/Nav';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
+import SocialBar from './components/SocialBar';
 import './App.css';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Testimonials data={testimonialData} />
         <FAQ data={FAQ_data} />
         <Contact data={contactData} />
+        <SocialBar />
       </Container>
     </ThemeProvider>
   );
