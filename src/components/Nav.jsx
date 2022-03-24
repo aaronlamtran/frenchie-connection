@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,13 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 import Logo from './Logo';
 import LogoText from './LogoText';
 
 const pages = ['About', 'Contact', 'Featured', 'FAQ', 'Gallery', 'Testimonials'];
 
 function Nav() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -69,8 +70,10 @@ function Nav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem href={`#${page}`} key={page} component='a' onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -86,11 +89,15 @@ function Nav() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+                component='a'
+                href={`#${page}`}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                {page}
+                <Typography textAlign="center">
+                    {page}
+                  </Typography>
               </Button>
             ))}
           </Box>

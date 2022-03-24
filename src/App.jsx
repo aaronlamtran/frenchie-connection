@@ -10,6 +10,12 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
 import './App.css';
+import SmoothScroll from "smooth-scroll";
+
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
 
 function App() {
   const {

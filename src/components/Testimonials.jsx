@@ -1,14 +1,12 @@
-import React from 'react';
-import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
-import AvatarReview from './AvatarReview';
+import React from "react";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import AvatarReview from "./AvatarReview";
 
 function Testimonials({ data: { title, entries } }) {
   return (
-    <Container>
-      <h3>
-        {title}
-      </h3>
+    <Container id="Testimonials">
+      <h3>{title}</h3>
 
       <Stack direction="column" spacing={0.5}>
         {entries.map((person, idx) => (

@@ -1,15 +1,29 @@
 /* eslint-disable no-console */
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Container from '@mui/material/Container';
-
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import Container from "@mui/material/Container";
+import InstagramIcon from "@mui/icons-material/Instagram";
 const firstState = {
-  message: '', email: '', name: '',
+  message: "",
+  email: "",
+  name: "",
 };
-function Contact({ data : { location, phone, email, instagram }}) {
+function Contact({
+  data: {
+    location,
+    phone,
+    email,
+    instagram: { url, username },
+  },
+}) {
   const [state, setState] = useState(firstState);
+
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,7 +32,7 @@ function Contact({ data : { location, phone, email, instagram }}) {
       name:"${state.name}"
       message:"${state.message}"
       email:"${state.email}"
-      `,
+      `
     );
   };
 
@@ -27,16 +41,32 @@ function Contact({ data : { location, phone, email, instagram }}) {
     setState((previousState) => ({ ...previousState, [name]: value }));
   };
   return (
-    <Container>
-      <h3>Contact Us Now</h3>
-      <p>Drop your contact information to send us an email. We finna get back to you asap.</p>
+    <Container id='Contact'>
+      <h3>Contact Us</h3>
+      <p>
+        Drop your contact information to send us an email. We finna get back to
+        you asap.
+      </p>
       <div>
         <form name="message" onSubmit={handleSubmit}>
           <div>
-            <TextField id="standard-basic" name="name" label="name" onChange={handleChange} variant="standard" />
+            <TextField
+              id="outlined-basic"
+              name="name"
+              label="name"
+              onChange={handleChange}
+              variant="outlined"
+            />
           </div>
+          <br />
           <div>
-            <TextField id="standard-basic" name="email" label="email" onChange={handleChange} variant="standard" />
+            <TextField
+              id="standard-basic"
+              name="email"
+              label="email"
+              onChange={handleChange}
+              variant="outlined"
+            />
           </div>
           <br />
           <div>
@@ -44,13 +74,15 @@ function Contact({ data : { location, phone, email, instagram }}) {
               aria-label="empty textarea"
               required
               placeholder="message"
-              style={{ width: 200, height: 200 }}
+              style={{ width: 190, height: 200 }}
               name="message"
               onChange={handleChange}
             />
           </div>
           <div>
-            <Button variant="contained" type="submit">Send Message</Button>
+            <Button variant="contained" type="submit">
+              Send Message
+            </Button>
           </div>
         </form>
       </div>
@@ -58,27 +90,16 @@ function Contact({ data : { location, phone, email, instagram }}) {
       <div>
         <h3>Contact Info</h3>
         <p>
-          <span>
-            Address:
-          </span>
-          {' '}
-          {location.address}
+          <span>Address:</span> {location.address}
         </p>
         <p>
-          <span>
-            Phone:
-          </span>
-          {' '}
-          {phone}
+          <span>Phone:</span> {phone}
         </p>
         <p>
-          <span>
-            Email:
-          </span>
-          {' '}
-          {email}
+          <span>Email:</span> {email}
         </p>
       </div>
+      <InstagramIcon onClick={() => openInNewTab(url)} />
     </Container>
   );
 }
