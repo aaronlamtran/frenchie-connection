@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from './Logo';
 import LogoText from './LogoText';
+import Link from '@mui/material/Link';
 
 const pages = ['About', 'Contact', 'Featured', 'FAQ', 'Gallery', 'Testimonials'];
 
@@ -69,10 +70,10 @@ function Nav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem href={`#${page}`} key={page} onClick={handleCloseNavMenu}>
+                <MenuItem href={`#${page}`} key={page} component='a' onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-
-                    <a href={`#${page}`}> {page} </a></Typography>
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
