@@ -16,3 +16,4 @@ RUN npm run build
 FROM nginx
 EXPOSE 80
 COPY --from=build /app/build /user/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
