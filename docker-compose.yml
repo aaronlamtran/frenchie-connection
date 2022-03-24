@@ -1,17 +1,15 @@
 version: "3"
 
-# networks:
-#   nodeapp-network:
-#     driver: bridge
+networks:
+  nodeapp-network:
+    driver: bridge
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    # networks:
-    #  - nodeapp-network
+    networks:
+     - nodeapp-network
     ports:
-      - "80:3004"
-    volumes:
-      - ./client/src:/app/src
+      - "3000:3000"
