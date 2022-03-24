@@ -8,15 +8,11 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3004
-# npm run nodemon --watch server
-ENTRYPOINT ["npm", "start"]
 
-FROM nginx:stable-alpine
-EXPOSE 80
-COPY --from=build /app/build /usr/share/nginx/html
+ENTRYPOINT ["npm", "start"]
 
 RUN npm run build
 
 FROM nginx
+EXPOSE 80
 COPY --from=build /app/build /user/share/nginx/html
