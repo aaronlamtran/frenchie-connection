@@ -28,7 +28,7 @@ function Contact({ data : { location, phone, email, instagram }}) {
   };
   return (
     <Container>
-      <h3>Contact Us</h3>
+      <h3>Contact Us Now</h3>
       <p>Drop your contact information to send us an email. We finna get back to you asap.</p>
       <div>
         <form name="message" onSubmit={handleSubmit}>
