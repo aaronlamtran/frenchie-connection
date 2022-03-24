@@ -11,7 +11,6 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Logo from './Logo';
 import LogoText from './LogoText';
-import Link from '@mui/material/Link';
 
 const pages = ['About', 'Contact', 'Featured', 'FAQ', 'Gallery', 'Testimonials'];
 
