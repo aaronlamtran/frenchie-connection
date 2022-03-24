@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
-import React from 'react';
+import React, { useRef } from 'react';
 import Container from '@mui/material/Container';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import data from './data/mock-data.json';
@@ -10,6 +10,12 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Testimonials from './components/Testimonials';
 import './App.css';
+import SmoothScroll from "smooth-scroll";
+
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+});
 
 function App() {
   const {

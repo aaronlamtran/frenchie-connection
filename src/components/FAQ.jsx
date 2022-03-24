@@ -37,7 +37,7 @@ function FAQ({ data: { title, entries } }) {
   );
 
   return (
-    <Container>
+    <Container id='FAQ'>
       <h3>{title}</h3>
       <div>
         {entries.length && entries.map((ele, i) => accordian(ele, i))}

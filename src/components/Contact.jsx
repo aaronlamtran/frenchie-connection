@@ -41,7 +41,7 @@ function Contact({
     setState((previousState) => ({ ...previousState, [name]: value }));
   };
   return (
-    <Container>
+    <Container id='Contact'>
       <h3>Contact Us</h3>
       <p>
         Drop your contact information to send us an email. We finna get back to

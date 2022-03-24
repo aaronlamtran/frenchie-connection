@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,7 +15,7 @@ import LogoText from './LogoText';
 const pages = ['About', 'Contact', 'Featured', 'FAQ', 'Gallery', 'Testimonials'];
 
 function Nav() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -69,8 +69,10 @@ function Nav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem href={`#${page}`} key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+
+                    <a href={`#${page}`}> {page} </a></Typography>
                 </MenuItem>
               ))}
             </Menu>
