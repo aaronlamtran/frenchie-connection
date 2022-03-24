@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 import React from 'react';
 import Container from '@mui/material/Container';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import * as data from './data/mock-data.json';
+import data from './data/mock-data.json';
 import Contact from './components/Contact';
 import FAQ from './components/FAQ';
 import Nav from './components/Nav';
@@ -12,12 +13,12 @@ import './App.css';
 
 function App() {
   const {
-    Brand: brandData,
+    // Brand: brandData,
     About: aboutData,
     Contact: contactData,
-    Featured: featuredData,
+    // Featured: featuredData,
     FAQ: FAQ_data,
-    Gallery: galleryData,
+    // Gallery: galleryData,
     Testimonials: testimonialData,
   } = data;
 
