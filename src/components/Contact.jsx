@@ -33,10 +33,11 @@ function Contact({ data : { location, phone, email, instagram }}) {
       <div>
         <form name="message" onSubmit={handleSubmit}>
           <div>
-            <TextField id="standard-basic" name="name" label="name" onChange={handleChange} variant="standard" />
+            <TextField id="outlined-basic" name="name" label="name" onChange={handleChange} variant="outlined" />
           </div>
+          <br />
           <div>
-            <TextField id="standard-basic" name="email" label="email" onChange={handleChange} variant="standard" />
+            <TextField id="standard-basic" name="email" label="email" onChange={handleChange} variant="outlined" />
           </div>
           <br />
           <div>
@@ -44,7 +45,7 @@ function Contact({ data : { location, phone, email, instagram }}) {
               aria-label="empty textarea"
               required
               placeholder="message"
-              style={{ width: 200, height: 200 }}
+              style={{ width: 190, height: 200 }}
               name="message"
               onChange={handleChange}
             />
