@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import Link from '@mui/material/Link';
 import Logo from './Logo';
 import LogoText from './LogoText';
 
@@ -88,11 +89,15 @@ function Nav() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
+                component='a'
+                href={`#${page}`}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                {page}
+                <Typography textAlign="center">
+                    {page}
+                  </Typography>
               </Button>
             ))}
           </Box>
