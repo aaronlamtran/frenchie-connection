@@ -17,7 +17,6 @@ function AvatarReview({ data: { text, img, name, idx }}) {
     e.preventDefault();
     setIsTextLong(!isTextLong);
   };
-
   const keys = Object.keys(IMAGES);
   const localImage = IMAGES[keys[idx]];
   const doesExistLocally = localImage !== undefined && localImage !== '';

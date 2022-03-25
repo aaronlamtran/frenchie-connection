@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 const IMAGES = {
-  person1: require('./person1.jpg').default,
+  person1: require('./person1.jpg'),
   person2: '',
   person3: '',
   person4: '',
@@ -9,7 +9,7 @@ const IMAGES = {
   // person3: require('./person3.jpg').default,
   // person4: require('./person4.jpg').default,
   // person5: require('./person5.jpg').default,
-  person6: require('./person6.jpg').default,
+  person6: require('./person6.jpg'),
   // person7: require('./person7.jpg').default,
 };
 
