@@ -21,11 +21,11 @@ function App() {
   const {
     // Brand: brandData,
     About: aboutData,
-    Contact: contactData,
     // Featured: featuredData,
-    FAQ: FAQ_data,
     // Gallery: galleryData,
     Testimonials: testimonialData,
+    FAQ: FAQ_data,
+    Contact: contactData,
   } = data;
 
   const theme = createTheme({
