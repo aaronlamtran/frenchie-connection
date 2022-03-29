@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
+// import Box from "@mui/material/Box";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import data from "./data/mock-data.json";
 import Contact from "./components/Contact";
