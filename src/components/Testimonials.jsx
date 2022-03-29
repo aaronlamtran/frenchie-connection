@@ -4,12 +4,16 @@ import Stack from "@mui/material/Stack";
 import AvatarReview from "./AvatarReview";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 
 function Testimonials({ data: { title, entries } }) {
   return (
-    <Paper sx={{ padding: 1.5, marginBottom: 1 }}>
+    <Paper
+      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5 }}
+    >
       <Container id="Testimonials">
-        <h3>{title}</h3>
+        <Typography variant="h5">{title}</Typography>
+        <br />
         <Grid
           container
           sx={{ display: "grid", gap: 1.5, alignItems: "center" }}

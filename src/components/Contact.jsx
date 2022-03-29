@@ -6,6 +6,7 @@ import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Container from "@mui/material/Container";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 const firstState = {
   message: "",
   email: "",
@@ -44,7 +45,8 @@ function Contact({
   return (
     <Paper sx={{ padding: 1.5, paddingBottom: 10 }}>
       <Container id="Contact">
-        <h3>Contact Us</h3>
+        <Typography variant="h5">Contact Us</Typography>
+
         <p>
           Drop your contact information to send us an email. We finna get back
           to you asap.
@@ -88,9 +90,10 @@ function Contact({
             </div>
           </form>
         </div>
+        <br/>
 
         <div>
-          <h3>Contact Info</h3>
+          <Typography variant="h5">Contact Info</Typography>
           <p>
             <span>Address:</span> {location.address}
           </p>
