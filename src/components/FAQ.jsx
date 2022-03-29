@@ -1,10 +1,11 @@
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Container from '@mui/material/Container';
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
 
 function FAQ({ data: { title, entries } }) {
   const [expanded, setExpanded] = React.useState(false);
@@ -24,25 +25,25 @@ function FAQ({ data: { title, entries } }) {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Typography sx={{ color: 'text.secondary' }}>
+        <Typography sx={{ color: "text.secondary" }}>
           {entries.question}
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>
-          {entries.answer}
-        </Typography>
+        <Typography>{entries.answer}</Typography>
       </AccordionDetails>
     </Accordion>
   );
 
   return (
-    <Container id='FAQ'>
-      <h3>{title}</h3>
-      <div>
-        {entries.length && entries.map((ele, i) => accordian(ele, i))}
-      </div>
-    </Container>
+    <Paper sx={{ padding: 1.5, marginBottom: 1 }}>
+      <Container id="FAQ">
+        <h3>{title}</h3>
+        <div>
+          {entries.length && entries.map((ele, i) => accordian(ele, i))}
+        </div>
+      </Container>
+    </Paper>
   );
 }
 

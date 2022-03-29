@@ -33,7 +33,7 @@ function Nav() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ marginBottom: 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

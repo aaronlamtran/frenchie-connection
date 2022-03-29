@@ -1,15 +1,15 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
-import React from 'react';
-import Container from '@mui/material/Container';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import data from './data/mock-data.json';
-import Contact from './components/Contact';
-import FAQ from './components/FAQ';
-import Nav from './components/Nav';
-import About from './components/About';
-import Testimonials from './components/Testimonials';
-import './App.css';
+import React from "react";
+import Container from "@mui/material/Container";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import data from "./data/mock-data.json";
+import Contact from "./components/Contact";
+import FAQ from "./components/FAQ";
+import Nav from "./components/Nav";
+import About from "./components/About";
+import Testimonials from "./components/Testimonials";
+import "./App.css";
 import SmoothScroll from "smooth-scroll";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -30,9 +30,9 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      mode: 'light',
+      mode: "light",
       primary: {
-        main: '#FFFFFF',
+        main: "#FFFFFF",
       },
     },
   });

@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Container from "@mui/material/Container";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import Paper from "@mui/material/Paper";
 const firstState = {
   message: "",
   email: "",
@@ -41,66 +42,68 @@ function Contact({
     setState((previousState) => ({ ...previousState, [name]: value }));
   };
   return (
-    <Container id='Contact'>
-      <h3>Contact Us</h3>
-      <p>
-        Drop your contact information to send us an email. We finna get back to
-        you asap.
-      </p>
-      <div>
-        <form name="message" onSubmit={handleSubmit}>
-          <div>
-            <TextField
-              id="outlined-basic"
-              name="name"
-              label="name"
-              onChange={handleChange}
-              variant="outlined"
-            />
-          </div>
-          <br />
-          <div>
-            <TextField
-              id="standard-basic"
-              name="email"
-              label="email"
-              onChange={handleChange}
-              variant="outlined"
-            />
-          </div>
-          <br />
-          <div>
-            <TextareaAutosize
-              aria-label="empty textarea"
-              required
-              placeholder="message"
-              style={{ width: 190, height: 200 }}
-              name="message"
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <Button variant="contained" type="submit">
-              Send Message
-            </Button>
-          </div>
-        </form>
-      </div>
+    <Paper sx={{ padding: 1.5, paddingBottom: 10 }}>
+      <Container id="Contact">
+        <h3>Contact Us</h3>
+        <p>
+          Drop your contact information to send us an email. We finna get back
+          to you asap.
+        </p>
+        <div>
+          <form name="message" onSubmit={handleSubmit}>
+            <div>
+              <TextField
+                id="outlined-basic"
+                name="name"
+                label="name"
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </div>
+            <br />
+            <div>
+              <TextField
+                id="standard-basic"
+                name="email"
+                label="email"
+                onChange={handleChange}
+                variant="outlined"
+              />
+            </div>
+            <br />
+            <div>
+              <TextareaAutosize
+                aria-label="empty textarea"
+                required
+                placeholder="message"
+                style={{ width: 190, height: 200 }}
+                name="message"
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <Button variant="contained" type="submit">
+                Send Message
+              </Button>
+            </div>
+          </form>
+        </div>
 
-      <div>
-        <h3>Contact Info</h3>
-        <p>
-          <span>Address:</span> {location.address}
-        </p>
-        <p>
-          <span>Phone:</span> {phone}
-        </p>
-        <p>
-          <span>Email:</span> {email}
-        </p>
-      </div>
-      <InstagramIcon onClick={() => openInNewTab(url)} />
-    </Container>
+        <div>
+          <h3>Contact Info</h3>
+          <p>
+            <span>Address:</span> {location.address}
+          </p>
+          <p>
+            <span>Phone:</span> {phone}
+          </p>
+          <p>
+            <span>Email:</span> {email}
+          </p>
+        </div>
+        <InstagramIcon onClick={() => openInNewTab(url)} />
+      </Container>
+    </Paper>
   );
 }
 
