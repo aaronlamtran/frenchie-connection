@@ -2,21 +2,26 @@ import React from "react";
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import AvatarReview from "./AvatarReview";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
 
 function Testimonials({ data: { title, entries } }) {
   return (
-    <Container id="Testimonials">
+    <Container id="Testimonials" >
       <h3>{title}</h3>
-
-      <Stack direction="column" spacing={0.5}>
+      <Grid container sx={{ display: "grid", gap: 1.5, alignItems: "center"}}>
         {entries.map((person, idx) => (
-          <div key={person.name}>
-            <Stack direction="row" spacing={0.5}>
-              <AvatarReview data={{ ...person, idx }} />
-            </Stack>
-          </div>
+          <Grid item xs={12} sm={10} md={8} key={person.name}>
+            <Paper>
+              <Stack direction="column" spacing={0.5}>
+                <Stack direction="row" spacing={0.5}>
+                  <AvatarReview data={{ ...person, idx }} />
+                </Stack>
+              </Stack>
+            </Paper>
+          </Grid>
         ))}
-      </Stack>
+      </Grid>
     </Container>
   );
 }
