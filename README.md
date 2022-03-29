@@ -1,22 +1,26 @@
 # Frenchie Connection
 
-This is a mobile first web application for a business.
+This is a mobile first web application for a client.
 # Getting Started
-
-In the project directory, you can run:
 
 ### Prerequisites
 Node v14+
 Docker
 Xcode
 
+In the project directory, you can run:
+
 ### `npm install`
+To install dependencies
+
 ### `npm start`
 
 Runs the application in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
 ### `make up`
 Builds and runs a devopment image in a container. Mapped to port 3000.
+
 ### `make up-prod`
 Builds and runs a production build image in a container. Mapped to port 80.
 
