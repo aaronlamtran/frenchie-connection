@@ -1,16 +1,17 @@
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import emailjs from "@emailjs/browser";
 const firstState = {
+  from_name: "",
   message: "",
-  email: "",
-  name: "",
+  from_email: "",
 };
 function Contact({
   data: {
@@ -20,8 +21,9 @@ function Contact({
     instagram: { url, username },
   },
 }) {
+  const form = useRef();
   const [state, setState] = useState(firstState);
-
+  const clearState = () => setState({ ...firstState });
   const openInNewTab = (url) => {
     const newWindow = window.open(url, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
@@ -29,13 +31,22 @@ function Contact({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      `this will send an email to frenchie connection.
-      name:"${state.name}"
-      message:"${state.message}"
-      email:"${state.email}"
-      `
-    );
+    emailjs
+      .sendForm(
+        "service_euf2g9i",
+        "template_y14df1w",
+        form.current,
+        "O46Pu2K33IqgUR57V"
+      )
+      .then(
+        ({ text }) => {
+          console.log("email:", text);
+          clearState();
+        },
+        ({ text }) => {
+          console.log("email:", text);
+        }
+      );
   };
 
   const handleChange = (e) => {
@@ -46,64 +57,69 @@ function Contact({
     <Paper sx={{ padding: 1.5, paddingBottom: 10 }}>
       <Container id="Contact">
         <Typography variant="h5">Contact Us</Typography>
-
-        <p>
+        <Typography variant="p">
           Drop your contact information to send us an email. We finna get back
           to you asap.
-        </p>
-        <div>
-          <form name="message" onSubmit={handleSubmit}>
-            <div>
-              <TextField
-                id="outlined-basic"
-                name="name"
-                label="name"
-                onChange={handleChange}
-                variant="outlined"
-              />
-            </div>
-            <br />
-            <div>
-              <TextField
-                id="standard-basic"
-                name="email"
-                label="email"
-                onChange={handleChange}
-                variant="outlined"
-              />
-            </div>
-            <br />
-            <div>
-              <TextareaAutosize
-                aria-label="empty textarea"
-                required
-                placeholder="message"
-                style={{ width: 190, height: 200 }}
-                name="message"
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <Button variant="contained" type="submit">
-                Send Message
-              </Button>
-            </div>
+        </Typography>
+        <Box sx={{ paddingTop: 1 }}>
+          <form ref={form} name="message" onSubmit={handleSubmit}>
+            <TextField
+              required
+              autoComplete="new-password"
+              margin="dense"
+              id="filled-basic"
+              type="name"
+              name="from_name"
+              label="name"
+              onChange={handleChange}
+              variant="filled"
+              value={state.from_name}
+            />
+            <TextField
+              required
+              autoComplete="new-password"
+              margin="dense"
+              id="filled-basic"
+              type="email"
+              name="from_email"
+              label="email"
+              onChange={handleChange}
+              variant="filled"
+              value={state.from_email}
+            />
+            <TextField
+              required
+              margin="dense"
+              multiline
+              fullWidth
+              rows={5}
+              id="filled-basic"
+              type="message"
+              name="message"
+              placeholder="message"
+              onChange={handleChange}
+              variant="filled"
+              value={state.message}
+              sx={{ paddingBottom: 1 }}
+            />
+            <Button variant="contained" type="submit">
+              Send Message
+            </Button>
           </form>
-        </div>
-        <br/>
+        </Box>
 
-        <div>
+        <Box sx={{ paddingTop: 1 }}>
           <Typography variant="h5">Contact Info</Typography>
           <p>
-            <span>Address:</span> {location.address}
+            {location.address}
           </p>
           <p>
             <span>Phone:</span> {phone}
           </p>
-          <p>
+          <p variant="p">
             <span>Email:</span> {email}
           </p>
-        </div>
+        </Box>
         <InstagramIcon onClick={() => openInNewTab(url)} />
       </Container>
     </Paper>
