@@ -2,9 +2,8 @@ import React from "react";
 import "./Slider.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-// import PupCard from "./PupCard";
-// import Box from "@mui/material/Box";
-// import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+// import Typography from "@mui/material/Typography";
 
 function CardSlider(props) {
   const slideLeft = () => {
@@ -22,23 +21,8 @@ function CardSlider(props) {
   };
 
   return (
-    <div>
-      {/* {console.log(props.slides.length)}
-      <Grid container style={{margin: 0, width: '100%'}} xs={12}
-      >
-        {props.slides.map((slide, idx) => (
-
-          <PupCard
-            key={idx}
-            className="slider-card"
-            name={slide.name}
-            smallImage={slide.smallImage}
-            breed={slide.breed}
-            color={slide.color}
-            price={slide.price}
-            />
-        ))}
-      </Grid> */}
+    <Container sx={{ pb: 2}} id="Pups">
+      {/* <Typography variant="h5">Pups</Typography> */}
       <div id="main-slider-container">
         <ArrowBackIosNewIcon
           className="slider-icon left"
@@ -72,7 +56,7 @@ function CardSlider(props) {
           onClick={slideLeft}
         />
       </div>
-    </div>
+    </Container>
   );
 }
 export default CardSlider;

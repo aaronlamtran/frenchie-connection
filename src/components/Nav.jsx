@@ -12,14 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
 import LogoText from "./LogoText";
 
-const pages = [
-  "About",
-  "Gallery",
-  "Featured",
-  "Testimonials",
-  "FAQ",
-  "Contact",
-];
+const pages = ["About", "Pups", "Featured", "Testimonials", "FAQ", "Contact"];
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -33,19 +26,22 @@ function Nav() {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 1 }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar position="static" sx={{ marginBottom: 1}}>
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters >
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+            }}
           >
             <Logo />
             <LogoText />
           </Typography>
-
+          {/* xs toolbar */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -87,12 +83,14 @@ function Nav() {
               ))}
             </Menu>
           </Box>
+
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
+            <Logo />
             <LogoText />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>

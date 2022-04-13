@@ -75,6 +75,7 @@ function Contact({
               variant="filled"
               value={state.from_name}
             />
+            <br/>
             <TextField
               required
               autoComplete="new-password"
@@ -87,6 +88,7 @@ function Contact({
               variant="filled"
               value={state.from_email}
             />
+            <br/>
             <TextField
               required
               margin="dense"
@@ -100,8 +102,12 @@ function Contact({
               onChange={handleChange}
               variant="filled"
               value={state.message}
-              sx={{ paddingBottom: 1 }}
+              sx={{
+                paddingBottom: 1,
+                maxWidth: { md: 500 }
+              }}
             />
+            <br/>
             <Button variant="contained" type="submit">
               Send Message
             </Button>

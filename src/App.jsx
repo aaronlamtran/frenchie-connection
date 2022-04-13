@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import React from "react";
 import Container from "@mui/material/Container";
-// import Box from "@mui/material/Box";
+import Box from "@mui/material/Box";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import data from "./data/mock-data.json";
 import Contact from "./components/Contact";
@@ -40,13 +40,20 @@ function App() {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{ padding: 0.5 }}>
+      {/* <Container sx={{ padding: 0.5 }}> */}
+      <Container sx={{ padding: 0.25}} >
         <Nav />
-        <CardSlider slides={galleryData} />
         <About data={aboutData} />
-        <Testimonials data={testimonialData} />
-        <FAQ data={FAQ_data} />
-        <Contact data={contactData} />
+        <CardSlider slides={galleryData} />
+        <Box
+          sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+        >
+          <Testimonials data={testimonialData} />
+          <Container sx={{ padding: 0.25}}>
+            <FAQ data={FAQ_data} />
+            <Contact data={contactData} />
+          </Container>
+        </Box>
       </Container>
     </ThemeProvider>
   );
