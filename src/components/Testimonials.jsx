@@ -9,7 +9,8 @@ import Typography from "@mui/material/Typography";
 function Testimonials({ data: { title, entries } }) {
   return (
     <Paper
-      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5 }}
+      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5,
+      maxWidth: { md: 500 } }}
     >
       <Container id="Testimonials">
         <Typography variant="h5">{title}</Typography>
@@ -19,7 +20,7 @@ function Testimonials({ data: { title, entries } }) {
           sx={{ display: "grid", gap: 1.5, alignItems: "center" }}
         >
           {entries.map((person, idx) => (
-            <Grid item xs={12} sm={9} md={9} key={person.name}>
+            <Grid item xs={12} sm={12} md={12} key={person.name}>
               <Paper sx={{ padding: 1.5 }}>
                 <Stack direction="column" spacing={0.5}>
                   <Stack direction="row" spacing={0.5}>
