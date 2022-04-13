@@ -21,7 +21,7 @@ function CardSlider(props) {
   };
 
   return (
-    <Container sx={{ pb: 2}} id="Pups">
+    <Container sx={{ pb: 2, padding: 0.25}} id="Pups">
       {/* <Typography variant="h5">Pups</Typography> */}
       <div id="main-slider-container">
         <ArrowBackIosNewIcon
