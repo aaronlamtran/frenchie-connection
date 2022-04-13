@@ -19,15 +19,15 @@
   "Gallery": [
     {
       "name": "Jarvis",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Brindle",
       "price": "4500"
     },
     {
-      "name": "Sandy",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "name": "Juan",
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Black",
@@ -35,7 +35,7 @@
     },
     {
       "name": "Asessment Andy",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Grey",
@@ -43,7 +43,7 @@
     },
     {
       "name": "Bruh",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Red",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Aaron",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Doberman",
       "color": "Brindle",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Liz",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Chocolate Lab",
       "color": "Brindle",
@@ -67,7 +67,7 @@
     },
     {
       "name": "Zuki",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Pointer Mix",
       "color": "Cow",
@@ -75,7 +75,7 @@
     },
     {
       "name": "Lola",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Jack",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
