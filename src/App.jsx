@@ -12,6 +12,7 @@ import About from "./components/About";
 import Testimonials from "./components/Testimonials";
 import "./App.css";
 import SmoothScroll from "smooth-scroll";
+import CardSlider from "./components/Slider";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -23,7 +24,7 @@ function App() {
     // Brand: brandData,
     About: aboutData,
     // Featured: featuredData,
-    // Gallery: galleryData,
+    Gallery: galleryData,
     Testimonials: testimonialData,
     FAQ: FAQ_data,
     Contact: contactData,
@@ -39,8 +40,9 @@ function App() {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Container sx={{padding: 0.5}}>
+      <Container sx={{ padding: 0.5 }}>
         <Nav />
+        <CardSlider slides={galleryData} />
         <About data={aboutData} />
         <Testimonials data={testimonialData} />
         <FAQ data={FAQ_data} />

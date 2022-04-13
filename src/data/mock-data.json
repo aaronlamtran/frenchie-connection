@@ -20,7 +20,7 @@
     {
       "name": "Nala",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Brindle",
       "price": "4500"
@@ -28,7 +28,7 @@
     {
       "name": "Sandy",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Black",
       "price": "4500"
@@ -36,7 +36,7 @@
     {
       "name": "Asessment Andy",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Grey",
       "price": "Free"
@@ -44,7 +44,7 @@
     {
       "name": "Bruh",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Red",
       "price": "8000"
@@ -52,7 +52,7 @@
     {
       "name": "Aaron",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Doberman",
       "color": "Brindle",
       "price": "2300"
@@ -60,7 +60,7 @@
     {
       "name": "Liz",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Chocolate Lab",
       "color": "Brindle",
       "price": "9000"
@@ -68,7 +68,7 @@
     {
       "name": "Zuki",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Pointer Mix",
       "color": "Cow",
       "price": "10000"
@@ -76,7 +76,7 @@
     {
       "name": "Lola",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
       "price": "8000"
@@ -84,7 +84,7 @@
     {
       "name": "Jack",
       "largeImages": ["images/large.jpg", "images/large2.jpg"],
-      "smallImages": ["images/small.jpg", "images/small2.jpg"],
+      "smallImage": "https://picsum.photos/200/300",
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
       "price": "7000"
