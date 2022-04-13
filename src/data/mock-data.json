@@ -19,15 +19,15 @@
   "Gallery": [
     {
       "name": "Jarvis",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Brindle",
       "price": "4500"
     },
     {
-      "name": "Sandy",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "name": "Juan",
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Black",
@@ -35,7 +35,7 @@
     },
     {
       "name": "Asessment Andy",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Grey",
@@ -43,7 +43,7 @@
     },
     {
       "name": "Bruh",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Red",
@@ -51,7 +51,7 @@
     },
     {
       "name": "Aaron",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Doberman",
       "color": "Brindle",
@@ -59,7 +59,7 @@
     },
     {
       "name": "Liz",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Chocolate Lab",
       "color": "Brindle",
@@ -67,7 +67,7 @@
     },
     {
       "name": "Zuki",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Pointer Mix",
       "color": "Cow",
@@ -75,7 +75,7 @@
     },
     {
       "name": "Lola",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Jack",
-      "largeImages": ["images/large.jpg", "images/large2.jpg"],
+      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
@@ -127,6 +127,21 @@
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStYadyrRzbJoiAn2279B8JwsyjBc07-F9kvw&usqp=CAU",
         "text": "\"We brought our baby boy Phil home in 2019. He is the perfect frenchie. Exactly the temperament and personality we were looking for in a frenchie. Part of his vet's puppy package was a DNA test, the genetics all came back 100% and healthy. We couldn't be happier with the quality and still keep in touch with his original family. We will be back when it's time for our next addition to our family.\"",
         "name": "The Smith Family"
+      },
+      {
+        "img": "test",
+        "text": "\"The Frenchie Connection provided a great no nonsense experience.  Beautifully bred Frenchies and very professional.  Happy to answer all of our questions.  Very responsive and often follow up to see how our baby is doing.  Would highly recommend!\"",
+        "name": "Koopman Family"
+      },
+      {
+        "img": "test",
+        "text": "\"Two years ago I bought the best looking, loving and fun frenchie from Juan. Archie is adorable and has a great personality. He came to complete our family and has brought a lot of happiness to us.\"",
+        "name": "Sedano Family"
+      },
+      {
+        "img": "test",
+        "text": "\"I am forever thankful of the Frenchie connection for bringing our little pup to our family. They were the most kind and helpful. We received constant pictures and videos of our little guy and made everything so easy for us. I highly recommend them and again thank you for giving us our baby that made our family complete 🐶 \"",
+        "name": "Muñoz Urzua Family"
       }
     ]
   },
