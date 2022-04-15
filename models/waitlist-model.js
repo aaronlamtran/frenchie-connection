@@ -1,14 +1,24 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const waitlistSchema = new Schema(
+const dogWaitlistSchema = new Schema(
   {
-    productName: {
+    // creatorName: {
+    //   type: String,
+    //   required: true,
+    //   trim: true
+    // },
+    // creatorEmail: {
+    //   type: String,
+    //   required: true,
+    //   trim: true
+    // },
+    dogName: {
       type: String,
       required: true,
       trim: true
     },
-    productDescription: {
+    dogDescription: {
       type: String,
       required: true,
       trim: true
@@ -23,6 +33,6 @@ const waitlistSchema = new Schema(
   }
 );
 
-const Waitlist = mongoose.model("Waitlist", waitlistSchema);
+const DogWaitlist = mongoose.model("DogWaitlist", dogWaitlistSchema);
 
-module.exports = Waitlist;
+module.exports = DogWaitlist;
