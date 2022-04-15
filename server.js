@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const port = process.env.PORT || 5000;
 const { MONGO_USER, MONGO_PW } = process.env;
+console.log({ MONGO_USER, MONGO_PW });
 
 const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PW}@frenchie-connection-db.nxc9c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const mongoose = require("mongoose");
