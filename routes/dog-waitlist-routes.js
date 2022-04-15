@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const dogControllers = require("../controllers/dog-waitlist-controller");
 /*
-**
-**  .com/dogs/
-**
-*/
+ **
+ **  .com/dogs/
+ **
+ */
 router.post("/create", dogControllers.createDog);
 
 router.get("/all", dogControllers.allDogs);

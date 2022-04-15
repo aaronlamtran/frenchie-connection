@@ -6,30 +6,30 @@ const dogWaitlistSchema = new Schema(
     creatorName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     creatorEmail: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     dogName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     dogDescription: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     waitlist: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

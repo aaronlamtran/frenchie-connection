@@ -9,22 +9,17 @@ const createDog = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(HttpStatus.UNPROCESSABLE_ENTITY).json({
         success: false,
-        errors: errors.array()
+        errors: errors.array(),
       });
     }
-    const {
-      creatorName,
-      creatorEmail,
-      dogName,
-      dogDescription
-    } = req.body;
-    console.log({creatorName})
+    const { creatorName, creatorEmail, dogName, dogDescription } = req.body;
+    console.log({ creatorName });
 
     const dog = await Dog.create({
       creatorName,
       creatorEmail,
       dogName,
-      dogDescription
+      dogDescription,
     });
 
     return res.json({ dog, msg: "dog listed successfully." });
@@ -34,9 +29,9 @@ const createDog = async (req, res) => {
       success: false,
       errors: [
         {
-          msg: "didnt work try again."
-        }
-      ]
+          msg: "didnt work try again.",
+        },
+      ],
     });
   }
 };
@@ -51,9 +46,9 @@ const allDogs = async (req, res) => {
       success: false,
       errors: [
         {
-          msg: "didnt work try again."
-        }
-      ]
+          msg: "didnt work try again.",
+        },
+      ],
     });
   }
 };
@@ -66,21 +61,21 @@ const singleDog = async (req, res) => {
         success: false,
         errors: [
           {
-            msg: "Dog not found. Please select a different dog."
-          }
-        ]
+            msg: "Dog not found. Please select a different dog.",
+          },
+        ],
       });
     }
 
     const waitlists = await Waitlist.find({ dog: dog._id }).sort({
       refers: "desc",
-      waitlistPosition: "asc"
+      waitlistPosition: "asc",
     });
 
     return res.json({
       dog,
       waitlists,
-      msg: "dog retrieved successfully."
+      msg: "dog retrieved successfully.",
     });
   } catch (err) {
     console.log(err);
@@ -88,9 +83,9 @@ const singleDog = async (req, res) => {
       success: false,
       errors: [
         {
-          msg: "didnt work try again."
-        }
-      ]
+          msg: "didnt work try again.",
+        },
+      ],
     });
   }
 };
