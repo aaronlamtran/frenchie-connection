@@ -3,16 +3,16 @@ const Schema = mongoose.Schema;
 
 const dogWaitlistSchema = new Schema(
   {
-    // creatorName: {
-    //   type: String,
-    //   required: true,
-    //   trim: true
-    // },
-    // creatorEmail: {
-    //   type: String,
-    //   required: true,
-    //   trim: true
-    // },
+    creatorName: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    creatorEmail: {
+      type: String,
+      required: true,
+      trim: true
+    },
     dogName: {
       type: String,
       required: true,

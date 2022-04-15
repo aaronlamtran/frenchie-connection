@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const dogControllers = require("../controllers/_________");
+const dogControllers = require("../controllers/dog-waitlist-controller");
 
-router.post("/create", _________.createDog);
+router.post("/create", dogControllers.createDog);
 
-router.get("/all", _________.allDogs);
-router.get("/:id", _________.singleProduct);
+router.get("/all", dogControllers.allDogs);
+router.get("/:id", dogControllers.singleDog);
 
 module.exports = router;
