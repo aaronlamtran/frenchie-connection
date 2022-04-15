@@ -18,9 +18,6 @@ const WaitlistSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true
     },
-    referral: {
-      type: Schema.Types.ObjectId
-    },
     waitlistPosition: {
       type: Number,
       default: 0
