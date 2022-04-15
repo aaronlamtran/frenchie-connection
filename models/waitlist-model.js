@@ -1,38 +1,36 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const dogWaitlistSchema = new Schema(
+
+const WaitlistSchema = new Schema(
   {
-    // creatorName: {
-    //   type: String,
-    //   required: true,
-    //   trim: true
-    // },
-    // creatorEmail: {
-    //   type: String,
-    //   required: true,
-    //   trim: true
-    // },
-    dogName: {
+    name: {
       type: String,
       required: true,
       trim: true
     },
-    dogDescription: {
+    email: {
       type: String,
       required: true,
       trim: true
     },
-    waitlist: {
+    dog: {
+      type: Schema.Types.ObjectId,
+      required: true
+    },
+    referral: {
+      type: Schema.Types.ObjectId
+    },
+    waitlistPosition: {
       type: Number,
       default: 0
-    }
+    },
   },
   {
     timestamps: true
   }
 );
 
-const DogWaitlist = mongoose.model("DogWaitlist", dogWaitlistSchema);
+const Waitlist = mongoose.model("Waitlist", WaitlistSchema);
 
-module.exports = DogWaitlist;
+module.exports = Waitlist;
