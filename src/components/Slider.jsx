@@ -1,0 +1,87 @@
+import React, { useState } from "react";
+import "./Slider.css";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Container from "@mui/material/Container";
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
+function CardSlider(props) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [images, setImages] = useState([
+    "//placekitten.com/1500/500",
+    "//placekitten.com/4000/3000",
+    "//placekitten.com/800/1200",
+    "//placekitten.com/1500/1500"
+  ]);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const slideLeft = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft + 320;
+  };
+  const slideRight = () => {
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.scrollLeft - 320;
+  };
+
+  const handleSliderClick = (slide) => {
+    // e.preventDefault();
+    console.log({slide})
+    setImages(slide.largeImages)
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Container sx={{ pb: 2, padding: 0.25}} id="Pups">
+      {/* <Typography variant="h5">Pups</Typography> */}
+      {isOpen && (
+          <Lightbox
+            mainSrc={images[photoIndex]}
+            nextSrc={images[(photoIndex + 1) % images.length]}
+            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+            onCloseRequest={()=> setIsOpen(false)}
+            onMovePrevRequest={() =>
+                setPhotoIndex((photoIndex + images.length - 1) % images.length)
+            }
+            onMoveNextRequest={() =>
+              setPhotoIndex((photoIndex + 1) % images.length)
+            }
+          />
+        )}
+      <div id="main-slider-container">
+        <ArrowBackIosNewIcon
+          className="slider-icon left"
+          onClick={slideRight}
+        />
+        <div id="slider">
+          {props.slides.map((slide, index) => {
+            return (
+              <div
+                className="slider-card"
+                key={index + 1}
+                onClick={()=> handleSliderClick(slide)}
+              >
+                <div
+                  className="slider-card-image"
+                  style={{
+                    backgroundImage: `url(${slide.smallImage})`,
+                    backgroundSize: "cover",
+                  }}
+                ></div>
+                <p className="slider-card-title">{slide.name}</p>
+                <p className="slider-card-description">
+                  {slide.breed}, {slide.color}, {slide.price}{" "}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+        <ArrowForwardIosIcon
+          className="slider-icon right"
+          onClick={slideLeft}
+        />
+      </div>
+    </Container>
+  );
+}
+export default CardSlider;

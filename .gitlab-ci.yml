@@ -1,0 +1,20 @@
+stages:
+  - build
+  - deploy
+
+build project:
+  stage: build
+  image: node:15
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - build/
+
+netlify:
+  stage: deploy
+  image: node:15
+  script:
+    - npm install netlify-cli -g
+    - netlify deploy --dir=build --prod

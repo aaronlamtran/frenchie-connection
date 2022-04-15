@@ -1,0 +1,39 @@
+import React from "react";
+import Container from "@mui/material/Container";
+import Stack from "@mui/material/Stack";
+import AvatarReview from "./AvatarReview";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+
+function Testimonials({ data: { title, entries } }) {
+  return (
+    <Paper
+      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5,
+      maxWidth: { md: 500 } }}
+    >
+      <Container id="Testimonials">
+        <Typography variant="h5">{title}</Typography>
+        <br />
+        <Grid
+          container
+          sx={{ display: "grid", gap: 1.5, alignItems: "center" }}
+        >
+          {entries.map((person, idx) => (
+            <Grid item xs={12} sm={12} md={12} key={person.name}>
+              <Paper sx={{ padding: 1.5 }}>
+                <Stack direction="column" spacing={0.5}>
+                  <Stack direction="row" spacing={0.5}>
+                    <AvatarReview data={{ ...person, idx }} />
+                  </Stack>
+                </Stack>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </Paper>
+  );
+}
+
+export default Testimonials;
