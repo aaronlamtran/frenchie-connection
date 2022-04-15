@@ -18,11 +18,6 @@ mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.use("/dogs", dogRouter);
 app.use("/waitlist", waitlistRouter);
 
-app.get('/api/test', (req, res) => {
-  const test = "test";
-  res.json(test);
-  console.log(`Sent test`);
-});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/build/index.html'));
