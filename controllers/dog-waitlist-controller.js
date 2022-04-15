@@ -27,12 +27,6 @@ const createDog = async (req, res) => {
       dogDescription
     });
 
-    const mailData = {
-      from: 'dog list creator',
-      to: 'email of creator',
-      subject: `dog subject`,
-      text: `your dog has been listed on waitlist. you can access the leaderboard for your dog using the following link ${process.env.CLIENT_URL}/dog/${dog._id}.`
-    };
     return res.json({ dog, msg: "dog listed successfully." });
   } catch (err) {
     console.log(err);
