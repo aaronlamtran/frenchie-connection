@@ -2,6 +2,9 @@
   "name": "frenchie-connection",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@emailjs/browser": "^3.5.0",
     "@emotion/react": "^11.8.2",
@@ -35,8 +38,8 @@
   "scripts": {
     "jest": "jest --init",
     "build-prod": "webpack --config webpack.prod.js",
-    "start-prod": "node server",
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "start-dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -64,6 +67,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:3010"
+  }
 }
