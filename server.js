@@ -1,8 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const path = require("path");
-const port = process.env.PORT || 3010;
-const { MONGO_USER, MONGO_PW } = require("./config.js");
+const port = process.env.PORT || 5000;
+const { MONGO_USER, MONGO_PW } = process.env;
+
 const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PW}@frenchie-connection-db.nxc9c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const mongoose = require("mongoose");
 const dogRouter = require("./routes/dog-waitlist-routes");
