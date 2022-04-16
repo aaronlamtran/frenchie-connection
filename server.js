@@ -14,18 +14,10 @@ const waitlistRouter = require("./routes/waitlist-routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-if(NODE_ENV !== 'production'){
-  app.use(express.static(path.join(__dirname, "/public")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/public/index.html"));
-  });
-}
-if(NODE_ENV === 'production'){
-  app.use(express.static(path.join(__dirname, "/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname + "/build/index.html"));
-  });
-}
+app.use(express.static(path.join(__dirname, "/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/build/index.html"));
+});
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
