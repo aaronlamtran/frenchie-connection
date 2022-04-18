@@ -3,17 +3,20 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import DogView from "./components/dogs/DogView";
 import Dogs from "./components/dogs/Dogs";
 
-const Router = () => (
+const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/dogs/all">
-        <Dogs />
+        <Dogs
+          handleAddErrorMessages={handleAddErrorMessages}
+          handleAddSuccessMessage={handleAddSuccessMessage}
+        />
       </Route>
       <Route exact path="/dog/create">
         {/* individual dog creation */}
         <div>/dog/create</div>
       </Route>
-      <Route exact path="/dog/">
+      <Route exact path="/dogs/:id">
         <DogView />
       </Route>
     </Switch>

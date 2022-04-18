@@ -13,7 +13,9 @@ class DogView extends React.Component {
     };
   }
   async componentDidMount(){
-    const waitlistData = await axios.get('http://localhost:5000/dogs/6258e5b0e351100c23230d02')
+    const waitlistData = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/dogs/${this.props.match.params.id}`
+      )
     const { dog, waitlists} = waitlistData.data
     this.setState({waitlists: waitlists, dog: dog})
   }
@@ -29,15 +31,6 @@ class DogView extends React.Component {
       </Container>
     );
   }
-
 }
-// function DogView(){
-//     return (
-//       <Container>
-//         <h2>Dog Details</h2>
-
-//       </Container>
-//     );
-// }
 
 export default withRouter(DogView);
