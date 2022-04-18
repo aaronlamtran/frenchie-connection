@@ -18,6 +18,7 @@
     "axios": "^0.26.1",
     "babel-loader": "^8.2.3",
     "compression-webpack-plugin": "^9.2.0",
+    "concurrently": "^7.1.0",
     "cors": "^2.8.5",
     "dayjs": "^1.11.1",
     "dotenv": "^16.0.0",
@@ -26,6 +27,7 @@
     "html-webpack-plugin": "^5.5.0",
     "http-status-codes": "^2.2.0",
     "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -42,12 +44,13 @@
   "scripts": {
     "jest": "jest --init",
     "build-prod": "webpack --config webpack.prod.js",
+    "dev": "concurrently \"npm run start-dev\" \"node server.js\"",
     "start": "node server.js",
     "start-dev": "react-scripts start",
+    "start:prod": "npm run build && node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start:prod": "npm run build && node server.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

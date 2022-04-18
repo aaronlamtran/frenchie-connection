@@ -19,6 +19,7 @@ export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
 });
+
 const {
   // Brand: brandData,
   About: aboutData,
@@ -37,38 +38,37 @@ const theme = createTheme({
     },
   },
 });
-
-class App extends Component {
-  constructor(props){
-    super(props)
+class Landing extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       successMessages: [],
-      errorMessages: []
-    }
+      errorMessages: [],
+    };
   }
-render(){
 
-  return (
-    <ThemeProvider theme={theme}>
-      {/* <Container sx={{ padding: 0.5 }}> */}
-      <Container sx={{ padding: 0.25}} >
-        <Nav />
-        <Router/>
-        <About data={aboutData} />
-        <CardSlider slides={galleryData} />
-        <Box
-          sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <div> this is the landing </div>
+        <Container sx={{ padding: 0.25 }}>
+          <Nav />
+          <Router />
+          <About data={aboutData} />
+          <CardSlider slides={galleryData} />
+          <Box
+            sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
           >
-          <Testimonials data={testimonialData} />
-          <Container sx={{ padding: 0.25}}>
-            <FAQ data={FAQ_data} />
-            <Contact data={contactData} />
-          </Container>
-        </Box>
-      </Container>
-    </ThemeProvider>
-  );
-}
+            <Testimonials data={testimonialData} />
+            <Container sx={{ padding: 0.25 }}>
+              <FAQ data={FAQ_data} />
+              <Contact data={contactData} />
+            </Container>
+          </Box>
+        </Container>
+      </ThemeProvider>
+    );
+  }
 }
 
-export default App;
+export default Landing;

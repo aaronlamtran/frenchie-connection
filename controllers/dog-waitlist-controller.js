@@ -13,7 +13,6 @@ const createDog = async (req, res) => {
       });
     }
     const { creatorName, creatorEmail, dogName, dogDescription } = req.body;
-    console.log({ creatorName });
 
     const dog = await Dog.create({
       creatorName,

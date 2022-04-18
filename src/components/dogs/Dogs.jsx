@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Button,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  CardSubtitle,
-} from "reactstrap";
+import { Container } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
@@ -18,12 +8,16 @@ class Dogs extends Component {
     dogs: [],
   };
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    const allDogsData = await axios.get("http://localhost:5000/dogs/all");
+    this.setState({ dogs: allDogsData.data });
+  }
 
   render() {
     return (
       <Container>
         <h2>Dogs</h2>
+        {console.log(this.state.dogs)}
       </Container>
     );
   }
