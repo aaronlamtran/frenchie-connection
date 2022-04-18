@@ -17,7 +17,10 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => (
         <div>/dog/create</div>
       </Route>
       <Route exact path="/dogs/:id">
-        <DogView />
+        <DogView
+          handleAddErrorMessages={handleAddErrorMessages}
+          handleAddSuccessMessage={handleAddSuccessMessage}
+        />
       </Route>
     </Switch>
   </BrowserRouter>

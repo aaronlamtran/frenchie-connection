@@ -1,12 +1,15 @@
 import React from "react";
 import { Table } from "reactstrap";
+import dayjs from "dayjs";
 
 const WaitlistTableView = ({ waitlists, dogInfo }) => (
-  <>
+  <div>
     <h5>WaitlistTableView:</h5>
-    <div>{dogInfo.dogName}</div>
-    <div>{dogInfo.dogDescription}</div>
-    <div>updated at:{dogInfo.updatedAt}</div>
+    <div>Name: {dogInfo.dogName}</div>
+    <div>Description: {dogInfo.dogDescription}</div>
+    <div>
+      updated at:{dayjs(dogInfo.updatedAt).format("DD-MM-YYYY hh:mm A")}
+    </div>
     {console.log(dogInfo)}
     <Table striped>
       <thead>
@@ -27,7 +30,7 @@ const WaitlistTableView = ({ waitlists, dogInfo }) => (
         ))}
       </tbody>
     </Table>
-  </>
+  </div>
 );
 
 export default WaitlistTableView;
