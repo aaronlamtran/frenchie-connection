@@ -12,13 +12,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useHistory } from "react-router-dom";
-import SmoothScroll from "smooth-scroll";
+// import SmoothScroll from "smooth-scroll";
 const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
 // const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
-export const scroll = new SmoothScroll('a[href*="#"]', {
-  speed: 1000,
-  speedAsDuration: true,
-});
+// export const scroll = new SmoothScroll('a[href*="#"]', {
+//   speed: 1000,
+//   speedAsDuration: true,
+// });
 export default function RouterNav(props) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const history = useHistory();
@@ -28,9 +28,9 @@ export default function RouterNav(props) {
   };
 
   const handleCloseNavMenu = (event) => {
-    if(event.currentTarget.text === "Join Waitlist"){
+    if (event.currentTarget.text === "Join Waitlist") {
       history.push("/join");
-    } else {
+    } else if (event.currentTarget.text !== undefined) {
       history.push(`${event.currentTarget.text}`);
     }
 
@@ -38,9 +38,9 @@ export default function RouterNav(props) {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 1}}>
-      <Container maxWidth="xl" >
-        <Toolbar disableGutters >
+    <AppBar position="static" sx={{ marginBottom: 1 }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -84,11 +84,7 @@ export default function RouterNav(props) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  component="a"
-                  onClick={handleCloseNavMenu}
-                >
+                <MenuItem key={page} component="a" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -121,4 +117,3 @@ export default function RouterNav(props) {
     </AppBar>
   );
 }
-
