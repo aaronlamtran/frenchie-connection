@@ -5,6 +5,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
 function FAQ({ data: { title, entries } }) {
@@ -41,9 +42,9 @@ function FAQ({ data: { title, entries } }) {
     >
       <Container id="FAQ">
         <Typography variant="h5">{title}</Typography>
-        <div>
+        <Box sx={{paddingTop: 2}}>
           {entries.length && entries.map((ele, i) => accordian(ele, i))}
-        </div>
+        </Box>
       </Container>
     </Paper>
   );
