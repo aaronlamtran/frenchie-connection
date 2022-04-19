@@ -28,7 +28,7 @@ export default class JoinWaitlist extends Component {
   async handleJoinWaitlistSubmit(event) {
     event.preventDefault();
     this.setState({ waiting: true });
-    const { name, email } = this.state;
+    const { name, email, phone } = this.state;
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
     if (!name || !email) {
       handleAddErrorMessages([{ msg: "All fields are required." }]);
@@ -42,13 +42,15 @@ export default class JoinWaitlist extends Component {
         {
           name,
           email,
+          phone,
         }
       );
-      this.setState({ waiting: false, name: "", email: "" });
+      this.setState({ waiting: false, name: "", email: "", phone: "" });
       handleAddSuccessMessage(response.data.msg);
       this.setState({
         name: "",
         email: "",
+        phone: "",
         waitlist: response.data.waitlist,
         waitlists: response.data.waitlists,
       });

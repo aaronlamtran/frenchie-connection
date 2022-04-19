@@ -14,7 +14,7 @@ const joinWaitlist = async (req, res) => {
       });
     }
 
-    const { name, email } = req.body;
+    const { name, email, phone } = req.body;
     const dog = await Dog.findOne({ _id: req.params.id });
     if (!dog) {
       return res.status(HttpStatus.NOT_FOUND).json({
@@ -48,6 +48,7 @@ const joinWaitlist = async (req, res) => {
     const waitlist = await Waitlist.create({
       name,
       email,
+      phone,
       dog: dog._id,
       waitlistPosition: dog.waitlist,
     });
