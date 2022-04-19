@@ -39,20 +39,24 @@ class DogView extends React.Component {
       }
     }
   }
-  noProduct() {
+  noDog() {
     return <h5> no product </h5>;
   }
-  renderProduct() {}
+  renderDog() { return    <WaitlistTable
+    waitlists={this.state.waitlists}
+    dogInfo={this.state.dog}
+  />}
   render() {
     const { spinner, dog } = this.state;
     return (
       <Card>
         <CardContent>
           <h2>Waitlist Details</h2>
-          <WaitlistTable
-            waitlists={this.state.waitlists}
-            dogInfo={this.state.dog}
-          />
+          <div style={{ marginTop: "2rem" }}>
+            {spinner && <SickSpinner />}
+            {!spinner && !dog && this.noDog()}
+            {!spinner && dog && this.renderDog()}
+          </div>
           <Button
               color="info"
               onClick={()=>this.props.history.push("/waitlist")}
@@ -60,11 +64,6 @@ class DogView extends React.Component {
             >
               Back <i className="fas fa-angle-right" />
             </Button>
-          <div style={{ marginTop: "2rem" }}>
-            {spinner && <SickSpinner />}
-            {!spinner && !dog && this.noDogs()}
-            {!spinner && dog && this.renderProduct()}
-          </div>
         </CardContent>
       </Card>
     );
