@@ -75,7 +75,7 @@ function Contact({
               variant="filled"
               value={state.from_name}
             />
-            <br/>
+            <br />
             <TextField
               required
               autoComplete="new-password"
@@ -88,7 +88,7 @@ function Contact({
               variant="filled"
               value={state.from_email}
             />
-            <br/>
+            <br />
             <TextField
               required
               margin="dense"
@@ -104,10 +104,10 @@ function Contact({
               value={state.message}
               sx={{
                 paddingBottom: 1,
-                maxWidth: { md: 500 }
+                maxWidth: { md: 500 },
               }}
             />
-            <br/>
+            <br />
             <Button variant="contained" type="submit">
               Send Message
             </Button>
@@ -116,15 +116,9 @@ function Contact({
 
         <Box sx={{ paddingTop: 1 }}>
           <Typography variant="h5">Contact Info</Typography>
-          <p>
-            {location.address}
-          </p>
-          <p>
-            <span>Phone:</span> {phone}
-          </p>
-          <p variant="p">
-            <span>Email:</span> {email}
-          </p>
+          <Typography>{location.address}</Typography>
+          <Typography> {phone}</Typography>
+          <Typography>{email}</Typography>
         </Box>
         <InstagramIcon onClick={() => openInNewTab(url)} />
       </Container>
