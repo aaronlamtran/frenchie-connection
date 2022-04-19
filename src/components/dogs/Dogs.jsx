@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import {
-  Container,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  CardSubtitle,
-} from "reactstrap";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import { CardTitle, CardText, Row, Col } from "reactstrap";
+import Button from "@mui/material/Button";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import SickSpinner from "../../utils/SickSpinner";
+import Typography from "@mui/material/Typography";
 
 class Dogs extends Component {
   constructor(props) {
@@ -26,14 +21,12 @@ class Dogs extends Component {
 
   async componentDidMount() {
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
-    let url = `/dogs/all`
+    let url = `/dogs/all`;
     if (process.env.NODE_ENV === "development") {
       url = `${process.env.REACT_APP_SERVER_URL}/dogs/all`;
     }
     try {
-      const response = await axios.get(
-        url
-      );
+      const response = await axios.get(url);
       handleAddSuccessMessage(response.data.msg);
       this.setState({ spinner: false, dogs: response.data.dogs });
     } catch (err) {
@@ -50,39 +43,37 @@ class Dogs extends Component {
   renderDogs() {
     const { dogs } = this.state;
     return (
-      <Row>
+      <>
         {dogs.map((dog) => (
           <Col xs="12" key={dog._id} className="product-card-outer">
             <Card
-              className="product-card"
               onClick={() => this.props.history.push(`/dogs/${dog._id}`)}
+              sx={{ marginTop: 1, marginBottom: 1 }}
             >
               <CardContent>
                 <CardTitle>
-                  <h3>{dog.dogName}</h3>
+                  <Typography variant="h6">{dog.dogName}</Typography>
                 </CardTitle>
                 <CardText>
                   <span>Waitlist Size: {dog.waitlist}</span>
                 </CardText>
-                <CardSubtitle
-                  className="text-muted"
-                  style={{ fontSize: "0.8rem" }}
-                >
-                  <p>
+                <>
+                  <Typography variant="span">
+                    Description: {dog.dogDescription}
+                  </Typography>
+                  <br/>
+                  <Typography variant="span">
                     Created by <strong>{dog.creatorName}</strong> on{" "}
                     <strong>
                       {dayjs(dog.createdAt).format("DD-MM-YYYY hh:mm A")}
                     </strong>
-                  </p>
-                </CardSubtitle>
-                <CardText className="product-card-text">
-                  {dog.productDescription}
-                </CardText>
+                  </Typography>
+                </>
               </CardContent>
             </Card>
           </Col>
         ))}
-      </Row>
+      </>
     );
   }
   noDogs() {
@@ -92,22 +83,19 @@ class Dogs extends Component {
   render() {
     const { spinner, dogs } = this.state;
     return (
-      <Container>
-
-        <h2>Waitlists</h2>
+      <Box sx={{marginLeft:0.25, marginRight:0.25}}>
+        <Typography variant="h4">Waitlists</Typography>
         <hr />
-        <Button
-          color="primary"
-          onClick={() => this.props.history.push("/create")}
-        >
-          Create Your Dog Waitlist <i className="fas fa-angle-right" />
+        <Button color="info" onClick={() => this.props.history.push("/create")}>
+          Create A New Waitlist
+          {/* <i className="fas fa-angle-right" /> */}
         </Button>
-        <div style={{ marginTop: "2rem" }}>
+        <Box>
           {spinner && <SickSpinner />}
           {!spinner && dogs.length === 0 && this.noDogs()}
           {!spinner && dogs.length > 0 && this.renderDogs()}
-        </div>
-      </Container>
+        </Box>
+      </Box>
     );
   }
 }
