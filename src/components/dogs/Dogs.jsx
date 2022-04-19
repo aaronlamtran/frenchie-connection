@@ -28,7 +28,7 @@ class Dogs extends Component {
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/dogs/all`
+        `/dogs/all`
       );
       handleAddSuccessMessage(response.data.msg);
       this.setState({ spinner: false, dogs: response.data.dogs });

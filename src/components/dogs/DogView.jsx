@@ -20,7 +20,7 @@ class DogView extends React.Component {
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/dogs/${this.props.match.params.id}`
+        `/dogs/${this.props.match.params.id}`
       );
       const { dog, waitlists } = response.data;
       handleAddSuccessMessage(response.data.msg);

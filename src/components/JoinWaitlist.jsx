@@ -38,7 +38,7 @@ export default class JoinWaitlist extends Component {
     try {
       const general = { _id: "6258e5b0e351100c23230d02" };
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/waitlist/join/${general._id}`,
+        `/waitlist/join/${general._id}`,
         {
           name,
           email,
