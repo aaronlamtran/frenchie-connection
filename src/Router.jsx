@@ -10,6 +10,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import CardSlider from "./components/Slider";
 import JoinWaitlist from "./components/JoinWaitlist";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const {
   // Brand: brandData,
@@ -39,12 +40,12 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
         <Route exact path="/about">
           <About data={aboutData} />
         </Route>
-        <Route exact path="/all">
+        {/* <Route exact path="/all">
           <Dogs
             handleAddErrorMessages={handleAddErrorMessages}
             handleAddSuccessMessage={handleAddSuccessMessage}
           />
-        </Route>
+        </Route> */}
         <Route exact path="/join">
           <JoinWaitlist
             handleAddErrorMessages={handleAddErrorMessages}
@@ -61,6 +62,14 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
             handleAddSuccessMessage={handleAddSuccessMessage}
           />
         </Route>
+        <ProtectedRoute
+          exact
+          path="/waitlist"
+          component={Dogs}
+          isAuth={true}
+          handleAddErrorMessages={handleAddErrorMessages}
+          handleAddSuccessMessage={handleAddSuccessMessage}
+        />
         <Route exact path="*">
           <About data={aboutData} />
         </Route>

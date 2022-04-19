@@ -55,7 +55,7 @@ class DogView extends React.Component {
           />
           <Button
               color="info"
-              onClick={()=>this.props.history.push("/all")}
+              onClick={()=>this.props.history.push("/waitlist")}
               style={{ marginLeft: "1rem" }}
             >
               Back <i className="fas fa-angle-right" />

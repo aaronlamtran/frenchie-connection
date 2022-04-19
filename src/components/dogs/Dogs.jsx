@@ -25,7 +25,7 @@ class Dogs extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props);
+    console.log('props:',this.props);
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
     try {
       const response = await axios.get(
@@ -82,7 +82,7 @@ class Dogs extends Component {
       </Row>
     );
   }
-  nodogs() {
+  noDogs() {
     return <h1 className="text-center">No Products Found</h1>;
   }
 
