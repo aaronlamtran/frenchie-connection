@@ -3,15 +3,9 @@
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import "./App.css";
-import SmoothScroll from "smooth-scroll";
+// import "./App.css";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
-
-export const scroll = new SmoothScroll('a[href*="#"]', {
-  speed: 1000,
-  speedAsDuration: true,
-});
 
 const theme = createTheme({
   palette: {
