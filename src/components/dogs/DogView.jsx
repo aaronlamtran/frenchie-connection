@@ -48,7 +48,7 @@ class DogView extends React.Component {
     return (
       <Card>
         <CardContent>
-          <h2>Dog Details</h2>
+          <h2>Waitlist Details</h2>
           <WaitlistTable
             waitlists={this.state.waitlists}
             dogInfo={this.state.dog}

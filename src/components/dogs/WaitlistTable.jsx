@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 const WaitlistTableView = ({ waitlists, dogInfo }) => (
   <div>
-    <h5>WaitlistTableView:</h5>
+
     <div>Name: {dogInfo.dogName}</div>
     <div>Description: {dogInfo.dogDescription}</div>
     <div>
