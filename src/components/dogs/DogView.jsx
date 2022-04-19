@@ -18,10 +18,12 @@ class DogView extends React.Component {
   }
   async componentDidMount() {
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
+    let url = `/dogs/${this.props.match.params.id}`;
+    if (process.env.NODE_ENV === "development") {
+      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${this.props.match.params.id}`;
+    }
     try {
-      const response = await axios.get(
-        `/dogs/${this.props.match.params.id}`
-      );
+      const response = await axios.get(url);
       const { dog, waitlists } = response.data;
       handleAddSuccessMessage(response.data.msg);
       this.setState({ waitlists: waitlists, dog: dog, spinner: false });
@@ -42,10 +44,14 @@ class DogView extends React.Component {
   noDog() {
     return <h5> no product </h5>;
   }
-  renderDog() { return    <WaitlistTable
-    waitlists={this.state.waitlists}
-    dogInfo={this.state.dog}
-  />}
+  renderDog() {
+    return (
+      <WaitlistTable
+        waitlists={this.state.waitlists}
+        dogInfo={this.state.dog}
+      />
+    );
+  }
   render() {
     const { spinner, dog } = this.state;
     return (
@@ -58,12 +64,12 @@ class DogView extends React.Component {
             {!spinner && dog && this.renderDog()}
           </div>
           <Button
-              color="info"
-              onClick={()=>this.props.history.push("/waitlist")}
-              style={{ marginLeft: "1rem" }}
-            >
-              Back <i className="fas fa-angle-right" />
-            </Button>
+            color="info"
+            onClick={() => this.props.history.push("/waitlist")}
+            style={{ marginLeft: "1rem" }}
+          >
+            Back <i className="fas fa-angle-right" />
+          </Button>
         </CardContent>
       </Card>
     );

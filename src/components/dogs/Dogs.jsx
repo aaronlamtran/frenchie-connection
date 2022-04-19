@@ -26,9 +26,13 @@ class Dogs extends Component {
 
   async componentDidMount() {
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
+    let url = `/dogs/all`
+    if (process.env.NODE_ENV === "development") {
+      url = `${process.env.REACT_APP_SERVER_URL}/dogs/all`;
+    }
     try {
       const response = await axios.get(
-        `/dogs/all`
+        url
       );
       handleAddSuccessMessage(response.data.msg);
       this.setState({ spinner: false, dogs: response.data.dogs });

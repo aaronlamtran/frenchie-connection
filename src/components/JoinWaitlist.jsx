@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import MuiPhoneNumber from "material-ui-phone-number";
 
-
 export default class JoinWaitlist extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +19,7 @@ export default class JoinWaitlist extends Component {
   }
 
   handleInputChange(event) {
+    console.log("nodeenv", process.env.NODE_ENV);
     this.setState({ [event.target.name]: event.target.value });
   }
   handlePhoneChange(event) {
@@ -37,14 +37,15 @@ export default class JoinWaitlist extends Component {
     }
     try {
       const general = { _id: "6258e5b0e351100c23230d02" };
-      const response = await axios.post(
-        `/waitlist/join/${general._id}`,
-        {
-          name,
-          email,
-          phone,
-        }
-      );
+      let url = `/waitlist/join/${general._id}`;
+      if (process.env.NODE_ENV === "development") {
+        url = `${process.env.REACT_APP_SERVER_URL}/waitlist/join/${general._id}`;
+      }
+      const response = await axios.post(url, {
+        name,
+        email,
+        phone,
+      });
       this.setState({ waiting: false, name: "", email: "", phone: "" });
       handleAddSuccessMessage(response.data.msg);
       this.setState({

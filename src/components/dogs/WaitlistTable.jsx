@@ -33,7 +33,6 @@ const WaitlistTableView = ({ waitlists, dogInfo }) => (
             <TableCell scope="row" component="th">
               {index + 1}
             </TableCell>
-            {console.log(waitlist)}
             <TableCell>{waitlist.name}</TableCell>
             {/* <TableCell>{waitlist.waitlistPosition}</TableCell> */}
             <TableCell>{waitlist.phone ? waitlist.phone : "N/A"}</TableCell>
