@@ -23,7 +23,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Brindle",
-      "price": "4500"
+      "sex": "Male"
     },
     {
       "name": "Juan",
@@ -31,7 +31,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Black",
-      "price": "4500"
+      "sex": "Female"
     },
     {
       "name": "Asessment Andy",
@@ -39,7 +39,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Grey",
-      "price": "Free"
+      "sex": "Male"
     },
     {
       "name": "Bruh",
@@ -47,7 +47,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Red",
-      "price": "8000"
+      "sex": "Female"
     },
     {
       "name": "Aaron",
@@ -55,7 +55,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Doberman",
       "color": "Brindle",
-      "price": "2300"
+      "sex": "Male"
     },
     {
       "name": "Liz",
@@ -63,7 +63,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Chocolate Lab",
       "color": "Brindle",
-      "price": "9000"
+      "sex": "Female"
     },
     {
       "name": "Zuki",
@@ -71,7 +71,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Pointer Mix",
       "color": "Cow",
-      "price": "10000"
+      "sex": "Female"
     },
     {
       "name": "Lola",
@@ -79,7 +79,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
-      "price": "8000"
+      "sex": "Female"
     },
     {
       "name": "Jack",
@@ -87,7 +87,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
-      "price": "7000"
+      "sex": "Male"
     }
   ],
   "Testimonials": {
@@ -166,24 +166,32 @@
     "title": "Frequently Asked Questions",
     "entries": [
       {
-        "question": "Do crossbred or mixed breed French Bulldogs make good pets?",
-        "answer": "Many do make good pets, yes, in the right homes. But before you choose ANY purebred, crossbreed, or mixed breed, you need to know what a purebred dog really IS and what crossbred and mixed breed dogs really are."
+        "question": "What is the average weight of an adult Frenchie?",
+        "answer": "The average weight of an adult Frenchie is anywhere from 16-28lbs with males more commonly being on the heavier side of the scale and females on the lighter side of that scale. Of course some can be heavier or lighter but would just depend on that particular pup."
       },
       {
-        "question": "Can you help me decide whether the French Bulldog is the best breed for me?",
-        "answer": "Yes, I offer personal consultations on choosing the best breed for your family and lifestyle.."
+        "question": "Do Frenchies make other noises besides barking?",
+        "answer": "Yes, given that Frenchies are a “brachycephalic” or short-muzzled breed they are more likely to snore or make other peculiar sounds with their noses and mouths. Frenchies are also known to pass gas however, we have found that proper diet aids with unwanted gas."
       },
       {
-        "question": "How do I reserve a puppy?",
-        "answer": "Frenchie Collections requires a $600 deposit on all puppies as well as a puppy contract in order to reserve your puppy."
+        "question": "Do Frenchies has sensitive skin?",
+        "answer": "Frenchies do not have sensitive skin however, they do have many folds on their face which makes it very important to always keep those folds clean of dirt and debris to prevent any sort of infection."
       },
       {
-        "question": "Which shots will my puppy come with?",
-        "answer": "The schedule of vaccinations that dogs really need has changed dramatically. Unfortunately most vets are not telling you the truth about this, because a good chunk of their income depends on frequent vaccinations. Please contact me for more information"
+        "question": "Do Frenchies have lots of health problems?",
+        "answer": "This is a very common question that is very misleading. Frenchies do not have any more or any less health issues than other dog breeds. If responsibly bred, French Bulldogs should be as healthy as any other dog. To date, our dogs have had no significant health concerns."
       },
       {
-        "question": "What are the pros and cons of spaying and neutering my French Bulldog, and when should it be done?",
-        "answer": "Spaying and neutering are often recommended too early, which can lead to health problems later in life."
+        "question": "What is the personality of a Frenchie?",
+        "answer": "In our opinion, the Frenchie is the best dog breed because they are a very unique and versatile dog. They can be as active as you want them to be but also as lazy as you want them to be which makes them suitable for a wide range of lifestyles. They are not big barkers which is a huge plus if considering an apartment / indoor dog. They are also smaller dogs that can be put up on the couch to be a lap dog."
+      },
+      {
+        "question": "What colors do Frenchies come in?",
+        "answer": "Frenchies come in a wide variety of colors. From standard colors such as Brindle, Cream, Fawn and Piebald to exotic colors such as Blue, Blue and Tan, Black and Tan, Lilac and Tan, and many more. If you would like more information about their colors please inquire and we would be more than happy to help!"
+      },
+      {
+        "question": "Are your Frenchies AKC Registered?",
+        "answer": "Yes, all our dogs are AKC Registered further ensuring you are receiving a Pure Bred French Bulldog."
       }
     ]
   },
