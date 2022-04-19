@@ -20,7 +20,7 @@ const JoinWaitlist = ({
 }) => (
   <>
     <ModalHeader toggle={toggleModal}>
-      Join waitlist for {dog.dogName}
+      Join waitlist
     </ModalHeader>
     <ModalBody>
       <Form>

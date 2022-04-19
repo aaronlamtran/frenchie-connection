@@ -54,7 +54,6 @@ class DogView extends React.Component {
             dogInfo={this.state.dog}
           />
           <Button
-              outline
               color="info"
               onClick={()=>this.props.history.push("/dogs/all")}
               style={{ marginLeft: "1rem" }}

@@ -93,7 +93,6 @@ class Dogs extends Component {
         <h2>Waitlists</h2>
         <hr />
         <Button
-          outline
           color="primary"
           onClick={() => this.props.history.push("/dog/create")}
         >
