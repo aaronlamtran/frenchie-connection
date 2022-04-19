@@ -3,6 +3,9 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import MuiPhoneNumber from "material-ui-phone-number";
+
 
 export default class JoinWaitlist extends Component {
   constructor(props) {
@@ -12,10 +15,12 @@ export default class JoinWaitlist extends Component {
       waiting: false,
       name: "",
       email: "",
+      phone: "",
     };
   }
 
   handleInputChange(event) {
+    console.log(event.target.name, event.target.value)
     this.setState({ [event.target.name]: event.target.value });
   }
   async handleJoinWaitlistSubmit(event) {
@@ -29,7 +34,7 @@ export default class JoinWaitlist extends Component {
       return;
     }
     try {
-      const general = { _id : "6258e5b0e351100c23230d02"}
+      const general = { _id: "6258e5b0e351100c23230d02" };
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/waitlist/join/${general._id}`,
         {
@@ -37,7 +42,8 @@ export default class JoinWaitlist extends Component {
           email,
         }
       );
-      this.setState({ waiting: false });
+      this.setState({ waiting: false, name: "", email: "" });
+      console.log(response.data.msg);
       handleAddSuccessMessage(response.data.msg);
       this.setState({
         name: "",
@@ -101,12 +107,13 @@ export default class JoinWaitlist extends Component {
   render() {
     const { waiting } = this.state;
     return (
-      <Paper>
-        Join waitlist
+      <Paper sx={{ padding: 1.5, paddingBottom: 10 }}>
+        <Typography variant="h5">Join waitlist</Typography>
+
         <form
           ref={this.form}
           name="message"
-          onSubmit={e => this.handleJoinWaitlistSubmit(e)}
+          onSubmit={(e) => this.handleJoinWaitlistSubmit(e)}
         >
           <TextField
             required
@@ -118,7 +125,7 @@ export default class JoinWaitlist extends Component {
             label="name"
             onChange={(e) => this.handleInputChange(e)}
             variant="filled"
-            // value={state.from_name}
+            value={this.state.name}
           />
           <br />
           <TextField
@@ -131,7 +138,15 @@ export default class JoinWaitlist extends Component {
             label="email"
             onChange={(e) => this.handleInputChange(e)}
             variant="filled"
-            // value={state.from_email}
+            value={this.state.email}
+          />
+          <br />
+          <MuiPhoneNumber
+            name="phone"
+            defaultCountry={"us"}
+            label="phone"
+            onChange={(e) => this.handleInputChange(e)}
+            value={this.state.phone}
           />
           <br />
           {waiting && (

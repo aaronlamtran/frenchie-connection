@@ -13,6 +13,11 @@ const WaitlistSchema = new Schema(
       required: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     dog: {
       type: Schema.Types.ObjectId,
       required: true,
