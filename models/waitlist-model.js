@@ -15,7 +15,7 @@ const WaitlistSchema = new Schema(
     },
     phone: {
       type: String,
-      required: true,
+      // required: true,
       trim: true,
     },
     dog: {

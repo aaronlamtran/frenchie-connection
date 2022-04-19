@@ -1,6 +1,8 @@
 
 import React from "react";
-import { AlertContainer, Alert } from "react-bs-notifier";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 const AlertsView = ({
   successMessages,
@@ -8,36 +10,30 @@ const AlertsView = ({
   handleDismissSuccessMessage,
   handleDismissErrorMessage
 }) => (
-  <AlertContainer>
+  <Stack>
     {successMessages.map((success, index) => (
       <Alert
-        key={index}
-        type="success"
-        showIcon={true}
-        timeout={3000}
-        headline="Successful!"
-        onDismiss={() => {
+      key={index}
+      severity="success"
+      onClose={() => {
           handleDismissSuccessMessage(index);
         }}
-      >
-        {success.msg}
+        >
+        <AlertTitle>{success.msg}</AlertTitle>
       </Alert>
     ))}
     {errorMessages.map((error, index) => (
       <Alert
-        key={index}
-        type="danger"
-        showIcon={true}
-        timeout={3000}
-        headline="Error!"
-        onDismiss={() => {
+      key={index}
+      severity="warning"
+      onClose={() => {
           handleDismissErrorMessage(index);
         }}
-      >
-        {error.msg}
+        >
+       <AlertTitle> {error.msg}</AlertTitle>
       </Alert>
     ))}
-  </AlertContainer>
+  </Stack>
 );
 
 export default AlertsView;
