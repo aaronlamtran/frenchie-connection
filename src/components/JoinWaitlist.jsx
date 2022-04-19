@@ -22,6 +22,9 @@ export default class JoinWaitlist extends Component {
   handleInputChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
+  handlePhoneChange(event) {
+    this.setState({ phone: event });
+  }
   async handleJoinWaitlistSubmit(event) {
     event.preventDefault();
     this.setState({ waiting: true });
@@ -64,44 +67,6 @@ export default class JoinWaitlist extends Component {
     }
   }
 
-  // async function handleCheckDetailsSubmit (event){
-  //     event.preventDefault();
-  //     this.setState({ waiting: true });
-  //     const { email } = this.state;
-  //     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
-  //     if (!email) {
-  //       handleAddErrorMessages([{ msg: "All fields are required." }]);
-  //       this.setState({ waiting: false });
-  //       return;
-  //     }
-  //     try {
-  //       const response = await axios.get(
-  //         `${process.env.REACT_APP_SERVER_URL}/waitlist/details`,
-  //         {
-  //           params: {
-  //             email,
-  //           },
-  //         }
-  //       );
-  //       this.setState({ waiting: false });
-  //       handleAddSuccessMessage(response.data.msg);
-  //       this.setState({
-  //         email: "",
-  //         waitlist: response.data.waitlist,
-  //         referralLink: response.data.referralLink,
-  //       });
-  //     } catch (err) {
-  //       this.setState({ waiting: false });
-  //       if (err.response) {
-  //         handleAddErrorMessages(err.response.data.errors);
-  //       } else {
-  //         handleAddErrorMessages([
-  //           { msg: "Something went wrong. Please try again." },
-  //         ]);
-  //       }
-  //     }
-  //   };
-
   render() {
     const { waiting } = this.state;
     return (
@@ -143,7 +108,8 @@ export default class JoinWaitlist extends Component {
             name="phone"
             defaultCountry={"us"}
             label="phone"
-            onChange={(e) => this.handleInputChange(e)}
+            onChange={(e) => this.handlePhoneChange(e)}
+            //TODO address value on submit
             value={this.state.phone}
           />
           <br />
