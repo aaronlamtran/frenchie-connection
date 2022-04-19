@@ -33,10 +33,15 @@ const joinWaitlist = async (req, res) => {
         waitlistPosition: "asc",
       });
 
-      return res.json({
-        waitlist: waitlistExists,
-        waitlists,
-        msg: "user has already joined the waitlist.",
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        success: false,
+        errors: [
+          {
+            waitlist: waitlistExists,
+            waitlists,
+            msg: "user has already joined the waitlist.",
+          },
+        ],
       });
     }
 

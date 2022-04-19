@@ -1,39 +1,73 @@
+import React, { useEffect } from "react";
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+const MyAlert = ({
+  severity,
+  message,
+  setShowAlert,
+  showAlert,
+  clearAlerts,
+  ...rest
+}) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowAlert(false);
+      clearAlerts();
+      // Disable alert after 5 seconds
+    }, 5000);
 
-import React from "react";
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import Stack from '@mui/material/Stack';
+    return () => {
+      // Clears timer in case you close your alert somewhere else.
+      clearTimeout(timeout);
+    };
+  }, [setShowAlert, clearAlerts]);
+  return <Alert severity={severity}>{message}</Alert>;
+};
 
 const AlertsView = ({
   successMessages,
   errorMessages,
   handleDismissSuccessMessage,
-  handleDismissErrorMessage
-}) => (
-  <Stack>
-    {successMessages.map((success, index) => (
-      <Alert
-      key={index}
-      severity="success"
-      onClose={() => {
-          handleDismissSuccessMessage(index);
-        }}
-        >
-        <AlertTitle>{success.msg}</AlertTitle>
-      </Alert>
-    ))}
-    {errorMessages.map((error, index) => (
-      <Alert
-      key={index}
-      severity="warning"
-      onClose={() => {
-          handleDismissErrorMessage(index);
-        }}
-        >
-       <AlertTitle> {error.msg}</AlertTitle>
-      </Alert>
-    ))}
-  </Stack>
-);
+  handleDismissErrorMessage,
+  showAlert,
+  setShowAlert,
+  clearAlerts,
+  ...rest
+}) => {
+  console.log({ successMessages, errorMessages });
+  return (
+    <>
+      {showAlert && (
+        <Stack>
+          {successMessages.map((success, index) => (
+            <MyAlert
+              key={index}
+              severity="success"
+              message={success.msg}
+              setShowAlert={setShowAlert}
+              showAlert={showAlert}
+              clearAlerts={clearAlerts}
+              onClose={() => {
+                handleDismissSuccessMessage(index);
+              }}
+            />
+          ))}
+          {errorMessages.map((error, index) => (
+            <MyAlert
+              key={index}
+              severity="warning"
+              clearAlerts={clearAlerts}
+              setShowAlert={setShowAlert}
+              message={error.msg}
+              onClose={() => {
+                handleDismissErrorMessage(index);
+              }}
+            />
+          ))}
+        </Stack>
+      )}
+    </>
+  );
+};
 
 export default AlertsView;

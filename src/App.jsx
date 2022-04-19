@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./App.css";
 import SmoothScroll from "smooth-scroll";
 import Router from "./Router";
-import AlertsView from './utils/AlertsView';
+import AlertsView from "./utils/AlertsView";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -28,9 +28,15 @@ class App extends Component {
     this.state = {
       successMessages: [],
       errorMessages: [],
+      showAlert: true,
     };
   }
-
+  clearAlerts = () => {
+    this.setState({ successMessages: [], errorMessages: [], showAlert: true });
+  };
+  setShowAlert = (state) => {
+    this.setState({ showAlert: state });
+  };
   handleAddErrorMessages = (errors) => {
     this.setState({ errorMessages: [...this.state.errorMessages, ...errors] });
   };
@@ -60,8 +66,11 @@ class App extends Component {
           <AlertsView
             successMessages={this.state.successMessages}
             errorMessages={this.state.errorMessages}
+            showAlert={this.state.showAlert}
             handleDismissSuccessMessage={this.handleDismissSuccessMessage}
             handleDismissErrorMessage={this.handleDismissErrorMessage}
+            setShowAlert={this.setShowAlert}
+            clearAlerts={this.clearAlerts}
           />
           <Router
             handleAddErrorMessages={this.handleAddErrorMessages}
