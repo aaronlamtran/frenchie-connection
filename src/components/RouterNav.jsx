@@ -13,7 +13,7 @@ import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useHistory } from "react-router-dom";
 import SmoothScroll from "smooth-scroll";
-const pages = ["About", "Pups", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
+const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
 // const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
@@ -29,7 +29,7 @@ export default function RouterNav(props) {
 
   const handleCloseNavMenu = (event) => {
     if(event.currentTarget.text === "Join Waitlist"){
-      history.push("/all");
+      history.push("/join");
     } else {
       history.push(`${event.currentTarget.text}`);
     }

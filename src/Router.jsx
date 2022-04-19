@@ -9,6 +9,7 @@ import FAQ from "./components/FAQ";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import CardSlider from "./components/Slider";
+import JoinWaitlist from "./components/JoinWaitlist";
 
 const {
   // Brand: brandData,
@@ -21,49 +22,51 @@ const {
 } = data;
 
 const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
-
   return (
-  <BrowserRouter>
-    <RouterNav/>
-    <Switch>
-      <Route exact path="/pups">
-        <CardSlider slides={galleryData} />
-        <Testimonials data={testimonialData} />
-        <Contact data={contactData} />
-      </Route>
-      <Route exact path="/contact">
-        <Contact data={contactData} />
-      </Route>
-      <Route exact path="/faq">
-        <FAQ data={FAQ_data} />
-      </Route>
-      <Route exact path="/about">
-        <About data={aboutData} />
-      </Route>
-      <Route exact path="/all">
-        <Dogs
-          handleAddErrorMessages={handleAddErrorMessages}
-          handleAddSuccessMessage={handleAddSuccessMessage}
-        />
-      </Route>
-      <Route exact path="/join">
-        <div>Join </div>
-      </Route>
-      <Route exact path="/create">
-        {/* individual dog creation */}
-        <div>/dog/create</div>
-      </Route>
-      <Route exact path="/dogs/:id">
-        <DogView
-          handleAddErrorMessages={handleAddErrorMessages}
-          handleAddSuccessMessage={handleAddSuccessMessage}
-        />
-      </Route>
-      <Route exact path="*">
-        <About data={aboutData} />
-      </Route>
-    </Switch>
-  </BrowserRouter>
-)};
+    <BrowserRouter>
+      <RouterNav />
+      <Switch>
+        <Route exact path="/pups">
+          <CardSlider slides={galleryData} />
+          <Testimonials data={testimonialData} />
+        </Route>
+        <Route exact path="/contact">
+          <Contact data={contactData} />
+        </Route>
+        <Route exact path="/faq">
+          <FAQ data={FAQ_data} />
+        </Route>
+        <Route exact path="/about">
+          <About data={aboutData} />
+        </Route>
+        <Route exact path="/all">
+          <Dogs
+            handleAddErrorMessages={handleAddErrorMessages}
+            handleAddSuccessMessage={handleAddSuccessMessage}
+          />
+        </Route>
+        <Route exact path="/join">
+          <JoinWaitlist
+            handleAddErrorMessages={handleAddErrorMessages}
+            handleAddSuccessMessage={handleAddSuccessMessage}
+          />
+        </Route>
+        <Route exact path="/create">
+          {/* individual dog creation */}
+          <div>/dog/create</div>
+        </Route>
+        <Route exact path="/dogs/:id">
+          <DogView
+            handleAddErrorMessages={handleAddErrorMessages}
+            handleAddSuccessMessage={handleAddSuccessMessage}
+          />
+        </Route>
+        <Route exact path="*">
+          <About data={aboutData} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default Router;
