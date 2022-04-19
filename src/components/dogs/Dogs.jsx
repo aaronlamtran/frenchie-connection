@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
-import { CardTitle, CardText, Row, Col } from "reactstrap";
+import { CardTitle, CardText, Col } from "reactstrap";
 import Button from "@mui/material/Button";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
