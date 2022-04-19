@@ -30,11 +30,15 @@ function Contact({
   };
 
   const handleSubmit = (e) => {
+    const service_id = process.env.REACT_APP_SERVICE_ID
+    const template_id = process.env.REACT_APP_TEMPLATE_ID
+    // const user_id = process.env.REACT_APP_USER_ID
+
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_euf2g9i",
-        "template_y14df1w",
+        service_id,
+        template_id,
         form.current,
         "O46Pu2K33IqgUR57V"
       )

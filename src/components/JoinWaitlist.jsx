@@ -19,7 +19,6 @@ export default class JoinWaitlist extends Component {
   }
 
   handleInputChange(event) {
-    console.log("nodeenv", process.env.NODE_ENV);
     this.setState({ [event.target.name]: event.target.value });
   }
   handlePhoneChange(event) {
