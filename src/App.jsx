@@ -14,6 +14,9 @@ const theme = createTheme({
       main: "#FFFFFF",
     },
   },
+  typography: {
+    fontFamily: ["Open Sans"].join(","),
+  },
 });
 
 class App extends Component {

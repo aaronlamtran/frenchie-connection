@@ -17,7 +17,7 @@ function About({ data: { title, description } }) {
         </ImageList>
         <Typography variant="h5">{title}</Typography>
         <br />
-        <Typography variant="p">{description}</Typography>
+        <Typography >{description}</Typography>
 
         <Container />
       </Container>
