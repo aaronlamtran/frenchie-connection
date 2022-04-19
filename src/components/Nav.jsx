@@ -24,7 +24,6 @@ function Nav() {
   };
 
   const handleCloseNavMenu = (event) => {
-    console.log(event.currentTarget.text === "Join Waitlist")
     if(event.currentTarget.text === "Join Waitlist"){
       history.push("/dogs/all");
     }

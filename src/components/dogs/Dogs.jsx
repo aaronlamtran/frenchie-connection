@@ -25,7 +25,6 @@ class Dogs extends Component {
   }
 
   async componentDidMount() {
-    console.log('props:',this.props);
     const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
     try {
       const response = await axios.get(

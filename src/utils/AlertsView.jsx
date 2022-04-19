@@ -34,7 +34,6 @@ const AlertsView = ({
   clearAlerts,
   ...rest
 }) => {
-  console.log({ successMessages, errorMessages });
   return (
     <>
       {showAlert && (

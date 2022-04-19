@@ -10,7 +10,6 @@ const WaitlistTableView = ({ waitlists, dogInfo }) => (
     <div>
       updated at:{dayjs(dogInfo.updatedAt).format("DD-MM-YYYY hh:mm A")}
     </div>
-    {console.log(dogInfo)}
     <Table striped>
       <thead>
         <tr>

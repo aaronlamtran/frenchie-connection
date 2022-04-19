@@ -25,8 +25,6 @@ function CardSlider(props) {
   };
 
   const handleSliderClick = (slide) => {
-    // e.preventDefault();
-    console.log({slide})
     setImages(slide.largeImages)
     setIsOpen(!isOpen);
   };

@@ -20,7 +20,6 @@ export default class JoinWaitlist extends Component {
   }
 
   handleInputChange(event) {
-    console.log(event.target.name, event.target.value)
     this.setState({ [event.target.name]: event.target.value });
   }
   async handleJoinWaitlistSubmit(event) {
@@ -43,7 +42,6 @@ export default class JoinWaitlist extends Component {
         }
       );
       this.setState({ waiting: false, name: "", email: "" });
-      console.log(response.data.msg);
       handleAddSuccessMessage(response.data.msg);
       this.setState({
         name: "",
