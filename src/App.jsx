@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Nav from "./components/Nav";
 import "./App.css";
 import SmoothScroll from "smooth-scroll";
 import Router from "./Router";

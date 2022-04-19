@@ -14,7 +14,7 @@ import LogoText from "./LogoText";
 import { useHistory } from "react-router-dom";
 import SmoothScroll from "smooth-scroll";
 const pages = ["About", "Pups", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
-const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
+// const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
   speedAsDuration: true,
