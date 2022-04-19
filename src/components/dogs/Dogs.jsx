@@ -90,6 +90,7 @@ class Dogs extends Component {
     const { spinner, dogs } = this.state;
     return (
       <Container>
+
         <h2>Waitlists</h2>
         <hr />
         <Button
