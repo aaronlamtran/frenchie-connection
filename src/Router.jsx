@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import DogView from "./components/dogs/DogView";
 import Dogs from "./components/dogs/Dogs";
@@ -13,6 +13,7 @@ import JoinWaitlist from "./components/JoinWaitlist";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateDog from "./components/dogs/CreateDog";
 import Login from "./components/Login";
+import { AuthProvider } from "./components/Auth";
 
 const {
   // Brand: brandData,
@@ -56,26 +57,35 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
           />
         </Route>
         <Route exact path="/create">
-          <CreateDog
-            handleAddErrorMessages={handleAddErrorMessages}
-            handleAddSuccessMessage={handleAddSuccessMessage}
-          />
+          <AuthProvider>
+            <CreateDog
+              handleAddErrorMessages={handleAddErrorMessages}
+              handleAddSuccessMessage={handleAddSuccessMessage}
+            />
+          </AuthProvider>
         </Route>
         <Route exact path="/dogs/:id">
-          <DogView
+          <AuthProvider>
+            <DogView
+              value
+              handleAddErrorMessages={handleAddErrorMessages}
+              handleAddSuccessMessage={handleAddSuccessMessage}
+            />
+          </AuthProvider>
+        </Route>
+        <AuthProvider>
+          <ProtectedRoute
+            exact
+            path="/waitlist"
+            component={Dogs}
+            isAuth={true}
+            value
             handleAddErrorMessages={handleAddErrorMessages}
             handleAddSuccessMessage={handleAddSuccessMessage}
           />
-        </Route>
-        <ProtectedRoute
-          exact
-          path="/waitlist"
-          component={Dogs}
-          isAuth={true}
-          handleAddErrorMessages={handleAddErrorMessages}
-          handleAddSuccessMessage={handleAddSuccessMessage}
-        />
+        </AuthProvider>
         <Route exact path="*">
+          {/* // TODO : create page does not exist component  */}
           <About data={aboutData} />
         </Route>
       </Switch>

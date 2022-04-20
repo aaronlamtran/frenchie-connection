@@ -10,6 +10,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import SickSpinner from "../../utils/SickSpinner";
 import Typography from "@mui/material/Typography";
+import Logout from '../Logout';
 
 class Dogs extends Component {
   constructor(props) {
@@ -121,6 +122,7 @@ class Dogs extends Component {
             {!spinner && dogs.length > 0 && this.renderDogs()}
           </Box>
         </Box>
+        <Logout/>
       </Paper>
     );
   }
