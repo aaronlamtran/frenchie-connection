@@ -9,17 +9,22 @@ import Typography from "@mui/material/Typography";
 
 function About({ data: { title, description } }) {
   return (
-    <Box sx={{marginTop: 1,}}>
+    <Box sx={{ marginTop: 1, maxWidth: { md: 800 }, margin: "auto" }}>
+      <ImageList cols={1}>
+        <ImageListItem>
+          <img src={AboutPic} alt="AboutUs" loading="lazy" />
+        </ImageListItem>
+      </ImageList>
       <Paper
-        sx={{ padding: 0.25, marginBottom: 1, paddingBottom: 5, marginTop: 1,maxWidth: { md: 800 }, margin: 'auto'}}
+        sx={{
+          padding: 0.25,
+          paddingBottom: 2,
+          // marginTop: 1,
+          maxWidth: { md: 800 },
+          margin: "auto",
+        }}
       >
         <Container>
-          <ImageList cols={1}>
-            <ImageListItem>
-              <img src={AboutPic} alt="AboutUs" loading="lazy" />
-            </ImageListItem>
-          </ImageList>
-          <br />
           <Box
             sx={{
               maxWidth: { md: 800 },
@@ -28,10 +33,10 @@ function About({ data: { title, description } }) {
             }}
           >
             <Typography variant="h5">{title}</Typography>
-            <Typography>{description}</Typography>
+            <Typography sx={{
+              marginTop: 1,
+            }}>{description}</Typography>
           </Box>
-
-          <Container />
         </Container>
       </Paper>
     </Box>
