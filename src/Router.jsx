@@ -12,6 +12,7 @@ import CardSlider from "./components/Slider";
 import JoinWaitlist from "./components/JoinWaitlist";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CreateDog from "./components/dogs/CreateDog";
+import Login from "./components/Login";
 
 const {
   // Brand: brandData,
@@ -31,6 +32,9 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
         <Route exact path="/pups">
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
+        </Route>
+        <Route exact path="/login">
+          <Login />
         </Route>
         <Route exact path="/contact">
           <Contact

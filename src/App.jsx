@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 // import "./App.css";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
+import './config/firebase-config';
 
 const theme = createTheme({
   palette: {
