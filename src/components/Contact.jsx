@@ -41,12 +41,12 @@ function Contact({
       .then(
         ({ text }) => {
           console.log("email:", text);
-          handleAddSuccessMessage("Email Sent!");
+          handleAddSuccessMessage("Email Sent! 🐶 ");
           clearState();
         },
         ({ text }) => {
           console.log("email:", text);
-          handleAddErrorMessages([{ msg: "Server Error. Try Again Later." }]);
+          handleAddErrorMessages([{ msg: "🐶 Server Error. Please try again aater." }]);
         }
       );
   };

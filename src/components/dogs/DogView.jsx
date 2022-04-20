@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Paper from "@mui/material/Paper";
 import WaitlistTable from "./WaitlistTable";
 import axios from "axios";
 import SickSpinner from "../../utils/SickSpinner";
-
+import Typography from "@mui/material/Typography";
 class DogView extends React.Component {
   constructor(props) {
     super(props);
@@ -42,36 +42,45 @@ class DogView extends React.Component {
     }
   }
   noDog() {
-    return <h5> no product </h5>;
+    return <h5> no dog found </h5>;
   }
   renderDog() {
     return (
-      <WaitlistTable
-        waitlists={this.state.waitlists}
-        dogInfo={this.state.dog}
-      />
+      <>
+        <WaitlistTable
+          waitlists={this.state.waitlists}
+          dogInfo={this.state.dog}
+        />
+      </>
     );
   }
   render() {
     const { spinner, dog } = this.state;
     return (
-      <Card>
-        <CardContent>
-          <h2>Waitlist Details</h2>
-          <div style={{ marginTop: "2rem" }}>
-            {spinner && <SickSpinner />}
-            {!spinner && !dog && this.noDog()}
-            {!spinner && dog && this.renderDog()}
-          </div>
-          <Button
-            color="info"
-            onClick={() => this.props.history.push("/waitlist")}
-            style={{ marginLeft: "1rem" }}
-          >
-            Back <i className="fas fa-angle-right" />
-          </Button>
-        </CardContent>
-      </Card>
+      <Paper
+        sx={{
+          padding: 1.5,
+          paddingTop: 2,
+          marginBottom: 1,
+          paddingBottom: 5,
+          maxWidth: { md: 800 },
+          margin: "auto",
+          marginTop: 1,
+        }}
+      >
+        <Typography variant="h5">Waitlist Details</Typography>
+        <Button
+          color="info"
+          onClick={() => this.props.history.push("/waitlist")}
+        >
+          Back
+        </Button>
+        <Box>
+          {spinner && <SickSpinner />}
+          {!spinner && !dog && this.noDog()}
+          {!spinner && dog && this.renderDog()}
+        </Box>
+      </Paper>
     );
   }
 }

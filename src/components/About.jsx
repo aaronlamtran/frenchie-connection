@@ -19,7 +19,6 @@ function About({ data: { title, description } }) {
         sx={{
           padding: 0.25,
           paddingBottom: 2,
-          // marginTop: 1,
           maxWidth: { md: 800 },
           margin: "auto",
         }}
@@ -33,9 +32,13 @@ function About({ data: { title, description } }) {
             }}
           >
             <Typography variant="h5">{title}</Typography>
-            <Typography sx={{
-              marginTop: 1,
-            }}>{description}</Typography>
+            <Typography
+              sx={{
+                marginTop: 1,
+              }}
+            >
+              {description}
+            </Typography>
           </Box>
         </Container>
       </Paper>
