@@ -12,13 +12,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useHistory } from "react-router-dom";
-// import SmoothScroll from "smooth-scroll";
 const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
-// const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
-// export const scroll = new SmoothScroll('a[href*="#"]', {
-//   speed: 1000,
-//   speedAsDuration: true,
-// });
+
 export default function RouterNav(props) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const history = useHistory();
@@ -38,8 +33,14 @@ export default function RouterNav(props) {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 1 }}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="static"
+      sx={{
+        maxWidth: { md: 900 },
+        margin: "auto",
+      }}
+    >
+      <Container maxWidth="xl" sx={{ marginBottom: 1 }}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"

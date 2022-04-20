@@ -2,7 +2,6 @@
 import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import Paper from "@mui/material/Paper";
@@ -13,7 +12,7 @@ const firstState = {
   message: "",
   from_email: "",
 };
-function Contact({
+export default function Contact({
   data: {
     location,
     phone,
@@ -42,12 +41,12 @@ function Contact({
       .then(
         ({ text }) => {
           console.log("email:", text);
-          handleAddSuccessMessage("Email Sent!")
+          handleAddSuccessMessage("Email Sent! 🐶 ");
           clearState();
         },
         ({ text }) => {
           console.log("email:", text);
-          handleAddErrorMessages([{msg:"Server Error. Try Again Later."}])
+          handleAddErrorMessages([{ msg: "🐶 Server Error. Please try again aater." }]);
         }
       );
   };
@@ -57,8 +56,16 @@ function Contact({
     setState((previousState) => ({ ...previousState, [name]: value }));
   };
   return (
-    <Paper sx={{ padding: 1.5, paddingBottom: 10 }}>
-      <Container id="Contact">
+    <Paper
+      sx={{
+        padding: 1.5,
+        paddingBottom: 10,
+        maxWidth: { md: 500 },
+        margin: "auto",
+        marginTop:1
+      }}
+    >
+      <Box sx={{ maxWidth: { md: 400 }, margin: "auto" }}>
         <Typography variant="h5">Contact Us</Typography>
         <Typography variant="p">
           Drop your contact information to send us an email. We finna get back
@@ -124,9 +131,9 @@ function Contact({
           <Typography>{email}</Typography>
         </Box>
         <InstagramIcon onClick={() => openInNewTab(url)} />
-      </Container>
+      </Box>
     </Paper>
   );
 }
 
-export default Contact;
+

@@ -1,18 +1,39 @@
 import React from "react";
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import AvatarReview from "./AvatarReview";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-function Testimonials({ data: { title, entries } }) {
+export default function Testimonials({ data: { title, entries } }) {
+  const panels = new Array(entries.length).fill(false);
+  const [expanded, setExpanded] = React.useState(panels);
+  const setExpandedAtIndex = (index) => {
+    const oneAtAtimeExpanded = panels.map((testimonial, idx) => {
+      if (index === idx && expanded[index] === true) {
+        return false;
+      }
+      if (index === idx) {
+        return !panels[index];
+      }
+      return '';
+    });
+    setExpanded(oneAtAtimeExpanded);
+  };
+
   return (
     <Paper
-      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5,
-      maxWidth: { md: 500 } }}
+      sx={{
+        padding: 1.5,
+        paddingTop: 2,
+        marginBottom: 1,
+        paddingBottom: 5,
+        maxWidth: { md: 800 },
+        margin: "auto",
+      }}
     >
-      <Container id="Testimonials">
+      <Box id="Testimonials">
         <Typography variant="h5">{title}</Typography>
         <br />
         <Grid
@@ -24,16 +45,18 @@ function Testimonials({ data: { title, entries } }) {
               <Paper sx={{ padding: 1.5 }}>
                 <Stack direction="column" spacing={0.5}>
                   <Stack direction="row" spacing={0.5}>
-                    <AvatarReview data={{ ...person, idx }} />
+                    <AvatarReview
+                      expanded={expanded[idx]}
+                      setExpandedAtIndex={setExpandedAtIndex}
+                      data={{ ...person, idx }}
+                    />
                   </Stack>
                 </Stack>
               </Paper>
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Box>
     </Paper>
   );
 }
-
-export default Testimonials;

@@ -1,7 +1,7 @@
 import React from "react";
 import logoText from "../images/logoText1.png";
 
-function LogoText() {
+export default function LogoText() {
   return (
     <img
       src={logoText}
@@ -11,4 +11,3 @@ function LogoText() {
   );
 }
 
-export default LogoText;

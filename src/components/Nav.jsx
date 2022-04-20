@@ -15,7 +15,7 @@ import { useHistory } from "react-router-dom";
 
 const pages = ["About", "Pups", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
 
-function Nav() {
+export default function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const history = useHistory();
 
@@ -116,4 +116,4 @@ function Nav() {
     </AppBar>
   );
 }
-export default Nav;
+

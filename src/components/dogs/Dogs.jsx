@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "@mui/material/Card";
+import Paper from "@mui/material/Paper";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { CardTitle, CardText, Col } from "reactstrap";
@@ -43,7 +44,17 @@ class Dogs extends Component {
   renderDogs() {
     const { dogs } = this.state;
     return (
-      <>
+      <Box
+        sx={{
+          padding: 1.5,
+          paddingTop: 2,
+          marginBottom: 1,
+          paddingBottom: 5,
+          maxWidth: { md: 800 },
+          margin: "auto",
+          marginTop: 1,
+        }}
+      >
         {dogs.map((dog) => (
           <Col xs="12" key={dog._id} className="product-card-outer">
             <Card
@@ -61,7 +72,7 @@ class Dogs extends Component {
                   <Typography variant="span">
                     Description: {dog.dogDescription}
                   </Typography>
-                  <br/>
+                  <br />
                   <Typography variant="span">
                     Created by <strong>{dog.creatorName}</strong> on{" "}
                     <strong>
@@ -73,7 +84,7 @@ class Dogs extends Component {
             </Card>
           </Col>
         ))}
-      </>
+      </Box>
     );
   }
   noDogs() {
@@ -83,19 +94,34 @@ class Dogs extends Component {
   render() {
     const { spinner, dogs } = this.state;
     return (
-      <Box sx={{marginLeft:0.25, marginRight:0.25}}>
-        <Typography variant="h4">Waitlists</Typography>
-        <hr />
-        <Button color="info" onClick={() => this.props.history.push("/create")}>
-          Create A New Waitlist
-          {/* <i className="fas fa-angle-right" /> */}
-        </Button>
-        <Box>
-          {spinner && <SickSpinner />}
-          {!spinner && dogs.length === 0 && this.noDogs()}
-          {!spinner && dogs.length > 0 && this.renderDogs()}
+      <Paper
+        sx={{
+          padding: 1.5,
+          paddingTop: 2,
+          marginBottom: 1,
+          paddingBottom: 5,
+          maxWidth: { md: 800 },
+          margin: "auto",
+          marginTop: 1,
+        }}
+      >
+        <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}>
+          <Typography variant="h4">Waitlists</Typography>
+          <hr />
+          <Button
+            color="info"
+            onClick={() => this.props.history.push("/create")}
+          >
+            Create A New Waitlist
+            {/* <i className="fas fa-angle-right" /> */}
+          </Button>
+          <Box>
+            {spinner && <SickSpinner />}
+            {!spinner && dogs.length === 0 && this.noDogs()}
+            {!spinner && dogs.length > 0 && this.renderDogs()}
+          </Box>
         </Box>
-      </Box>
+      </Paper>
     );
   }
 }
