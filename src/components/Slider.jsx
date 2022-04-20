@@ -8,12 +8,7 @@ import 'react-image-lightbox/style.css';
 
 function CardSlider(props) {
   const [isOpen, setIsOpen] = useState(false);
-  const [images, setImages] = useState([
-    "//placekitten.com/1500/500",
-    "//placekitten.com/4000/3000",
-    "//placekitten.com/800/1200",
-    "//placekitten.com/1500/1500"
-  ]);
+  const [images, setImages] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0);
   const slideLeft = () => {
     var slider = document.getElementById("slider");
