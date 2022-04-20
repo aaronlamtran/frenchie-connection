@@ -20,6 +20,8 @@ function Contact({
     email,
     instagram: { url, username },
   },
+  handleAddErrorMessages,
+  handleAddSuccessMessage,
 }) {
   const form = useRef();
   const [state, setState] = useState(firstState);
@@ -30,25 +32,22 @@ function Contact({
   };
 
   const handleSubmit = (e) => {
-    const service_id = process.env.REACT_APP_SERVICE_ID
-    const template_id = process.env.REACT_APP_TEMPLATE_ID
+    const service_id = process.env.REACT_APP_SERVICE_ID;
+    const template_id = process.env.REACT_APP_TEMPLATE_ID;
     // const user_id = process.env.REACT_APP_USER_ID
 
     e.preventDefault();
     emailjs
-      .sendForm(
-        service_id,
-        template_id,
-        form.current,
-        "O46Pu2K33IqgUR57V"
-      )
+      .sendForm(service_id, template_id, form.current, "O46Pu2K33IqgUR57V")
       .then(
         ({ text }) => {
           console.log("email:", text);
+          handleAddSuccessMessage("Email Sent!")
           clearState();
         },
         ({ text }) => {
           console.log("email:", text);
+          handleAddErrorMessages([{msg:"Server Error. Try Again Later."}])
         }
       );
   };

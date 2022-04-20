@@ -33,7 +33,11 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
           <Testimonials data={testimonialData} />
         </Route>
         <Route exact path="/contact">
-          <Contact data={contactData} />
+          <Contact
+            data={contactData}
+            handleAddErrorMessages={handleAddErrorMessages}
+            handleAddSuccessMessage={handleAddSuccessMessage}
+          />
         </Route>
         <Route exact path="/faq">
           <FAQ data={FAQ_data} />
