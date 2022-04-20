@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 
 function About({ data: { title, description } }) {
   return (
-    <Paper sx={{ padding: 0.25, marginBottom: 1, paddingBottom: 5 }}>
+    <Paper sx={{ padding: 0.25, marginBottom: 1, paddingBottom: 5, marginTop:1 }}>
       <Container id="About">
         <ImageList cols={1}>
           <ImageListItem>

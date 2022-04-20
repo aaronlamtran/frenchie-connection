@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import AvatarReview from "./AvatarReview";
 import Grid from "@mui/material/Grid";
@@ -9,10 +9,16 @@ import Typography from "@mui/material/Typography";
 function Testimonials({ data: { title, entries } }) {
   return (
     <Paper
-      sx={{ padding: 0.25, paddingTop: 2, marginBottom: 1, paddingBottom: 5,
-      maxWidth: { md: 500 } }}
+      sx={{
+        padding: 1.5,
+        paddingTop: 2,
+        marginBottom: 1,
+        paddingBottom: 5,
+        maxWidth: { md: 800 },
+        margin: "auto",
+      }}
     >
-      <Container id="Testimonials">
+      <Box id="Testimonials">
         <Typography variant="h5">{title}</Typography>
         <br />
         <Grid
@@ -31,7 +37,7 @@ function Testimonials({ data: { title, entries } }) {
             </Grid>
           ))}
         </Grid>
-      </Container>
+      </Box>
     </Paper>
   );
 }

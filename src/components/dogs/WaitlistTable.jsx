@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
 const WaitlistTableView = ({ waitlists, dogInfo }) => (
-  <TableContainer componet={Paper}>
+  <TableContainer component={Paper}>
     <Typography>Name: {dogInfo.dogName}</Typography>
     <Typography>Description: {dogInfo.dogDescription}</Typography>
     <Typography>

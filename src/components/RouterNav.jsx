@@ -38,8 +38,14 @@ export default function RouterNav(props) {
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 1 }}>
-      <Container maxWidth="xl">
+    <AppBar
+      position="static"
+      sx={{
+        maxWidth: { md: 900 },
+        margin: "auto",
+      }}
+    >
+      <Container maxWidth="xl" sx={{ marginBottom: 1 }}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"

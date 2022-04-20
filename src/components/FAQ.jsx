@@ -38,11 +38,17 @@ function FAQ({ data: { title, entries } }) {
 
   return (
     <Paper
-      sx={{ paddingTop: 2, marginBottom: 1, paddingBottom: 5 }}
+      sx={{
+        padding: 1.5,
+        paddingBottom: 10,
+        maxWidth: { md: 800 },
+        margin: "auto",
+        marginTop:1
+      }}
     >
       <Container id="FAQ">
         <Typography variant="h5">{title}</Typography>
-        <Box sx={{paddingTop: 2}}>
+        <Box sx={{ paddingTop: 2 }}>
           {entries.length && entries.map((ele, i) => accordian(ele, i))}
         </Box>
       </Container>

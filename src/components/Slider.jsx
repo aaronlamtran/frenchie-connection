@@ -30,7 +30,7 @@ function CardSlider(props) {
   };
 
   return (
-    <Container sx={{ pb: 2, padding: 0.25}} id="Pups">
+    <Container sx={{ pb: 2, padding: 0.25, marginTop:1}} id="Pups">
       {/* <Typography variant="h5">Pups</Typography> */}
       {isOpen && (
           <Lightbox
