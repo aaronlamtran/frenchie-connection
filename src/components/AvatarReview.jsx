@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 
-function AvatarReview({ data: { text, img, name, idx } }) {
+function AvatarReview({ data: { text, img, name, idx }, setExpandedAtIndex, expanded }) {
   const [isTextLong, setIsTextLong] = useState(false);
   const blurb = useMemo(() => {
     if (text.length <= 130) {
@@ -18,6 +18,7 @@ function AvatarReview({ data: { text, img, name, idx } }) {
   }, [text]);
   const toggleReadMore = (e) => {
     e.preventDefault();
+    setExpandedAtIndex(idx)
     setIsTextLong(!isTextLong);
   };
 
@@ -27,7 +28,7 @@ function AvatarReview({ data: { text, img, name, idx } }) {
     <>
       <Avatar onClick={toggleReadMore} alt={name} src={img} />
       <Typography variant="body1" onClick={toggleReadMore}>
-        {isTextLong ? blurb : text}
+        {!expanded ? blurb : text}
         <br />
         <Typography variant="span" align="right">
           -{name}

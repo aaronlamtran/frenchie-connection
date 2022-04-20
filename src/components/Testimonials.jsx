@@ -6,7 +6,21 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-function Testimonials({ data: { title, entries } }) {
+export default function Testimonials({ data: { title, entries } }) {
+  const panels = new Array(entries.length).fill(false);
+  const [expanded, setExpanded] = React.useState(panels);
+  const setExpandedAtIndex = (index) => {
+    const oneAtAtimeExpanded = panels.map((testimonial, idx) => {
+      if (index === idx && expanded[index] === true) {
+        return false;
+      }
+      if (index === idx) {
+        return !panels[index];
+      }
+    });
+    setExpanded(oneAtAtimeExpanded);
+  };
+
   return (
     <Paper
       sx={{
@@ -30,7 +44,11 @@ function Testimonials({ data: { title, entries } }) {
               <Paper sx={{ padding: 1.5 }}>
                 <Stack direction="column" spacing={0.5}>
                   <Stack direction="row" spacing={0.5}>
-                    <AvatarReview data={{ ...person, idx }} />
+                    <AvatarReview
+                      expanded={expanded[idx]}
+                      setExpandedAtIndex={setExpandedAtIndex}
+                      data={{ ...person, idx }}
+                    />
                   </Stack>
                 </Stack>
               </Paper>
@@ -41,5 +59,3 @@ function Testimonials({ data: { title, entries } }) {
     </Paper>
   );
 }
-
-export default Testimonials;
