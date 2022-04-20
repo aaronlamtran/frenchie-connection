@@ -6,10 +6,14 @@ networks:
 
 services:
   app:
+    env_file:
+     - .env
+    environment:
+      - NODE_ENV=development
     build:
       context: .
       dockerfile: Dockerfile.dev
     networks:
      - nodeapp-network
     ports:
-      - "3000:3000"
+      - "3000:3010"

@@ -21,7 +21,7 @@ export default function PupCard(props) {
             {props.name}
           </Typography>
           <Typography variant="body2">
-            {props.breed}, {props.color}, {props.price}
+            {props.breed}, {props.color}, {props.sex}
           </Typography>
         </CardContent>
       <CardActions>

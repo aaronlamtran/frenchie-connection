@@ -20,6 +20,8 @@ function Contact({
     email,
     instagram: { url, username },
   },
+  handleAddErrorMessages,
+  handleAddSuccessMessage,
 }) {
   const form = useRef();
   const [state, setState] = useState(firstState);
@@ -30,21 +32,22 @@ function Contact({
   };
 
   const handleSubmit = (e) => {
+    const service_id = process.env.REACT_APP_SERVICE_ID;
+    const template_id = process.env.REACT_APP_TEMPLATE_ID;
+    // const user_id = process.env.REACT_APP_USER_ID
+
     e.preventDefault();
     emailjs
-      .sendForm(
-        "service_euf2g9i",
-        "template_y14df1w",
-        form.current,
-        "O46Pu2K33IqgUR57V"
-      )
+      .sendForm(service_id, template_id, form.current, "O46Pu2K33IqgUR57V")
       .then(
         ({ text }) => {
           console.log("email:", text);
+          handleAddSuccessMessage("Email Sent!")
           clearState();
         },
         ({ text }) => {
           console.log("email:", text);
+          handleAddErrorMessages([{msg:"Server Error. Try Again Later."}])
         }
       );
   };
@@ -75,7 +78,7 @@ function Contact({
               variant="filled"
               value={state.from_name}
             />
-            <br/>
+            <br />
             <TextField
               required
               autoComplete="new-password"
@@ -88,7 +91,7 @@ function Contact({
               variant="filled"
               value={state.from_email}
             />
-            <br/>
+            <br />
             <TextField
               required
               margin="dense"
@@ -104,10 +107,10 @@ function Contact({
               value={state.message}
               sx={{
                 paddingBottom: 1,
-                maxWidth: { md: 500 }
+                maxWidth: { md: 500 },
               }}
             />
-            <br/>
+            <br />
             <Button variant="contained" type="submit">
               Send Message
             </Button>
@@ -116,15 +119,9 @@ function Contact({
 
         <Box sx={{ paddingTop: 1 }}>
           <Typography variant="h5">Contact Info</Typography>
-          <p>
-            {location.address}
-          </p>
-          <p>
-            <span>Phone:</span> {phone}
-          </p>
-          <p variant="p">
-            <span>Email:</span> {email}
-          </p>
+          <Typography>{location.address}</Typography>
+          <Typography> {phone}</Typography>
+          <Typography>{email}</Typography>
         </Box>
         <InstagramIcon onClick={() => openInNewTab(url)} />
       </Container>

@@ -14,7 +14,7 @@ const joinWaitlist = async (req, res) => {
       });
     }
 
-    const { name, email } = req.body;
+    const { name, email, phone } = req.body;
     const dog = await Dog.findOne({ _id: req.params.id });
     if (!dog) {
       return res.status(HttpStatus.NOT_FOUND).json({
@@ -33,16 +33,22 @@ const joinWaitlist = async (req, res) => {
         waitlistPosition: "asc",
       });
 
-      return res.json({
-        waitlist: waitlistExists,
-        waitlists,
-        msg: "user has already joined the waitlist.",
+      return res.status(HttpStatus.BAD_REQUEST).json({
+        success: false,
+        errors: [
+          {
+            waitlist: waitlistExists,
+            waitlists,
+            msg: "Looks like you are already on the waitlist. 🐶",
+          },
+        ],
       });
     }
 
     const waitlist = await Waitlist.create({
       name,
       email,
+      phone,
       dog: dog._id,
       waitlistPosition: dog.waitlist,
     });
@@ -58,7 +64,7 @@ const joinWaitlist = async (req, res) => {
     return res.json({
       waitlist,
       waitlists,
-      msg: "You have joined the waitlist successfully.",
+      msg: "You have joined the waitlist successfully. 🐶 ",
     });
   } catch (err) {
     console.log(err);

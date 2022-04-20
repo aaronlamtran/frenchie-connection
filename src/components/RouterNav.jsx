@@ -12,10 +12,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useHistory } from "react-router-dom";
-
-const pages = ["About", "Pups", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
-
-function Nav() {
+// import SmoothScroll from "smooth-scroll";
+const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
+// const tabs = ["About", "", "Featured", "Testimonials", "FAQ", "Contact", "Join Waitlist"];
+// export const scroll = new SmoothScroll('a[href*="#"]', {
+//   speed: 1000,
+//   speedAsDuration: true,
+// });
+export default function RouterNav(props) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const history = useHistory();
 
@@ -24,16 +28,19 @@ function Nav() {
   };
 
   const handleCloseNavMenu = (event) => {
-    if(event.currentTarget.text === "Join Waitlist"){
-      history.push("/dogs/all");
+    if (event.currentTarget.text === "Join Waitlist") {
+      history.push("/join");
+    } else if (event.currentTarget.text !== undefined) {
+      history.push(`${event.currentTarget.text}`);
     }
+
     setAnchorElNav(null);
   };
 
   return (
-    <AppBar position="static" sx={{ marginBottom: 1}}>
-      <Container maxWidth="xl" >
-        <Toolbar disableGutters >
+    <AppBar position="static" sx={{ marginBottom: 1 }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -77,12 +84,7 @@ function Nav() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  href={`#${page}`}
-                  key={page}
-                  component="a"
-                  onClick={handleCloseNavMenu}
-                >
+                <MenuItem key={page} component="a" onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -102,7 +104,6 @@ function Nav() {
             {pages.map((page) => (
               <Button
                 component="a"
-                href={`#${page}`}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
@@ -116,4 +117,3 @@ function Nav() {
     </AppBar>
   );
 }
-export default Nav;

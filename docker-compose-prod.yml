@@ -6,6 +6,10 @@ networks:
 
 services:
   app:
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
     build:
       context: .
       dockerfile: Dockerfile.prod

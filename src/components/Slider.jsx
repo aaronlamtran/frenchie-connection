@@ -25,8 +25,6 @@ function CardSlider(props) {
   };
 
   const handleSliderClick = (slide) => {
-    // e.preventDefault();
-    console.log({slide})
     setImages(slide.largeImages)
     setIsOpen(!isOpen);
   };
@@ -70,7 +68,7 @@ function CardSlider(props) {
                 ></div>
                 <p className="slider-card-title">{slide.name}</p>
                 <p className="slider-card-description">
-                  {slide.breed}, {slide.color}, {slide.price}{" "}
+                  {slide.color}, {slide.sex}{" "}
                 </p>
               </div>
             );

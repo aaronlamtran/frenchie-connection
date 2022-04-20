@@ -23,7 +23,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Brindle",
-      "price": "4500"
+      "sex": "Male"
     },
     {
       "name": "Juan",
@@ -31,7 +31,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Black",
-      "price": "4500"
+      "sex": "Female"
     },
     {
       "name": "Asessment Andy",
@@ -39,7 +39,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Grey",
-      "price": "Free"
+      "sex": "Male"
     },
     {
       "name": "Bruh",
@@ -47,7 +47,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Frenchie",
       "color": "Red",
-      "price": "8000"
+      "sex": "Female"
     },
     {
       "name": "Aaron",
@@ -55,7 +55,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Doberman",
       "color": "Brindle",
-      "price": "2300"
+      "sex": "Male"
     },
     {
       "name": "Liz",
@@ -63,7 +63,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Chocolate Lab",
       "color": "Brindle",
-      "price": "9000"
+      "sex": "Female"
     },
     {
       "name": "Zuki",
@@ -71,7 +71,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Pointer Mix",
       "color": "Cow",
-      "price": "10000"
+      "sex": "Female"
     },
     {
       "name": "Lola",
@@ -79,7 +79,7 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "German Shepherd Cattle Dog Mix",
       "color": "Black",
-      "price": "8000"
+      "sex": "Female"
     },
     {
       "name": "Jack",
@@ -87,44 +87,19 @@
       "smallImage": "https://picsum.photos/200/300",
       "breed": "Poodle Terrier Mix",
       "color": "Blonde",
-      "price": "7000"
+      "sex": "Male"
     }
   ],
   "Testimonials": {
     "title": "What Our Owners Say",
     "entries": [
       {
-        "img": "person1",
-        "text": "\"Damn dawg them dawgs are pure af.\"",
-        "name": "Dr. Dre"
-      },
-      {
-        "img": "data:image/jpeg;base64,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",
-        "text": "\"No back problems for my pup\"",
-        "name": "Bob The Builder"
-      },
-      {
-        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYDzf6z-m6E2fWlGGrf-LK545KhWdPI3c9_g&usqp=CAU",
-        "text": "\"I could tell he genuinely cared for his dogs as family members, and I felt I would receive a lot of ongoing support once I purchased one of his dogs.\"",
-        "name": "Scarlet J."
-      },
-      {
-        "img": "https://media-exp1.licdn.com/dms/image/C5603AQHzBXM94l35kw/profile-displayphoto-shrink_100_100/0/1516805001723?e=1653523200&v=beta&t=2Nvp7f3FzRxr-aZOpNTGubih9g91R_Rz6W8cW1hev_s",
-        "text": "\"Zuki is a true family companion. Her loyalty and unconditional love makes her the ideal family member. She loves to travel and has accompanied us on various business and pleasure trips.\"",
-        "name": "Lizzette R."
-      },
-      {
-        "img": "data:image/jpeg;base64,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",
-        "text": "\"Gracie learned quickly to sit, stay, shake, speak, and easily crate trained. She's been swimming since we brought her home at 7 weeks of age. Gracie joined our two German Wirehaired Pointers and she made herself right at home. She has stolen our hearts!\"",
-        "name": "Kim K."
-      },
-      {
         "img": "person6.jpg",
         "text": "\"Our experience with Jasper becoming part of our family was fantastic.  We were lucky to have found The Frenchie Connection when we were thinking about expanding our family to include another dog.  When we arrived at The Frenchie Connection, we were shown the puppies and the mother of the litter.  All the dogs seemed very happy, healthy and well cared for.  We were shown all the AKC papers for mom and puppies and were very comfortable that the pups were well bred.  We picked Jasper out because of his big personality and his handsomeness.  He is perfectly symmetrical and has beautiful markings. He joined our household seamlessly.  He was already pad trained and we were lucky enough to have my daughter hand raise him so he had plenty of attention the first months of his life.  We enrolled him in puppy training class and he absolutely loved it.  He was very attentive and learned some wonderful manners.  He gets along great with other dogs and with all the people he meets.  He is by far the most intelligent dog we have ever had and so loving too.  We are looking forward to picking out another puppy from The Frenchie Connection when the times comes to expand our family again and would highly recommend them if you are in the market for a wonderful French Bulldog.\"",
         "name": "Mary D."
       },
       {
-        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStYadyrRzbJoiAn2279B8JwsyjBc07-F9kvw&usqp=CAU",
+        "img": ".",
         "text": "\"We brought our baby boy Phil home in 2019. He is the perfect frenchie. Exactly the temperament and personality we were looking for in a frenchie. Part of his vet's puppy package was a DNA test, the genetics all came back 100% and healthy. We couldn't be happier with the quality and still keep in touch with his original family. We will be back when it's time for our next addition to our family.\"",
         "name": "The Smith Family"
       },
@@ -166,29 +141,37 @@
     "title": "Frequently Asked Questions",
     "entries": [
       {
-        "question": "Do crossbred or mixed breed French Bulldogs make good pets?",
-        "answer": "Many do make good pets, yes, in the right homes. But before you choose ANY purebred, crossbreed, or mixed breed, you need to know what a purebred dog really IS and what crossbred and mixed breed dogs really are."
+        "question": "What is the average weight of an adult Frenchie?",
+        "answer": "The average weight of an adult Frenchie is anywhere from 16-28lbs with males more commonly being on the heavier side of the scale and females on the lighter side of that scale. Of course some can be heavier or lighter but would just depend on that particular pup."
       },
       {
-        "question": "Can you help me decide whether the French Bulldog is the best breed for me?",
-        "answer": "Yes, I offer personal consultations on choosing the best breed for your family and lifestyle.."
+        "question": "Do Frenchies make other noises besides barking?",
+        "answer": "Yes, given that Frenchies are a “brachycephalic” or short-muzzled breed they are more likely to snore or make other peculiar sounds with their noses and mouths. Frenchies are also known to pass gas however, we have found that proper diet aids with unwanted gas."
       },
       {
-        "question": "How do I reserve a puppy?",
-        "answer": "Frenchie Collections requires a $600 deposit on all puppies as well as a puppy contract in order to reserve your puppy."
+        "question": "Do Frenchies has sensitive skin?",
+        "answer": "Frenchies do not have sensitive skin however, they do have many folds on their face which makes it very important to always keep those folds clean of dirt and debris to prevent any sort of infection."
       },
       {
-        "question": "Which shots will my puppy come with?",
-        "answer": "The schedule of vaccinations that dogs really need has changed dramatically. Unfortunately most vets are not telling you the truth about this, because a good chunk of their income depends on frequent vaccinations. Please contact me for more information"
+        "question": "Do Frenchies have lots of health problems?",
+        "answer": "This is a very common question that is very misleading. Frenchies do not have any more or any less health issues than other dog breeds. If responsibly bred, French Bulldogs should be as healthy as any other dog. To date, our dogs have had no significant health concerns."
       },
       {
-        "question": "What are the pros and cons of spaying and neutering my French Bulldog, and when should it be done?",
-        "answer": "Spaying and neutering are often recommended too early, which can lead to health problems later in life."
+        "question": "What is the personality of a Frenchie?",
+        "answer": "In our opinion, the Frenchie is the best dog breed because they are a very unique and versatile dog. They can be as active as you want them to be but also as lazy as you want them to be which makes them suitable for a wide range of lifestyles. They are not big barkers which is a huge plus if considering an apartment / indoor dog. They are also smaller dogs that can be put up on the couch to be a lap dog."
+      },
+      {
+        "question": "What colors do Frenchies come in?",
+        "answer": "Frenchies come in a wide variety of colors. From standard colors such as Brindle, Cream, Fawn and Piebald to exotic colors such as Blue, Blue and Tan, Black and Tan, Lilac and Tan, and many more. If you would like more information about their colors please inquire and we would be more than happy to help!"
+      },
+      {
+        "question": "Are your Frenchies AKC Registered?",
+        "answer": "Yes, all our dogs are AKC Registered further ensuring you are receiving a Pure Bred French Bulldog."
       }
     ]
   },
   "About": {
     "title": "About Us",
-    "description": "Frenchie Connection is a small family owned kennel nestled in Carlsbad. We understand the challenges that dog ownership can bring. We also know the joy, pleasure and pride in owning a well-behaved dog that is reliable at home and in public. People are our passion - we love working with you and your dog!"
+    "description": "Welcome to The Frenchie Connection! We are hobby breeders located in sunny Carlsbad, California breeding and raising some of the highest quality pure bred French Bulldogs in the San Diego area. Our top priority is to provide new families with healthy pups as well as the tools and resources to become successful Frenchie owners. All of our dogs are raised as family in a warm and loving environment ensuring our pups are properly weaned and socialized when taken to their new homes. When rehoming with us families will receive around the clock support to ensure your new fur baby is as comfortable and happy as can be. We look forward to meeting you and continuing to grow our Frenchie Connection Family!"
   }
 }
