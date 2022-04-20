@@ -39,7 +39,7 @@ const joinWaitlist = async (req, res) => {
           {
             waitlist: waitlistExists,
             waitlists,
-            msg: "user has already joined the waitlist.",
+            msg: "Looks like you are already on the waitlist. 🐶",
           },
         ],
       });
@@ -64,7 +64,7 @@ const joinWaitlist = async (req, res) => {
     return res.json({
       waitlist,
       waitlists,
-      msg: "You have joined the waitlist successfully.",
+      msg: "You have joined the waitlist successfully. 🐶 ",
     });
   } catch (err) {
     console.log(err);
