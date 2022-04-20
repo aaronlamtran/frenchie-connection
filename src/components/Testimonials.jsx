@@ -17,6 +17,7 @@ export default function Testimonials({ data: { title, entries } }) {
       if (index === idx) {
         return !panels[index];
       }
+      return '';
     });
     setExpanded(oneAtAtimeExpanded);
   };
