@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useHistory } from "react-router-dom";
+
 export default function WaitlistTableView({ waitlists, dogInfo }) {
   const history = useHistory();
   function renderNoWaitlist() {

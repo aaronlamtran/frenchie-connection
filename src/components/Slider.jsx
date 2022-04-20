@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
-function CardSlider(props) {
+export default function CardSlider(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -77,4 +77,4 @@ function CardSlider(props) {
     </Container>
   );
 }
-export default CardSlider;
+

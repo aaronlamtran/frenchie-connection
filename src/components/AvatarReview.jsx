@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 
 
-function AvatarReview({ data: { text, img, name, idx }, setExpandedAtIndex, expanded }) {
+export default function AvatarReview({ data: { text, img, name, idx }, setExpandedAtIndex, expanded }) {
   const [isTextLong, setIsTextLong] = useState(false);
   const blurb = useMemo(() => {
     if (text.length <= 130) {
@@ -37,5 +37,3 @@ function AvatarReview({ data: { text, img, name, idx }, setExpandedAtIndex, expa
     </>
   );
 }
-
-export default AvatarReview;

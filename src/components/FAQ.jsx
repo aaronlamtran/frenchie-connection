@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-function FAQ({ data: { title, entries } }) {
+export default function FAQ({ data: { title, entries } }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -55,5 +55,3 @@ function FAQ({ data: { title, entries } }) {
     </Paper>
   );
 }
-
-export default FAQ;

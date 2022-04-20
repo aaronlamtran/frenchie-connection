@@ -12,7 +12,7 @@ const firstState = {
   message: "",
   from_email: "",
 };
-function Contact({
+export default function Contact({
   data: {
     location,
     phone,
@@ -136,4 +136,4 @@ function Contact({
   );
 }
 
-export default Contact;
+

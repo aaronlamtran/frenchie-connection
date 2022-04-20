@@ -7,7 +7,7 @@ import AboutPic from "../images/AboutUs.png";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-function About({ data: { title, description } }) {
+export default function About({ data: { title, description } }) {
   return (
     <Box sx={{ marginTop: 1, maxWidth: { md: 800 }, margin: "auto" }}>
       <ImageList cols={1}>
@@ -46,4 +46,3 @@ function About({ data: { title, description } }) {
   );
 }
 
-export default About;
