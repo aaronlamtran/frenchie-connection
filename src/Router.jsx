@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import DogView from "./components/dogs/DogView";
 import Dogs from "./components/dogs/Dogs";
