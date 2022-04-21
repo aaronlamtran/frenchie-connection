@@ -36,7 +36,6 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
             element={
               <>
                 <CardSlider slides={galleryData} />
-                }>
                 <Testimonials data={testimonialData} />
               </>
             }
