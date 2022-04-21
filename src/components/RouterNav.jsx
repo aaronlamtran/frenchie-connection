@@ -13,7 +13,14 @@ import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist", "Admin Login"];
+const pages = [
+  "About",
+  "Pups",
+  "FAQ",
+  "Contact",
+  "Join Waitlist",
+  "Admin Login",
+];
 const pageNavTo = ["About", "Pups", "FAQ", "Contact", "Join", "Login"];
 
 export default function RouterNav(props) {
@@ -24,7 +31,10 @@ export default function RouterNav(props) {
   };
 
   const handleCloseNavMenu = (event) => {
-    navigate(`/${pageNavTo[event.target.id]}`)
+    const canNavigate = event.target.id !== '' || undefined;
+    if (canNavigate) {
+      navigate(`/${pageNavTo[event.target.id]}`);
+    }
     setAnchorElNav(null);
   };
 
@@ -81,7 +91,12 @@ export default function RouterNav(props) {
               }}
             >
               {pages.map((page, i) => (
-                <MenuItem key={page} id={i} component="a" onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  id={i}
+                  component="a"
+                  onClick={handleCloseNavMenu}
+                >
                   {page}
                 </MenuItem>
               ))}
