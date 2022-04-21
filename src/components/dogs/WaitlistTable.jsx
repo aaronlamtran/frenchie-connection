@@ -7,7 +7,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
   }
   function renderTable() {
     return (
-      <TableContainer component={Paper}>
+      <TableContainer>
         <Typography>Name: {dogInfo.dogName}</Typography>
         <Typography>Description: {dogInfo.dogDescription}</Typography>
         <Typography>
