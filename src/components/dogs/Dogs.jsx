@@ -48,7 +48,7 @@ export default function Dogs(props) {
     return (
       <Box
         sx={{
-          padding: 1.5,
+          padding: 0.1,
           paddingTop: 2,
           marginBottom: 1,
           paddingBottom: 5,
@@ -68,18 +68,18 @@ export default function Dogs(props) {
                   <Typography variant="h6">{dog.dogName}</Typography>
                 </CardTitle>
                 <CardText>
-                  <span>Waitlist Size: {dog.waitlist}</span>
+                  <Typography variant="body1">
+                    Waitlist Size: {dog.waitlist}
+                  </Typography>
                 </CardText>
                 <>
-                  <Typography variant="span">
+                  <Typography variant="body1">
                     Description: {dog.dogDescription}
                   </Typography>
                   <br />
-                  <Typography variant="span">
-                    Created by <strong>{dog.creatorName}</strong> on{" "}
-                    <strong>
-                      {dayjs(dog.createdAt).format("DD-MM-YYYY hh:mm A")}
-                    </strong>
+                  <Typography variant="body1">
+                    Created by {dog.creatorName} {<br />}
+                    on {dayjs(dog.createdAt).format("DD-MM-YYYY hh:mm A")}
                   </Typography>
                 </>
               </CardContent>
@@ -104,7 +104,8 @@ export default function Dogs(props) {
         marginTop: 1,
       }}
     >
-      <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}>
+      <Box>
+        {/* <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}> */}
         <Typography variant="h4">Waitlists</Typography>
         <hr />
         <Button color="info" onClick={() => navigate("/create")}>
