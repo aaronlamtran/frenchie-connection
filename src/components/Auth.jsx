@@ -28,29 +28,33 @@ export const AuthProvider = ({
   const [loading, setLoading] = useState(true);
   const loginWithGoogle = async () => {
     setLoading(true);
-    await signInWithPopup(authentication, provider).then((result) => {
-      if (result) {
-        setLoading(false);
-        const user = result.user;
+    await signInWithPopup(authentication, provider).then(({user}) => {
+      if (user) {
         setUser(user);
+        setLoading(false);
         window.localStorage.setItem("auth", "true");
         navigate("/waitlist");
       }
     });
+    setLoading(false);
   };
   const logoutOfGoogle = () => {
+    setLoading(true);
     signOut(authentication)
-      .then(() => {
-        console.log("logged out successfully");
-        handleAddSuccessMessage("logged out successfully");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log({ error });
-      });
+    .then(() => {
+      console.log("logged out successfully");
+      handleAddSuccessMessage("logged out successfully");
+      navigate("/");
+    })
+    .catch((error) => {
+      console.log({ error });
+      setLoading(false);
+    });
+    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(authentication, (userCred) => {
       console.log(userCred);
       if (userCred) {
@@ -60,11 +64,12 @@ export const AuthProvider = ({
         userCred.getIdToken().then((token) => {
           window.localStorage.setItem("token", token);
           setToken(token);
+          setLoading(false);
         });
       } else {
-        setIsAuth(false);
         setUser(false);
         window.localStorage.setItem("auth", "false");
+        setIsAuth(false);
       }
       setLoading(false);
     });
