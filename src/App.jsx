@@ -2,13 +2,13 @@
 /* eslint-disable no-console */
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import "./App.css";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
 import './config/firebase-config';
-
+import tfc from './video/tfc.mp4';
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -60,6 +60,12 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
+        <div className='main'>
+          <video src={tfc} autoPlay loop muted/>
+          <div className="content">
+          <Typography variant='h4'>TFC</Typography>
+          </div>
+        </div>
         <Container sx={{ padding: 0.25 }}>
           <AlertsView
             successMessages={this.state.successMessages}
