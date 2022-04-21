@@ -56,7 +56,6 @@ export const AuthProvider = ({
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(authentication, (userCred) => {
-      console.log(userCred);
       if (userCred) {
         setIsAuth(true);
         setUser(userCred.displayName);
