@@ -79,7 +79,7 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
 
           <Route
             exact
-            path="/waitlist"
+            path="/dogs/:id"
             element={
               <ProtectedRoute
                 exact

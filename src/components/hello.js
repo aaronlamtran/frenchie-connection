@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
@@ -8,30 +8,31 @@ import axios from "axios";
 import SickSpinner from "../../utils/SickSpinner";
 import Typography from "@mui/material/Typography";
 
-export default function DogView(props) {
+export default function Hello(props) {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [spinner, setSpinner] = useState(true);
   const [waitlists, setWaitlists] = useState([]);
   const [dog, setDog] = useState({});
   const { handleAddErrorMessages, handleAddSuccessMessage } = props;
   useEffect(() => {
+    console.log(props);
     loadDog();
   }, []);
   const loadDog = async () => {
-    let url = `/dogs/${id}`;
+    let url = `/dogs/${props.match.params.id}`;
     if (process.env.NODE_ENV === "development") {
-      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${id}`;
+      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${props.match.params.id}`;
     }
+    console.log({url})
     try {
       const response = await axios.get(url);
       const { dog, waitlists } = response.data;
       handleAddSuccessMessage(response.data.msg);
-      setWaitlists(waitlists);
-      setDog(dog);
-      setSpinner(false);
+      setWaitlists(waitlists)
+      setDog(dog)
+      setSpinner(false)
     } catch (err) {
-      setSpinner(false);
+      setSpinner(false)
       if (err.response && err.response.status === 404) {
         handleAddErrorMessages(err.response.data.errors);
         navigate("/");
@@ -50,7 +51,10 @@ export default function DogView(props) {
   const renderDog = () => {
     return (
       <>
-        <WaitlistTable waitlists={waitlists} dogInfo={dog} />
+        <WaitlistTable
+          waitlists={waitlists}
+          dogInfo={dog}
+        />
       </>
     );
   };
