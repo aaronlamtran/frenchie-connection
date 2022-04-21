@@ -4,7 +4,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "firebase/auth";
 import frenchie from "../config/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -18,15 +18,17 @@ export const AuthProvider = ({
   const authentication = getAuth(frenchie);
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
-  const [token, setToken] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
+  const [token, setToken] = useState(
+    false || window.localStorage.getItem("token")
+  );
+  const [isAuth, setIsAuth] = useState(
+    false || window.localStorage.getItem("auth") === "true"
+  );
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const loginWithGoogle = async () => {
     setLoading(true);
     await signInWithPopup(authentication, provider).then((result) => {
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
       if (result) {
         setLoading(false);
         const user = result.user;
