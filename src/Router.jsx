@@ -27,7 +27,10 @@ const {
 const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
   return (
     <>
-      <AuthProvider handleAddErrorMessages={handleAddErrorMessages} handleAddSuccessMessage={handleAddSuccessMessage}>
+      <AuthProvider
+        handleAddErrorMessages={handleAddErrorMessages}
+        handleAddSuccessMessage={handleAddSuccessMessage}
+      >
         <Routes>
           <Route
             exact
@@ -67,10 +70,12 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
             exact
             path="/create"
             element={
-              <CreateDog
-                handleAddErrorMessages={handleAddErrorMessages}
-                handleAddSuccessMessage={handleAddSuccessMessage}
-              />
+              <ProtectedRoute>
+                <CreateDog
+                  // handleAddErrorMessages={handleAddErrorMessages}
+                  // handleAddSuccessMessage={handleAddSuccessMessage}
+                />
+              </ProtectedRoute>
             }
           />
           <Route

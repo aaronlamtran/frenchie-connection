@@ -1,36 +1,15 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import frenchie from "../config/firebase-config";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "./Auth";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const authentication = getAuth(frenchie);
-  // const [auth, setAuth] = useState(
-  //   false || window.localStorage.getItem("auth") === "true"
-  // );
-  const provider = new GoogleAuthProvider();
-
-  const loginWithGoogle = async () => {
-    const result = await signInWithPopup(authentication, provider);
-    // const credential = GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    // const user = result.user;
-    if (result) {
-      window.localStorage.setItem("auth", "true");
-      navigate("/waitlist");
-    }
-  };
+  const { loginWithGoogle  } = useAuth();
   return (
-    <div>
-      Login
-      <div>
+    <>
         <Button color="info" onClick={loginWithGoogle}>
-          Login from Google
+          Login with Google
           {/* <i className="fas fa-angle-right" /> */}
         </Button>
-      </div>
-    </div>
+    </>
   );
 }

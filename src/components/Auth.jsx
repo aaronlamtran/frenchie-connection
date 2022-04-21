@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import Button from "@mui/material/Button";
 import {
   signOut,
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged
 } from "firebase/auth";
 import frenchie from "../config/firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -18,14 +18,17 @@ export const AuthProvider = ({
   const authentication = getAuth(frenchie);
   const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
-  // const [token, setToken] = useState("");
+  const [token, setToken] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
   const loginWithGoogle = async () => {
+    setLoading(true);
     await signInWithPopup(authentication, provider).then((result) => {
       // const credential = GoogleAuthProvider.credentialFromResult(result);
       // const token = credential.accessToken;
       if (result) {
+        setLoading(false);
         const user = result.user;
         setUser(user);
         window.localStorage.setItem("auth", "true");
@@ -37,7 +40,7 @@ export const AuthProvider = ({
     signOut(authentication)
       .then(() => {
         console.log("logged out successfully");
-        handleAddSuccessMessage("logged out successfully")
+        handleAddSuccessMessage("logged out successfully");
         navigate("/");
       })
       .catch((error) => {
@@ -46,23 +49,25 @@ export const AuthProvider = ({
   };
 
   useEffect(() => {
-    authentication.onAuthStateChanged((userCred) => {
+    const unsubscribe = onAuthStateChanged(authentication, (userCred) => {
       console.log(userCred);
       if (userCred) {
         setIsAuth(true);
         setUser(userCred.displayName);
         window.localStorage.setItem("auth", "true");
-        // userCred.getIdToken().then((token) => {
-        //   setToken(token);
-        // });
-      }
-      else {
+        userCred.getIdToken().then((token) => {
+          window.localStorage.setItem("token", token);
+          setToken(token);
+        });
+      } else {
         setIsAuth(false);
-        setUser(userCred.displayName)
+        setUser(false);
         window.localStorage.setItem("auth", "false");
       }
+      setLoading(false);
     });
-  }, [authentication]);
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -71,8 +76,8 @@ export const AuthProvider = ({
         user,
         logoutOfGoogle,
         loginWithGoogle,
-        handleAddErrorMessages,
-        handleAddSuccessMessage,
+        loading,
+        token,
       }}
     >
       {children}

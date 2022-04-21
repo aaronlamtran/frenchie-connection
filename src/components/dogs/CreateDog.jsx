@@ -3,10 +3,11 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../Auth"
 export default function CreateDog(props) {
   const navigate = useNavigate();
-
+  const { handleAddErrorMessages, handleAddSuccessMessage } = useAuth();
+  console.log({ handleAddErrorMessages, handleAddSuccessMessage } )
   return (
     <Paper
       sx={{
