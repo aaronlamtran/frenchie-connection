@@ -1,16 +1,16 @@
 import React from "react";
-
+import {Navigate} from 'react-router-dom';
 import { useAuth } from "./Auth";
 
 export default function ProtectedRoute({
-  component: Component,
-  ...rest
+  children,
 }) {
-  const { isAuth = false } = useAuth()
-  // const isAuth = true;
-  console.log({isAuth})
-  console.log(rest)
-  return ( <Component {...rest}/>);
+  const { isAuth, user, logInButton, logOutButton  } = useAuth()
+  console.log({ isAuth, user, logInButton, logOutButton  })
+  if (!user){
+    return ( <Navigate to='/login'/>);
+  }
+  return children;
 };
 
 

@@ -12,16 +12,15 @@ export default function Login() {
   // );
   const provider = new GoogleAuthProvider();
 
-  const loginWithGoogle = () => {
-    signInWithPopup(authentication, provider).then((result) => {
-      // const credential = GoogleAuthProvider.credentialFromResult(result);
-      // const token = credential.accessToken;
-      // const user = result.user;
-      if (result) {
-        window.localStorage.setItem("auth", "true");
-        navigate('/waitlist')
-      }
-    });
+  const loginWithGoogle = async () => {
+    const result = await signInWithPopup(authentication, provider);
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
+    // const token = credential.accessToken;
+    // const user = result.user;
+    if (result) {
+      window.localStorage.setItem("auth", "true");
+      navigate("/waitlist");
+    }
   };
   return (
     <div>

@@ -27,8 +27,7 @@ const {
 const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
   return (
     <>
-
-      <AuthProvider>
+      <AuthProvider handleAddErrorMessages={handleAddErrorMessages} handleAddSuccessMessage={handleAddSuccessMessage}>
         <Routes>
           <Route
             exact
@@ -41,7 +40,6 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
             }
           />
           <Route exact path="/login" element={<Login />} />
-
           <Route
             exact
             path="/contact"
@@ -65,7 +63,6 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
               />
             }
           />
-
           <Route
             exact
             path="/create"
@@ -76,31 +73,28 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
               />
             }
           />
-
           <Route
             exact
             path="/dogs/:id"
             element={
-              <ProtectedRoute
-                exact
-                path="/dogs/:id"
-                component={DogView}
-                handleAddErrorMessages={handleAddErrorMessages}
-                handleAddSuccessMessage={handleAddSuccessMessage}
-              />
+              <ProtectedRoute>
+                <DogView
+                  handleAddErrorMessages={handleAddErrorMessages}
+                  handleAddSuccessMessage={handleAddSuccessMessage}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             exact
             path="/waitlist"
             element={
-              <ProtectedRoute
-                exact
-                path="/waitlist"
-                component={Dogs}
-                handleAddErrorMessages={handleAddErrorMessages}
-                handleAddSuccessMessage={handleAddSuccessMessage}
-              />
+              <ProtectedRoute>
+                <Dogs
+                  handleAddErrorMessages={handleAddErrorMessages}
+                  handleAddSuccessMessage={handleAddSuccessMessage}
+                />
+              </ProtectedRoute>
             }
           />
           <Route
