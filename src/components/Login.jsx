@@ -8,7 +8,6 @@ export default function Login() {
     <>
         <Button color="info" onClick={loginWithGoogle}>
           Login with Google
-          {/* <i className="fas fa-angle-right" /> */}
         </Button>
     </>
   );
