@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Component } from "react";
+import tfc from "../video/tfc.mp4";
 
 export class VideoComponent extends Component {
   videoContainer: HTMLDivElement;
@@ -11,7 +12,8 @@ export class VideoComponent extends Component {
     video.setAttribute("playsinline", "true"); // fixes autoplay in webkit (ie. mobile safari)
 
     const source = document.createElement("source");
-    source.src = "/path/to/your/video.mp4";
+    // source.src = "/path/to/your/video.mp4";
+    source.src = `${tfc}`;
     source.type = "video/mp4";
     video.appendChild(source);
 
@@ -34,8 +36,6 @@ const isSafari = () => {
   return ua.indexOf("safari") > -1 && ua.indexOf("chrome") < 0;
 };
 
-const mainVideo =
-  "https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4";
 
 export function VideoComponentTwo() {
   const videoParentRef = useRef();
@@ -76,7 +76,7 @@ export function VideoComponentTwo() {
   }, []);
 
   return shouldUseImage ? (
-    <img src={mainVideo} alt="Muted Video" />
+    <img src={tfc} alt="Muted Video" />
   ) : (
     <div
       ref={videoParentRef}
@@ -89,7 +89,7 @@ export function VideoComponentTwo() {
           playsinline
           preload="metadata"
         >
-        <source src="${mainVideo}" type="video/mp4" />
+        <source src="${tfc}" type="video/mp4" />
         </video>`
       }}
     />

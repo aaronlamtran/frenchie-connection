@@ -7,8 +7,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
+import { VideoComponent, VideoComponentTwo } from "./components/VideoComponent";
 import "./config/firebase-config";
-import tfc from "./video/tfc.mp4";
+// import tfc from "./video/tfc.mp4";
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -60,7 +61,7 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <div
+        {/* <div
           className="main"
           dangerouslySetInnerHTML={{
             __html: `
@@ -69,6 +70,10 @@ class App extends Component {
           `,
           }}
         ></div>
+         */}
+         <VideoComponent/>
+         <VideoComponentTwo/>
+
         <div className="content">
           <Typography variant="h4">TFC</Typography>
         </div>
