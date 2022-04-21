@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Container from "@mui/material/Container";
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+import Typography from '@mui/material/Typography';
 
 export default function CardSlider(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,10 +62,10 @@ export default function CardSlider(props) {
                     backgroundSize: "cover",
                   }}
                 ></div>
-                <p className="slider-card-title">{slide.name}</p>
-                <p className="slider-card-description">
+                <Typography variant="h6" sx={{margin: 1}}>{slide.name}</Typography>
+                <Typography variant="body2" sx={{margin: 1}}>
                   {slide.color}, {slide.sex}{" "}
-                </p>
+                </Typography>
               </div>
             );
           })}
