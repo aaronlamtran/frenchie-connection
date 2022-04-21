@@ -1,9 +1,8 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import DogView from "./components/dogs/DogView";
 import Dogs from "./components/dogs/Dogs";
 import Testimonials from "./components/Testimonials";
-import RouterNav from "./components/RouterNav";
 import data from "./data/mock-data.json";
 import FAQ from "./components/FAQ";
 import About from "./components/About";
@@ -27,69 +26,95 @@ const {
 
 const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
   return (
-    <BrowserRouter>
-      <RouterNav />
-      <Switch>
-        <Route exact path="/pups">
-          <CardSlider slides={galleryData} />
-          <Testimonials data={testimonialData} />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/contact">
-          <Contact
-            data={contactData}
-            handleAddErrorMessages={handleAddErrorMessages}
-            handleAddSuccessMessage={handleAddSuccessMessage}
+    <>
+
+      <AuthProvider>
+        <Routes>
+          <Route
+            exact
+            path="/pups"
+            element={
+              <>
+                <CardSlider slides={galleryData} />
+                }>
+                <Testimonials data={testimonialData} />
+              </>
+            }
           />
-        </Route>
-        <Route exact path="/faq">
-          <FAQ data={FAQ_data} />
-        </Route>
-        <Route exact path="/about">
-          <About data={aboutData} />
-        </Route>
-        <Route exact path="/join">
-          <JoinWaitlist
-            handleAddErrorMessages={handleAddErrorMessages}
-            handleAddSuccessMessage={handleAddSuccessMessage}
+          <Route exact path="/login" element={<Login />} />
+
+          <Route
+            exact
+            path="/contact"
+            element={
+              <Contact
+                data={contactData}
+                handleAddErrorMessages={handleAddErrorMessages}
+                handleAddSuccessMessage={handleAddSuccessMessage}
+              />
+            }
           />
-        </Route>
-        <Route exact path="/create">
-          <AuthProvider>
-            <CreateDog
-              handleAddErrorMessages={handleAddErrorMessages}
-              handleAddSuccessMessage={handleAddSuccessMessage}
-            />
-          </AuthProvider>
-        </Route>
-        <Route exact path="/dogs/:id">
-          <AuthProvider>
-            <DogView
-              value
-              handleAddErrorMessages={handleAddErrorMessages}
-              handleAddSuccessMessage={handleAddSuccessMessage}
-            />
-          </AuthProvider>
-        </Route>
-        <AuthProvider>
-          <ProtectedRoute
+          <Route exact path="/faq" element={<FAQ data={FAQ_data} />} />
+          <Route exact path="/about" element={<About data={aboutData} />} />
+          <Route
+            exact
+            path="/join"
+            element={
+              <JoinWaitlist
+                handleAddErrorMessages={handleAddErrorMessages}
+                handleAddSuccessMessage={handleAddSuccessMessage}
+              />
+            }
+          />
+
+          <Route
+            exact
+            path="/create"
+            element={
+              <CreateDog
+                handleAddErrorMessages={handleAddErrorMessages}
+                handleAddSuccessMessage={handleAddSuccessMessage}
+              />
+            }
+          />
+
+          <Route
             exact
             path="/waitlist"
-            component={Dogs}
-            isAuth={true}
-            value
-            handleAddErrorMessages={handleAddErrorMessages}
-            handleAddSuccessMessage={handleAddSuccessMessage}
+            element={
+              <ProtectedRoute
+                exact
+                path="/dogs/:id"
+                component={DogView}
+                handleAddErrorMessages={handleAddErrorMessages}
+                handleAddSuccessMessage={handleAddSuccessMessage}
+              />
+            }
           />
-        </AuthProvider>
-        <Route exact path="*">
-          {/* // TODO : create page does not exist component  */}
-          <About data={aboutData} />
-        </Route>
-      </Switch>
-    </BrowserRouter>
+          <Route
+            exact
+            path="/waitlist"
+            element={
+              <ProtectedRoute
+                exact
+                path="/waitlist"
+                component={Dogs}
+                handleAddErrorMessages={handleAddErrorMessages}
+                handleAddSuccessMessage={handleAddSuccessMessage}
+              />
+            }
+          />
+          <Route
+            exact
+            path="*"
+            element={
+              // {/* // TODO : create page does not exist component  */}
+              <About data={aboutData} />
+            }
+          />
+        </Routes>
+      </AuthProvider>
+    </>
   );
 };
 

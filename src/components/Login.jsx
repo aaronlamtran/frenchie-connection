@@ -2,10 +2,10 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import frenchie from "../config/firebase-config";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 export default function Login() {
-  const history = useHistory();
+  // const history = useHistory();
   const authentication = getAuth(frenchie);
   // const [auth, setAuth] = useState(
   //   false || window.localStorage.getItem("auth") === "true"
@@ -20,8 +20,8 @@ export default function Login() {
       if (result) {
         // setAuth(true);
         window.localStorage.setItem("auth", "true");
-        console.log(history)
-        history.goBack()
+        // console.log(history)
+        // history.goBack()
         // history.push("/waitlist");
       }
     });

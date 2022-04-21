@@ -1,19 +1,20 @@
-// import React, { useEffect, useState, useContext, useRef } from "react";
-import React, { useEffect, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext} from "react";
+// import React, { useEffect, useContext, useRef } from "react";
 import { getAuth } from "firebase/auth";
 import frenchie from "../config/firebase-config";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
-  const authRef = useRef(null);
+  // const authRef = useRef();
   const authentication = getAuth(frenchie);
   // const [token, setToken] = useState("");
-  // const [auth, setAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     authentication.onAuthStateChanged((userCred) => {
+      console.log(userCred)
       if (userCred) {
-        // setAuth(true);
+        setIsAuth(true);
         window.localStorage.setItem("auth", "true");
         // userCred.getIdToken().then((token) => {
         //   setToken(token);
@@ -26,10 +27,11 @@ export const AuthProvider = ({ children }) => {
   },[authentication]);
 
   return (
-    <AuthContext.Provider value={{ authRef }}>
+    <AuthContext.Provider value={isAuth}>
       {children}
     </AuthContext.Provider>
   );
 };
+
 
 export const useAuth = () => useContext(AuthContext);

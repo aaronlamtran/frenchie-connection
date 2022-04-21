@@ -128,4 +128,4 @@ class Dogs extends Component {
   }
 }
 
-export default withRouter(Dogs);
+export default Dogs;

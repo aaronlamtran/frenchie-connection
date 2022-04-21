@@ -85,4 +85,5 @@ class DogView extends React.Component {
   }
 }
 
-export default withRouter(DogView);
+// export default withRouter(DogView);
+export default DogView;
