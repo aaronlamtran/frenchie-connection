@@ -60,11 +60,17 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <div className="main">
-          <video src={tfc} autoPlay loop muted />
-          <div className="content">
-            <Typography variant="h4">TFC</Typography>
-          </div>
+        <div
+          className="main"
+          dangerouslySetInnerHTML={{
+            __html: `
+          <video src=${tfc} autoPlay loop muted
+          />
+          `,
+          }}
+        ></div>
+        <div className="content">
+          <Typography variant="h4">TFC</Typography>
         </div>
         <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
