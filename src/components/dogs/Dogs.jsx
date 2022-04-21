@@ -52,7 +52,7 @@ export default function Dogs(props) {
           paddingTop: 2,
           marginBottom: 1,
           paddingBottom: 5,
-          maxWidth: { md: 800 },
+          // maxWidth: { md: 800 },
           margin: "auto",
           marginTop: 1,
         }}

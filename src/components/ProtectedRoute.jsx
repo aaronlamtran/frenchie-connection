@@ -15,9 +15,8 @@ export default function ProtectedRoute({ children }) {
       sx={{
         padding: 1.5,
         paddingBottom: 10,
-        maxWidth: { md: 500 },
+        maxWidth: { md: 900 },
         margin: "auto",
-        marginTop: 1,
       }}
     >
       {loading ? <SickSpinner /> : children}

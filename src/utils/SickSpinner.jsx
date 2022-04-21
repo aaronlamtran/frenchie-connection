@@ -1,10 +1,10 @@
-import React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 export default function SickSpinner() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ margin: "auto", maxWidth: { md: 900 }, alignItems:'center' }}>
       <CircularProgress color="success" />
     </Box>
   );
