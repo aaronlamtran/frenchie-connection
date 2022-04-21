@@ -7,8 +7,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
-import './config/firebase-config';
-import tfc from './video/tfc.mp4';
+import "./config/firebase-config";
+import tfc from "./video/tfc.mp4";
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -60,13 +60,13 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <div className='main'>
-          <video src={tfc} autoPlay loop muted/>
+        <div className="main">
+          <video src={tfc} autoPlay loop muted />
           <div className="content">
-          <Typography variant='h4'>TFC</Typography>
+            <Typography variant="h4">TFC</Typography>
           </div>
         </div>
-        <Container sx={{ padding: 0.25 }}>
+        <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
             errorMessages={this.state.errorMessages}

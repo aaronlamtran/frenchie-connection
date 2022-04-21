@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 
 export default function About({ data: { title, description } }) {
   return (
-    <Box sx={{ marginTop: 1, maxWidth: { md: 800 }, margin: "auto" }}>
+    <Box sx={{marginTop: 1, maxWidth: { md: 800 }, margin: "auto" }}>
       <ImageList cols={1}>
         <ImageListItem>
           <img src={AboutPic} alt="AboutUs" loading="lazy" />

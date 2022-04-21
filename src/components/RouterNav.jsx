@@ -13,7 +13,8 @@ import Logo from "./Logo";
 import LogoText from "./LogoText";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
+const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist", "Admin Login"];
+const pageNavTo = ["About", "Pups", "FAQ", "Contact", "Join", "Login"];
 
 export default function RouterNav(props) {
   const navigate = useNavigate();
@@ -23,11 +24,7 @@ export default function RouterNav(props) {
   };
 
   const handleCloseNavMenu = (event) => {
-    if (event.currentTarget.text === "Join Waitlist") {
-      navigate('/join');
-    } else if (event.currentTarget.text !== undefined) {
-      navigate(`${event.currentTarget.text}`);
-    }
+    navigate(`/${pageNavTo[event.target.id]}`)
     setAnchorElNav(null);
   };
 
@@ -83,9 +80,9 @@ export default function RouterNav(props) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} component="a" onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, i) => (
+                <MenuItem key={page} id={i} component="a" onClick={handleCloseNavMenu}>
+                  {page}
                 </MenuItem>
               ))}
             </Menu>
@@ -101,14 +98,15 @@ export default function RouterNav(props) {
             <LogoText />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((page, i) => (
               <Button
                 component="a"
                 key={page}
+                id={i}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                sx={{ my: 1, color: "black", display: "block" }}
               >
-                <Typography textAlign="center">{page}</Typography>
+                {page}
               </Button>
             ))}
           </Box>
