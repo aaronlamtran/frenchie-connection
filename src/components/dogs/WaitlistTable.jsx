@@ -9,10 +9,10 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function WaitlistTableView({ waitlists, dogInfo }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   function renderNoWaitlist() {
     return <Typography variant="h6"> No waitlist info 🐶 </Typography>;
   }
@@ -51,7 +51,7 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
         </Table>
         <Button
           color="info"
-          onClick={() => history.push("/waitlist")}
+          onClick={() => navigate("/waitlist")}
         >
           Back
         </Button>

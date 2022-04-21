@@ -11,24 +11,23 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "./Logo";
 import LogoText from "./LogoText";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 const pages = ["About", "Pups", "FAQ", "Contact", "Join Waitlist"];
 
 export default function RouterNav(props) {
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const history = useHistory();
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
   const handleCloseNavMenu = (event) => {
     if (event.currentTarget.text === "Join Waitlist") {
-      history.push("/join");
+      navigate('/join');
     } else if (event.currentTarget.text !== undefined) {
-      history.push(`${event.currentTarget.text}`);
+      navigate(`${event.currentTarget.text}`);
     }
-
     setAnchorElNav(null);
   };
 

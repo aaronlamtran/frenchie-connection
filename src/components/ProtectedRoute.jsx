@@ -1,23 +1,26 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "./Auth";
+import SickSpinner from "../utils/SickSpinner";
+import Container from "@mui/material/Container";
 
-export default function ProtectedRoute({
-  isAuth,
-  component: Component,
-  ...rest
-}) {
+export default function ProtectedRoute({ children }) {
+  const { isAuth, user, token, loading } = useAuth();
+  console.log({ isAuth, user, token, loading });
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
   return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (isAuth) {
-          return <Component {...rest} />;
-        } else {
-          return (
-            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-          );
-        }
+    <Container
+      sx={{
+        padding: 1.5,
+        paddingBottom: 10,
+        maxWidth: { md: 500 },
+        margin: "auto",
+        marginTop: 1,
       }}
-    ></Route>
+    >
+      {loading ? <SickSpinner /> : children}
+    </Container>
   );
 }

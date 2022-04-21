@@ -1,5 +1,5 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
@@ -7,31 +7,34 @@ import WaitlistTable from "./WaitlistTable";
 import axios from "axios";
 import SickSpinner from "../../utils/SickSpinner";
 import Typography from "@mui/material/Typography";
-class DogView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      spinner: true,
-      waitlists: [],
-      dog: {},
-    };
-  }
-  async componentDidMount() {
-    const { handleAddErrorMessages, handleAddSuccessMessage } = this.props;
-    let url = `/dogs/${this.props.match.params.id}`;
+
+export default function DogView(props) {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [spinner, setSpinner] = useState(true);
+  const [waitlists, setWaitlists] = useState([]);
+  const [dog, setDog] = useState({});
+  const { handleAddErrorMessages, handleAddSuccessMessage } = props;
+  useEffect(() => {
+    loadDog();
+  }, []);
+  const loadDog = async () => {
+    let url = `/dogs/${id}`;
     if (process.env.NODE_ENV === "development") {
-      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${this.props.match.params.id}`;
+      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${id}`;
     }
     try {
       const response = await axios.get(url);
       const { dog, waitlists } = response.data;
       handleAddSuccessMessage(response.data.msg);
-      this.setState({ waitlists: waitlists, dog: dog, spinner: false });
+      setWaitlists(waitlists);
+      setDog(dog);
+      setSpinner(false);
     } catch (err) {
-      this.setState({ spinner: false });
+      setSpinner(false);
       if (err.response && err.response.status === 404) {
         handleAddErrorMessages(err.response.data.errors);
-        this.props.history.push("/");
+        navigate("/");
       } else if (err.response) {
         handleAddErrorMessages(err.response.data.errors);
       } else {
@@ -40,49 +43,38 @@ class DogView extends React.Component {
         ]);
       }
     }
-  }
-  noDog() {
+  };
+  const noDog = () => {
     return <h5> no dog found </h5>;
-  }
-  renderDog() {
+  };
+  const renderDog = () => {
     return (
       <>
-        <WaitlistTable
-          waitlists={this.state.waitlists}
-          dogInfo={this.state.dog}
-        />
+        <WaitlistTable waitlists={waitlists} dogInfo={dog} />
       </>
     );
-  }
-  render() {
-    const { spinner, dog } = this.state;
-    return (
-      <Paper
-        sx={{
-          padding: 1.5,
-          paddingTop: 2,
-          marginBottom: 1,
-          paddingBottom: 5,
-          maxWidth: { md: 800 },
-          margin: "auto",
-          marginTop: 1,
-        }}
-      >
-        <Typography variant="h5">Waitlist Details</Typography>
-        <Button
-          color="info"
-          onClick={() => this.props.history.push("/waitlist")}
-        >
-          Back
-        </Button>
-        <Box>
-          {spinner && <SickSpinner />}
-          {!spinner && !dog && this.noDog()}
-          {!spinner && dog && this.renderDog()}
-        </Box>
-      </Paper>
-    );
-  }
+  };
+  return (
+    <Paper
+      sx={{
+        padding: 1.5,
+        paddingTop: 2,
+        marginBottom: 1,
+        paddingBottom: 5,
+        maxWidth: { md: 800 },
+        margin: "auto",
+        marginTop: 1,
+      }}
+    >
+      <Typography variant="h5">Waitlist Details</Typography>
+      <Button color="info" onClick={() => navigate("/waitlist")}>
+        Back
+      </Button>
+      <Box>
+        {spinner && <SickSpinner />}
+        {!spinner && !dog && noDog()}
+        {!spinner && dog && renderDog()}
+      </Box>
+    </Paper>
+  );
 }
-
-export default withRouter(DogView);

@@ -2,11 +2,10 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateDog(props) {
-  const history = useHistory();
-
+  const navigate = useNavigate();
   return (
     <Paper
       sx={{
@@ -20,7 +19,11 @@ export default function CreateDog(props) {
       }}
     >
       <Typography>create new waitlist coming soon</Typography>
-      <Button color="info" onClick={() => history.push("/waitlist")}>
+      <Button
+        color="info"
+        // TODO navigate back to waitlist
+        onClick={() => navigate("/waitlist")}
+      >
         Back
       </Button>
     </Paper>

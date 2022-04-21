@@ -6,6 +6,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 // import "./App.css";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
+import RouterNav from "./components/RouterNav";
+import './config/firebase-config';
 
 const theme = createTheme({
   palette: {
@@ -58,7 +60,6 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        {/* <Container sx={{ padding: 0.5 }}> */}
         <Container sx={{ padding: 0.25 }}>
           <AlertsView
             successMessages={this.state.successMessages}
@@ -69,6 +70,7 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
+          <RouterNav />
           <Router
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
