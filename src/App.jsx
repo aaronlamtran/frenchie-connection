@@ -60,13 +60,21 @@ class App extends Component {
     successMessages.splice(index, 1);
     this.setState({ successMessages: [...successMessages] });
   };
+
+  handleScroll = () => {
+    const pixels = window.screen.height;
+    window.scroll({
+      top: pixels,
+      behavior: 'smooth',
+    })
+  }
   render() {
     return (
       <ThemeProvider theme={theme}>
         <LandingVideo />
         <Logo goToOnClick='/waitlist' className='logo-top'/>
         <div className="logo-bottom">
-          <ArrowDropDownIcon sx={{fontSize:100}} onClick={()=> console.log('click')}/>
+          <ArrowDropDownIcon sx={{fontSize:100}} onClick={this.handleScroll}/>
         </div>
         <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
