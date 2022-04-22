@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
 import WaitlistTable from "./WaitlistTable";
 import axios from "axios";
 import SickSpinner from "../../utils/SickSpinner";

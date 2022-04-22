@@ -67,7 +67,6 @@ class App extends Component {
   };
 
   handleScrollOneVh = () => {
-    // console.log({window})
     const toolBarPixels = 24;
     const navBarPixel = 24;
     const totalWindowPixels = window.screen.height;
@@ -78,9 +77,6 @@ class App extends Component {
     });
   };
   handleScroll = () => {
-    // only show bottom nav when at bottom of scrollable window
-    // if total pixel windows < current scroll position
-
     const marginBottom = 24;
     const totalWindowPixels = window.screen.height;
     const isScrolledToBottom =
