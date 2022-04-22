@@ -1,5 +1,6 @@
 import React from "react";
 import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 export default function About({ data: { title, description } }) {
@@ -7,23 +8,24 @@ export default function About({ data: { title, description } }) {
     <Box
       sx={{
         padding: 1.5,
-        paddingBottom: 10,
         maxWidth: { md: 500 },
         margin: "auto",
-        marginTop: 1,
-        textAlign: "center",
-        justify: "center",
-        minHeight: "70vh",
+        minHeight: "80vh",
       }}
     >
-      <Typography variant="h4">{title}</Typography>
-      <Typography
-        sx={{
-          marginTop: 1,
-        }}
-      >
-        {description}
-      </Typography>
+      <Grid alignContent="center" justifyContent="center" direction="column" sx={{ display: "flex", textAlign: "center", }}>
+        <Grid item xs={3}>
+
+        <Typography variant="h4">{title}</Typography>
+        <Typography
+          sx={{
+            textAlign: "left",
+          }}
+          >
+          {description}
+        </Typography>
+          </Grid>
+      </Grid>
     </Box>
   );
 }

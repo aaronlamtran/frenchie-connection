@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import MuiPhoneNumber from "material-ui-phone-number";
 import Box from "@mui/material/Box";
-
+import Logo from "./Logo";
 export default class JoinWaitlist extends Component {
   constructor(props) {
     super(props);
@@ -81,12 +81,13 @@ export default class JoinWaitlist extends Component {
           marginTop: 1,
           textAlign: "center",
           justify: "center",
-          minHeight: "70vh"
+          minHeight: "70vh",
         }}
       >
-        <Typography variant="h4" >
-          Waitlist
-        </Typography>
+        <Box pb={4}>
+          <Logo />
+        </Box>
+        <Typography variant="h4">Waitlist</Typography>
         <Typography sx={{ padding: 1 }}>
           We know timing is everything and having your home ready to bring in a
           new pup is of utmost importance. If you are ready or planning to bring
