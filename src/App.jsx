@@ -7,9 +7,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
-import { VideoComponent, VideoComponentTwo } from "./components/VideoComponent";
+import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import "./config/firebase-config";
-// import tfc from "./video/tfc.mp4";
+import tfc_top_logo from "./images/tfc_top_logo.svg";
+
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -61,21 +62,12 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        {/* <div
-          className="main"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <video src=${tfc} autoPlay loop muted
-          />
-          `,
-          }}
-        ></div>
-         */}
-         <VideoComponent/>
-         <VideoComponentTwo/>
-
+        <LandingVideo />
         <div className="content">
-          <Typography variant="h4">TFC</Typography>
+          <Typography variant="h2">TFC</Typography>
+        </div>
+        <div className="logo-top">
+          <img src={tfc_top_logo} alt="tfc-logo" />
         </div>
         <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
