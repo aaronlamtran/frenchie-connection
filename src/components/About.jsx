@@ -1,11 +1,11 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 export default function About({ data: { title, description } }) {
   return (
-    <Box
+    <Container
       sx={{
         // padding: 1.5,
         maxWidth: { md: 500 },
@@ -27,6 +27,6 @@ export default function About({ data: { title, description } }) {
         </Typography>
           </Grid>
       </Grid>
-    </Box>
+    </Container>
   );
 }
