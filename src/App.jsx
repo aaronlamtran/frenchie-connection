@@ -112,12 +112,12 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <LandingVideo />
         <Logo goToOnClick="/waitlist" className="logo-top" />
-        {/* <div className="logo-bottom">
+        <div className="logo-bottom">
           <ArrowDropDownIcon
             sx={{ fontSize: 100 }}
             onClick={this.handleScrollOneVh}
           />
-        </div> */}
+        </div>
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
