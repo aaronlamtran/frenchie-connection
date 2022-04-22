@@ -51,6 +51,7 @@ video {
   /* justify-content: center; */
   align-items: center;
   padding-top: 75vh;
+  padding-bottom: 0vh;
   color: white;
 
 }

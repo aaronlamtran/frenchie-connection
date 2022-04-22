@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 
 export default function ProtectedRoute({ children }) {
   const { isAuth, user, token, loading } = useAuth();
-  console.log({ isAuth, user, token, loading });
+  // console.log({ isAuth, user, token, loading });
   if (!token) {
     return <Navigate to="/login" />;
   }

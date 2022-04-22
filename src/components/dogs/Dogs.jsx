@@ -93,7 +93,7 @@ export default function Dogs(props) {
     return <Typography className="text-center">No Products Found</Typography>;
   };
   return (
-    <Paper
+    <Box
       sx={{
         padding: 1.5,
         paddingTop: 2,
@@ -118,6 +118,6 @@ export default function Dogs(props) {
         </Box>
       </Box>
       <Logout />
-    </Paper>
+    </Box>
   );
 }
