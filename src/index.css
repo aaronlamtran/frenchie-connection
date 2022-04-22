@@ -52,6 +52,7 @@ video {
   justify-content: center;
   align-items: center;
   color: white;
+  text-shadow: 5px 5px 5px black;
 }
 
 .overlay {
