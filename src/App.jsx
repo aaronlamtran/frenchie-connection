@@ -11,7 +11,24 @@ import Logo from "./components/Logo";
 import "./config/firebase-config";
 import Router from "./Router";
 import Footer from "./components/Footer";
+import data from "./data/mock-data.json";
+import About from "./components/About";
+import CardSlider from "./components/Slider";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
+import JoinWaitlist from "./components/JoinWaitlist";
+// import ProtectedRoute from "./components/ProtectedRoute";
 
+const {
+  // Brand: brandData,
+  About: aboutData,
+  // Featured: featuredData,
+  Gallery: galleryData,
+  Testimonials: testimonialData,
+  FAQ: FAQ_data,
+  Contact: contactData,
+} = data;
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -95,12 +112,12 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <LandingVideo />
         <Logo goToOnClick="/waitlist" className="logo-top" />
-        <div className="logo-bottom">
+        {/* <div className="logo-bottom">
           <ArrowDropDownIcon
             sx={{ fontSize: 100 }}
             onClick={this.handleScrollOneVh}
           />
-        </div>
+        </div> */}
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
@@ -112,13 +129,25 @@ class App extends Component {
             clearAlerts={this.clearAlerts}
           />
           <RouterNav />
-          <Router
+          {/* <Router
+            handleAddErrorMessages={this.handleAddErrorMessages}
+            handleAddSuccessMessage={this.handleAddSuccessMessage}
+          /> */}
+          <About data={aboutData} />
+          <CardSlider slides={galleryData} />
+          <Testimonials data={testimonialData} />
+          <FAQ data={FAQ_data} />
+          <Contact
+            data={contactData}
+            handleAddErrorMessages={this.handleAddErrorMessages}
+            handleAddSuccessMessage={this.handleAddSuccessMessage}
+          />
+          <JoinWaitlist
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
           />
         </Box>
         <Footer isShowNav={this.state.isShowNav} />
-        {/* {this.state.isShowNav && <Footer />} */}
       </ThemeProvider>
     );
   }

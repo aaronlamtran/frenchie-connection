@@ -1,17 +1,17 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import DogView from "./components/dogs/DogView";
-import Dogs from "./components/dogs/Dogs";
-import Testimonials from "./components/Testimonials";
 import data from "./data/mock-data.json";
-import FAQ from "./components/FAQ";
 import About from "./components/About";
-import Contact from "./components/Contact";
 import CardSlider from "./components/Slider";
+import Testimonials from "./components/Testimonials";
+import FAQ from "./components/FAQ";
+import Contact from "./components/Contact";
 import JoinWaitlist from "./components/JoinWaitlist";
 import ProtectedRoute from "./components/ProtectedRoute";
-import CreateDog from "./components/dogs/CreateDog";
 import Login from "./components/Login";
+import DogView from "./components/dogs/DogView";
+import Dogs from "./components/dogs/Dogs";
+import CreateDog from "./components/dogs/CreateDog";
 import { AuthProvider } from "./components/Auth";
 
 const {
