@@ -1,12 +1,11 @@
 import React, { Component, createRef } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import MuiPhoneNumber from "material-ui-phone-number";
 import Box from "@mui/material/Box";
-
+import Logo from "./Logo";
 export default class JoinWaitlist extends Component {
   constructor(props) {
     super(props);
@@ -73,72 +72,82 @@ export default class JoinWaitlist extends Component {
   render() {
     const { waiting } = this.state;
     return (
-      <Paper sx={{ padding: 1.5, paddingBottom: 10, maxWidth: { md: 500 }, margin: 'auto', marginTop:1 }}>
-        <Box sx={{ maxWidth: { md: 400 }, margin: 'auto'}}>
-          <Typography variant="h5" sx={{ paddingBottom: 2 }}>
-            Join waitlist
-          </Typography>
-          <Typography sx={{ paddingBottom: 1 }}>
-            We know timing is everything and having your home ready to bring in
-            a new pup is of utmost importance. If you are ready or planning to
-            bring home a “The Frenchie Connection” Frenchie please join our
-            waitlist below to stay up to date on current or future litters.{" "}
-          </Typography>
-          <form
-            ref={this.form}
-            name="message"
-            onSubmit={(e) => this.handleJoinWaitlistSubmit(e)}
-          >
-            <TextField
-              required
-              autoComplete="new-password"
-              margin="dense"
-              id="filled-basic"
-              type="name"
-              name="name"
-              label="name"
-              onChange={(e) => this.handleInputChange(e)}
-              variant="filled"
-              value={this.state.name}
-            />
-            <br />
-            <TextField
-              required
-              autoComplete="new-password"
-              margin="dense"
-              id="filled-basic"
-              type="email"
-              name="email"
-              label="email"
-              onChange={(e) => this.handleInputChange(e)}
-              variant="filled"
-              value={this.state.email}
-            />
-            <br />
-            <MuiPhoneNumber
-              name="phone"
-              defaultCountry={"us"}
-              label="phone"
-              onChange={(e) => this.handlePhoneChange(e)}
-              //TODO address value on submit
-              value={this.state.phone}
-            />
-            <br />
-            {waiting && (
-              <Button color="success" disabled>
-                Please wait...
-              </Button>
-            )}
-            {!waiting && (
-              <div>
-                <Button variant="contained" type="submit">
-                  Join Waitlist
-                </Button>
-              </div>
-            )}
-          </form>
+      <Box
+        sx={{
+          padding: 1.5,
+          paddingBottom: 10,
+          maxWidth: { md: 500 },
+          margin: "auto",
+          marginTop: 1,
+          textAlign: "center",
+          justify: "center",
+          minHeight: "70vh",
+        }}
+      >
+        <Box pb={4}>
+          <Logo />
         </Box>
-      </Paper>
+        <Typography variant="h4">Waitlist</Typography>
+        <Typography sx={{ padding: 1 }}>
+          We know timing is everything and having your home ready to bring in a
+          new pup is of utmost importance. If you are ready or planning to bring
+          home a “The Frenchie Connection” Frenchie please join our waitlist
+          below to stay up to date on current or future litters.{" "}
+        </Typography>
+        <form
+          ref={this.form}
+          name="message"
+          onSubmit={(e) => this.handleJoinWaitlistSubmit(e)}
+        >
+          <TextField
+            required
+            autoComplete="new-password"
+            margin="dense"
+            id="filled-basic"
+            type="name"
+            name="name"
+            label="name"
+            onChange={(e) => this.handleInputChange(e)}
+            variant="filled"
+            value={this.state.name}
+          />
+          <br />
+          <TextField
+            required
+            autoComplete="new-password"
+            margin="dense"
+            id="filled-basic"
+            type="email"
+            name="email"
+            label="email"
+            onChange={(e) => this.handleInputChange(e)}
+            variant="filled"
+            value={this.state.email}
+          />
+          <br />
+          <MuiPhoneNumber
+            name="phone"
+            defaultCountry={"us"}
+            label="phone"
+            onChange={(e) => this.handlePhoneChange(e)}
+            //TODO address value on submit
+            value={this.state.phone}
+          />
+          <br />
+          {waiting && (
+            <Button color="success" disabled>
+              Please wait...
+            </Button>
+          )}
+          {!waiting && (
+            <div>
+              <Button variant="contained" type="submit">
+                Join
+              </Button>
+            </div>
+          )}
+        </form>
+      </Box>
     );
   }
 }

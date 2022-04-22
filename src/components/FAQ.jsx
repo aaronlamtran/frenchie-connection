@@ -4,9 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 
 export default function FAQ({ data: { title, entries } }) {
   const [expanded, setExpanded] = React.useState(false);
@@ -17,6 +15,8 @@ export default function FAQ({ data: { title, entries } }) {
 
   const accordian = (entries, key) => (
     <Accordion
+      sx={{ paddingTop: 2 }}
+      elevation={0}
       key={key}
       expanded={expanded === `panel${key}`}
       onChange={handleChange(`panel${key}`)}
@@ -26,32 +26,31 @@ export default function FAQ({ data: { title, entries } }) {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Typography sx={{ color: "text.secondary" }}>
-          {entries.question}
-        </Typography>
+        <Typography variant="body2">{entries.question}</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>{entries.answer}</Typography>
+        <Typography sx={{ color: "text.secondary" }}>
+          {entries.answer}
+        </Typography>
       </AccordionDetails>
     </Accordion>
   );
 
   return (
-    <Container >
-      <Paper
-        sx={{
-          padding: 1.5,
-          paddingBottom: 10,
-          maxWidth: { md: 800 },
-          margin: "auto",
-          marginTop: 1,
-        }}
-      >
-        <Typography variant="h5">{title}</Typography>
-        <Box sx={{ paddingTop: 2 }}>
-          {entries.length && entries.map((ele, i) => accordian(ele, i))}
-        </Box>
-      </Paper>
-    </Container>
+    <Box
+      sx={{
+        // padding: 1.5,
+        paddingBottom: 10,
+        maxWidth: { md: 500 },
+        margin: "auto",
+        marginTop: 1,
+        textAlign: "center",
+        justify: "center",
+        minHeight: "70vh",
+      }}
+    >
+      <Typography variant="h4">{title}</Typography>
+      <>{entries.length && entries.map((ele, i) => accordian(ele, i))}</>
+    </Box>
   );
 }

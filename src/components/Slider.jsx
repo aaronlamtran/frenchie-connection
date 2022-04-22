@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./Slider.css";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Container from "@mui/material/Container";
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
-import Typography from '@mui/material/Typography';
+import Lightbox from "react-image-lightbox";
+import Typography from "@mui/material/Typography";
+import "./Slider.css";
+import "react-image-lightbox/style.css";
 
 export default function CardSlider(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,27 +21,26 @@ export default function CardSlider(props) {
   };
 
   const handleSliderClick = (slide) => {
-    setImages(slide.largeImages)
+    setImages(slide.largeImages);
     setIsOpen(!isOpen);
   };
 
+  const modal = () => (
+    <Lightbox
+      mainSrc={images[photoIndex]}
+      nextSrc={images[(photoIndex + 1) % images.length]}
+      prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+      onCloseRequest={() => setIsOpen(false)}
+      onMovePrevRequest={() =>
+        setPhotoIndex((photoIndex + images.length - 1) % images.length)
+      }
+      onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
+    />
+  );
+
   return (
-    <Container sx={{ pb: 2, padding: 0.25, marginTop:1}} id="Pups">
-      {/* <Typography variant="h5">Pups</Typography> */}
-      {isOpen && (
-          <Lightbox
-            mainSrc={images[photoIndex]}
-            nextSrc={images[(photoIndex + 1) % images.length]}
-            prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-            onCloseRequest={()=> setIsOpen(false)}
-            onMovePrevRequest={() =>
-                setPhotoIndex((photoIndex + images.length - 1) % images.length)
-            }
-            onMoveNextRequest={() =>
-              setPhotoIndex((photoIndex + 1) % images.length)
-            }
-          />
-        )}
+    <Container sx={{ pb: 2, padding: 0.25, marginTop: 1 }} id="Pups">
+      {isOpen && modal()}
       <div id="main-slider-container">
         <ArrowBackIosNewIcon
           className="slider-icon left"
@@ -53,7 +52,7 @@ export default function CardSlider(props) {
               <div
                 className="slider-card"
                 key={index + 1}
-                onClick={()=> handleSliderClick(slide)}
+                onClick={() => handleSliderClick(slide)}
               >
                 <div
                   className="slider-card-image"
@@ -62,8 +61,10 @@ export default function CardSlider(props) {
                     backgroundSize: "cover",
                   }}
                 ></div>
-                <Typography variant="h6" sx={{margin: 1}}>{slide.name}</Typography>
-                <Typography variant="body2" sx={{margin: 1}}>
+                <Typography variant="h6" sx={{ margin: 1 }}>
+                  {slide.name}
+                </Typography>
+                <Typography variant="body2" sx={{ margin: 1 }}>
                   {slide.color}, {slide.sex}{" "}
                 </Typography>
               </div>
@@ -78,4 +79,3 @@ export default function CardSlider(props) {
     </Container>
   );
 }
-

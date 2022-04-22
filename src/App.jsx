@@ -2,14 +2,16 @@
 /* eslint-disable no-console */
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import Router from "./Router";
-import AlertsView from "./utils/AlertsView";
-import RouterNav from "./components/RouterNav";
-import { VideoComponent as LandingVideo } from "./components/VideoComponent";
-import "./config/firebase-config";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { VideoComponent as LandingVideo } from "./components/VideoComponent";
+import RouterNav from "./components/RouterNav";
+import AlertsView from "./utils/AlertsView";
 import Logo from './components/Logo';
+import "./config/firebase-config";
+import Router from "./Router";
+import Footer from './components/Footer';
+
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -81,6 +83,7 @@ class App extends Component {
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
           />
+          <Footer/>
         </Container>
       </ThemeProvider>
     );

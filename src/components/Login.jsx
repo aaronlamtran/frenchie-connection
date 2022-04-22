@@ -14,7 +14,7 @@ export default function Login() {
         direction="column"
         alignItems="center"
         justifyContent="center"
-        style={{ minHeight: "50vh" }}
+        sx={{ minHeight: "80vh" }}
       >
         <Grid item xs={3}>
           <Button color="info" onClick={loginWithGoogle}>
