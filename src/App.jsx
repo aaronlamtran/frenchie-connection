@@ -31,7 +31,12 @@ class App extends Component {
       successMessages: [],
       errorMessages: [],
       showAlert: true,
+      isShowNav: false,
     };
+  }
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("click", this.handleScroll);
   }
   clearAlerts = () => {
     this.setState({ successMessages: [], errorMessages: [], showAlert: true });
@@ -61,7 +66,7 @@ class App extends Component {
     this.setState({ successMessages: [...successMessages] });
   };
 
-  handleScroll = () => {
+  handleScrollOneVh = () => {
     // console.log({window})
     const toolBarPixels = 24;
     const navBarPixel = 24;
@@ -72,6 +77,23 @@ class App extends Component {
       behavior: "smooth",
     });
   };
+  handleScroll = () => {
+    // only show bottom nav when at bottom of scrollable window
+    // if total pixel windows < current scroll position
+
+    const marginBottom = 24;
+    const totalWindowPixels = window.screen.height;
+    const isScrolledToBottom =
+      window.document.body.scrollHeight <
+      window.scrollY + totalWindowPixels + marginBottom;
+    const shouldNavShow = isScrolledToBottom;
+    if (shouldNavShow) {
+      this.setState({ isShowNav: true });
+    } else {
+      this.setState({ isShowNav: false });
+    }
+  };
+
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -80,7 +102,7 @@ class App extends Component {
         <div className="logo-bottom">
           <ArrowDropDownIcon
             sx={{ fontSize: 100 }}
-            onClick={this.handleScroll}
+            onClick={this.handleScrollOneVh}
           />
         </div>
         <Box sx={{ minHeight: "100vh" }}>
@@ -99,7 +121,8 @@ class App extends Component {
             handleAddSuccessMessage={this.handleAddSuccessMessage}
           />
         </Box>
-        <Footer />
+        <Footer isShowNav={this.state.isShowNav} />
+        {/* {this.state.isShowNav && <Footer />} */}
       </ThemeProvider>
     );
   }
