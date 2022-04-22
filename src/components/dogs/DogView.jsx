@@ -55,7 +55,7 @@ export default function DogView(props) {
     );
   };
   return (
-    <Paper
+    <Box
       sx={{
         padding: 1.5,
         paddingTop: 2,
@@ -66,7 +66,7 @@ export default function DogView(props) {
         marginTop: 1,
       }}
     >
-      <Typography variant="h5">Waitlist Details</Typography>
+      <Typography variant="h5" align="center">Waitlist Details</Typography>
       <Button color="info" onClick={() => navigate("/waitlist")}>
         Back
       </Button>
@@ -75,6 +75,6 @@ export default function DogView(props) {
         {!spinner && !dog && noDog()}
         {!spinner && dog && renderDog()}
       </Box>
-    </Paper>
+    </Box>
   );
 }

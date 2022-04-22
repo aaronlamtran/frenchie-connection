@@ -11,7 +11,7 @@ export default function About({ data: { title, description } }) {
         maxWidth: { md: 500 },
         margin: "auto",
         minHeight: "70vh",
-        background: "lightgreen"
+        // background: "lightgreen"
       }}
     >
       <Grid alignContent="center" justifyContent="center" sx={{ display: "flex", textAlign: "center", }}>

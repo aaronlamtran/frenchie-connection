@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
-import Paper from "@mui/material/Paper";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import { CardTitle, CardText, Col } from "reactstrap";
@@ -106,7 +105,7 @@ export default function Dogs(props) {
     >
       <Box>
         {/* <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}> */}
-        <Typography variant="h4">Waitlists</Typography>
+        <Typography variant="h4" align='center'>Waitlists</Typography>
         <hr />
         <Button color="info" onClick={() => navigate("/create")}>
           Create A New Waitlist
