@@ -7,13 +7,14 @@ export default function About({ data: { title, description } }) {
   return (
     <Box
       sx={{
-        padding: 1.5,
+        // padding: 1.5,
         maxWidth: { md: 500 },
         margin: "auto",
-        minHeight: "80vh",
+        minHeight: "70vh",
+        background: "lightgreen"
       }}
     >
-      <Grid alignContent="center" justifyContent="center" direction="column" sx={{ display: "flex", textAlign: "center", }}>
+      <Grid alignContent="center" justifyContent="center" sx={{ display: "flex", textAlign: "center", }}>
         <Grid item xs={3}>
 
         <Typography variant="h4">{title}</Typography>

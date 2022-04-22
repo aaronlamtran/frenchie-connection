@@ -1,16 +1,16 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 import React, { Component } from "react";
-import Container from "@mui/material/Container";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Box from "@mui/material/Box";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import RouterNav from "./components/RouterNav";
 import AlertsView from "./utils/AlertsView";
-import Logo from './components/Logo';
+import Logo from "./components/Logo";
 import "./config/firebase-config";
 import Router from "./Router";
-import Footer from './components/Footer';
+import Footer from "./components/Footer";
 
 const theme = createTheme({
   palette: {
@@ -62,21 +62,28 @@ class App extends Component {
   };
 
   handleScroll = () => {
-    const pixels = window.screen.height;
+    // console.log({window})
+    const toolBarPixels = 24;
+    const navBarPixel = 24;
+    const totalWindowPixels = window.screen.height;
+    const pixelsToScroll = totalWindowPixels - toolBarPixels - navBarPixel;
     window.scroll({
-      top: pixels,
-      behavior: 'smooth',
-    })
-  }
+      top: pixelsToScroll,
+      behavior: "smooth",
+    });
+  };
   render() {
     return (
       <ThemeProvider theme={theme}>
         <LandingVideo />
-        <Logo goToOnClick='/waitlist' className='logo-top'/>
+        <Logo goToOnClick="/waitlist" className="logo-top" />
         <div className="logo-bottom">
-          <ArrowDropDownIcon sx={{fontSize:100}} onClick={this.handleScroll}/>
+          <ArrowDropDownIcon
+            sx={{ fontSize: 100 }}
+            onClick={this.handleScroll}
+          />
         </div>
-        <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
+        <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
             errorMessages={this.state.errorMessages}
@@ -91,8 +98,8 @@ class App extends Component {
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
           />
-          <Footer/>
-        </Container>
+        </Box>
+        <Footer />
       </ThemeProvider>
     );
   }

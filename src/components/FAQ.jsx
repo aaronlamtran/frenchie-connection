@@ -26,7 +26,7 @@ export default function FAQ({ data: { title, entries } }) {
         aria-controls="panel1bh-content"
         id="panel1bh-header"
       >
-        <Typography variant="body2">{entries.question}</Typography>
+        <Typography >{entries.question}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography sx={{ color: "text.secondary" }}>
@@ -44,12 +44,11 @@ export default function FAQ({ data: { title, entries } }) {
         maxWidth: { md: 500 },
         margin: "auto",
         marginTop: 1,
-        textAlign: "center",
         justify: "center",
         minHeight: "70vh",
       }}
     >
-      <Typography variant="h4">{title}</Typography>
+      <Typography variant="h4" sx={{textAlign: "center",}}>{title}</Typography>
       <>{entries.length && entries.map((ele, i) => accordian(ele, i))}</>
     </Box>
   );
