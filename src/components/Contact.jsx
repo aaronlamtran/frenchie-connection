@@ -67,7 +67,7 @@ export default function Contact({
     >
       <Box sx={{ maxWidth: { md: 400 }, margin: "auto" }}>
         <Typography variant="h5">Contact Us</Typography>
-        <Typography variant="p">
+        <Typography >
           Drop your contact information to send us an email. We finna get back
           to you asap.
         </Typography>

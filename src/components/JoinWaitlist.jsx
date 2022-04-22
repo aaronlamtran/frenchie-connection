@@ -78,7 +78,7 @@ export default class JoinWaitlist extends Component {
           <Typography variant="h5" sx={{ paddingBottom: 2 }}>
             Join waitlist
           </Typography>
-          <Typography variant="p" sx={{ paddingBottom: 4 }}>
+          <Typography sx={{ paddingBottom: 1 }}>
             We know timing is everything and having your home ready to bring in
             a new pup is of utmost importance. If you are ready or planning to
             bring home a “The Frenchie Connection” Frenchie please join our

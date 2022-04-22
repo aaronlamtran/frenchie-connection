@@ -3,12 +3,13 @@
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import "./App.css";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
-import './config/firebase-config';
-
+import { VideoComponent as LandingVideo } from "./components/VideoComponent";
+import "./config/firebase-config";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Logo from './components/Logo';
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -60,7 +61,12 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Container sx={{ padding: 0.25 }}>
+        <LandingVideo />
+        <Logo goToOnClick='/waitlist' className='logo-top'/>
+        <div className="logo-bottom">
+          <ArrowDropDownIcon sx={{fontSize:100}} onClick={()=> console.log('click')}/>
+        </div>
+        <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
             errorMessages={this.state.errorMessages}

@@ -37,21 +37,21 @@ export default function FAQ({ data: { title, entries } }) {
   );
 
   return (
-    <Paper
-      sx={{
-        padding: 1.5,
-        paddingBottom: 10,
-        maxWidth: { md: 800 },
-        margin: "auto",
-        marginTop:1
-      }}
-    >
-      <Container id="FAQ">
+    <Container >
+      <Paper
+        sx={{
+          padding: 1.5,
+          paddingBottom: 10,
+          maxWidth: { md: 800 },
+          margin: "auto",
+          marginTop: 1,
+        }}
+      >
         <Typography variant="h5">{title}</Typography>
         <Box sx={{ paddingTop: 2 }}>
           {entries.length && entries.map((ele, i) => accordian(ele, i))}
         </Box>
-      </Container>
-    </Paper>
+      </Paper>
+    </Container>
   );
 }
