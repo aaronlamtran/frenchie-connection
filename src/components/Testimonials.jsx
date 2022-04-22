@@ -23,18 +23,19 @@ export default function Testimonials({ data: { title, entries } }) {
   };
 
   return (
-    <Paper
+    <Box
       sx={{
         padding: 1.5,
-        paddingTop: 2,
-        marginBottom: 1,
-        paddingBottom: 5,
-        maxWidth: { md: 800 },
+        paddingBottom: 10,
+        maxWidth: { md: 500 },
         margin: "auto",
+        marginTop: 1,
+        textAlign: "center",
+        justify: "center",
+        minHeight: "70vh",
       }}
     >
-      <Box id="Testimonials">
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h4">{title}</Typography>
         <br />
         <Grid
           container
@@ -56,7 +57,6 @@ export default function Testimonials({ data: { title, entries } }) {
             </Grid>
           ))}
         </Grid>
-      </Box>
-    </Paper>
+    </Box>
   );
 }
