@@ -1,9 +1,19 @@
 import React from "react";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
+import tfc_top_logo from "../images/tfc_top_logo.svg";
 
-export default function Logo() {
+export default function Logo({ goToOnClick, className }) {
+  function handleClick(destination) {
+    window.location.href = destination;
+  }
+
   return (
-    <img src={logo} alt="Logo" onClick={() => (window.location.href = "/")} />
+    <div className={className}>
+        <img
+          src={tfc_top_logo}
+          alt="Logo"
+          onClick={() => handleClick(goToOnClick)}
+        />
+    </div>
   );
 }
-

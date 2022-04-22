@@ -2,15 +2,14 @@
 /* eslint-disable no-console */
 import React, { Component } from "react";
 import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Router from "./Router";
 import AlertsView from "./utils/AlertsView";
 import RouterNav from "./components/RouterNav";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import "./config/firebase-config";
-import tfc_top_logo from "./images/tfc_top_logo.svg";
-
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Logo from './components/Logo';
 const theme = createTheme({
   palette: {
     mode: "light",
@@ -63,11 +62,9 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <LandingVideo />
-        <div className="content">
-          <Typography variant="h2">TFC</Typography>
-        </div>
-        <div className="logo-top">
-          <img src={tfc_top_logo} alt="tfc-logo" />
+        <Logo goToOnClick='/waitlist' className='logo-top'/>
+        <div className="logo-bottom">
+          <ArrowDropDownIcon sx={{fontSize:100}} onClick={()=> console.log('click')}/>
         </div>
         <Container sx={{ padding: 0.25, minHeight: "100vh" }}>
           <AlertsView
