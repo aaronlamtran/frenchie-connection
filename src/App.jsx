@@ -142,7 +142,7 @@ class App extends Component {
   };
 
   reportPercentage = (screenSize, yScrolled) => {
-    const totalYscrolled = yScrolled - screenSize * 0.75;
+    const totalYscrolled = yScrolled - screenSize * 0.80;
     return (totalYscrolled / screenSize) * 100;
   };
 
