@@ -17,7 +17,7 @@ export default function Testimonials({ data: { title, entries } }) {
       if (index === idx) {
         return !panels[index];
       }
-      return '';
+      return "";
     });
     setExpanded(oneAtAtimeExpanded);
   };
@@ -35,28 +35,25 @@ export default function Testimonials({ data: { title, entries } }) {
         minHeight: "70vh",
       }}
     >
-        <Typography variant="h4">{title}</Typography>
-        <br />
-        <Grid
-          container
-          sx={{ display: "grid", gap: 1.5, alignItems: "center" }}
-        >
-          {entries.map((person, idx) => (
-            <Grid item xs={12} sm={12} md={12} key={person.name}>
-              <Paper sx={{ padding: 1.5 }}>
-                <Stack direction="column" spacing={0.5}>
-                  <Stack direction="row" spacing={0.5}>
-                    <AvatarReview
-                      expanded={expanded[idx]}
-                      setExpandedAtIndex={setExpandedAtIndex}
-                      data={{ ...person, idx }}
-                    />
-                  </Stack>
+      <Typography variant="h4">{title}</Typography>
+      <br />
+      <Grid container sx={{ display: "grid", gap: 1.5, alignItems: "center" }}>
+        {entries.map((person, idx) => (
+          <Grid item key={person.name}>
+            <Paper sx={{ padding: 1.5 }}>
+              <Stack direction="column" spacing={0.5}>
+                <Stack direction="row" spacing={0.5}>
+                  <AvatarReview
+                    expanded={expanded[idx]}
+                    setExpandedAtIndex={setExpandedAtIndex}
+                    data={{ ...person, idx }}
+                  />
                 </Stack>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
+              </Stack>
+            </Paper>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 }

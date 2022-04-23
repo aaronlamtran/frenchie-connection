@@ -1,9 +1,13 @@
 import React, { useMemo, useState } from "react";
 import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-
-export default function AvatarReview({ data: { text, img, name, idx }, setExpandedAtIndex, expanded }) {
+export default function AvatarReview({
+  data: { text, img, name, idx },
+  setExpandedAtIndex,
+  expanded,
+}) {
   const [isTextLong, setIsTextLong] = useState(false);
   const blurb = useMemo(() => {
     if (text.length <= 130) {
@@ -18,22 +22,28 @@ export default function AvatarReview({ data: { text, img, name, idx }, setExpand
   }, [text]);
   const toggleReadMore = (e) => {
     e.preventDefault();
-    setExpandedAtIndex(idx)
+    setExpandedAtIndex(idx);
     setIsTextLong(!isTextLong);
   };
 
-
-
   return (
-    <>
-      <Avatar onClick={toggleReadMore} alt={name} src={img} />
-      <Typography variant="body1" onClick={toggleReadMore}>
-        {!expanded ? blurb : text}
-        <br />
-        <Typography variant="span" align="right">
-          -{name}
-        </Typography>
-      </Typography>
-    </>
+    <Box>
+      <div className="avatar-review-stack">
+        <Avatar onClick={toggleReadMore} alt={name} src={img} />
+        <div>
+          <Typography align="left" onClick={toggleReadMore}>
+            {!expanded ? blurb : text}
+            <br />
+          </Typography>
+          <Typography
+            variant="body2"
+            align="right"
+            sx={{ color: "text.secondary" }}
+          >
+            -{name}
+          </Typography>
+        </div>
+      </div>
+    </Box>
   );
 }

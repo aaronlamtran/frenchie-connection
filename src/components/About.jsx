@@ -30,7 +30,7 @@ export default function About({ data: { title, description }, percentage }) {
     }
   };
   return (
-    <Box sx={{ minHeight: "70vh", maxWidth: 600, margin: "auto", padding: 4 }}>
+    <Box sx={{ minHeight: "45vh", maxWidth: 600, margin: "auto", padding: 4 }}>
       <Grid container justifyContent="center">
         <Grid item>
           {sentences.map((sentence, idx) => (
