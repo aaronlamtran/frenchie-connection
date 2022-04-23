@@ -123,11 +123,6 @@ export default function Contact({
             </Button>
           </form>
         </Box>
-
-          {/* <Typography variant="h5">Contact Info</Typography>
-          <Typography>{location.address}</Typography>
-          <Typography> {phone}</Typography>
-          <Typography>{email}</Typography> */}
       </Box>
     </Box>
   );

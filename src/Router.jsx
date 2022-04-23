@@ -22,7 +22,7 @@ const {
   Contact: contactData,
 } = data;
 
-const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
+export default function Router({ handleAddErrorMessages, handleAddSuccessMessage }){
   return (
     <>
       <AuthProvider
@@ -110,5 +110,3 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
     </>
   );
 };
-
-export default Router;

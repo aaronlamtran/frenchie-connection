@@ -15,7 +15,6 @@ import About from "./components/About";
 import CardSlider from "./components/Slider";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
-import Contact from "./components/Contact";
 import JoinWaitlist from "./components/JoinWaitlist";
 
 const {
@@ -23,7 +22,6 @@ const {
   Gallery: galleryData,
   Testimonials: testimonialData,
   FAQ: FAQ_data,
-  Contact: contactData,
 } = data;
 const theme = createTheme({
   palette: {
@@ -151,11 +149,6 @@ class App extends Component {
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
           <FAQ data={FAQ_data} />
-          <Contact
-            data={contactData}
-            handleAddErrorMessages={this.handleAddErrorMessages}
-            handleAddSuccessMessage={this.handleAddSuccessMessage}
-          />
           <JoinWaitlist
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
