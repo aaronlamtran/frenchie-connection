@@ -27,7 +27,6 @@ export default function Dogs(props) {
     try {
       const response = await axios.get(url);
       handleAddSuccessMessage(response.data.msg);
-      // this.setState({ spinner: false, dogs: response.data.dogs });
       setSpinner(false);
 
       setDogs(response.data.dogs);
@@ -51,7 +50,6 @@ export default function Dogs(props) {
           paddingTop: 2,
           marginBottom: 1,
           paddingBottom: 5,
-          // maxWidth: { md: 800 },
           margin: "auto",
           marginTop: 1,
         }}

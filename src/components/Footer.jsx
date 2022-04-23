@@ -8,8 +8,7 @@ const openInNewTab = (url) => {
   if (newWindow) newWindow.opener = null;
 };
 
-export default function Footer({isShowNav }) {
-
+export default function Footer({ isShowNav }) {
   const url = "https://www.instagram.com/thefrenchieconnection.sd/";
   return (
     <Grid
@@ -20,14 +19,10 @@ export default function Footer({isShowNav }) {
         justifyContent: "center",
         alignItems: "center",
         pb: "24px",
-        display: true ? 'flex' : 'none',
-        // position: "",
+        display: true ? "flex" : "none",
         bottom: 0,
       }}
     >
-      {/* <Grid item>
-        <Logo />
-      </Grid> */}
       <Grid item>
         <MailOutlineIcon fontSize="large" />
       </Grid>

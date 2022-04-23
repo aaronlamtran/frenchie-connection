@@ -5,12 +5,10 @@ import Box from "@mui/material/Box";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
-import RouterNav from "./components/RouterNav";
 import AlertsView from "./utils/AlertsView";
 import Logo from "./components/Logo";
 import LogoText from "./components/LogoText";
 import "./config/firebase-config";
-// import Router from "./Router";
 import Footer from "./components/Footer";
 import data from "./data/mock-data.json";
 import About from "./components/About";
@@ -19,12 +17,9 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import JoinWaitlist from "./components/JoinWaitlist";
-// import ProtectedRoute from "./components/ProtectedRoute";
 
 const {
-  // Brand: brandData,
   About: aboutData,
-  // Featured: featuredData,
   Gallery: galleryData,
   Testimonials: testimonialData,
   FAQ: FAQ_data,
@@ -102,15 +97,8 @@ class App extends Component {
       window.document.body.scrollHeight <
       window.scrollY + totalWindowPixels + marginBottom;
     const shouldNavShow = isScrolledToBottom;
-    // const isWindowInView = this.isAboutInView(
-    //   totalWindowPixels,
-    //   window.scrollY
-    // );
-
     const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
-    // console.log({percentage})
     this.setState({ percentage: percentage });
-
     if (shouldNavShow) {
       this.setState({ isShowNav: true });
     } else {
@@ -139,16 +127,15 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <LandingVideo />
-        <div className="layout">
-
-        <Logo goToOnClick="/waitlist" className="logo-top" />
-        <div className="arrow-bottom">
-          <ArrowDropDownIcon
-            sx={{ fontSize: 100 }}
-            onClick={this.handleScrollOneVh}
+        <div className="overlay-logo-arrow">
+          <Logo goToOnClick="/waitlist" className="logo-top" />
+          <div className="arrow-bottom">
+            <ArrowDropDownIcon
+              sx={{ fontSize: 100 }}
+              onClick={this.handleScrollOneVh}
             />
+          </div>
         </div>
-            </div>
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
@@ -159,12 +146,7 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          {/* <RouterNav /> */}
-          <LogoText size="large" />
-          {/* <Router
-            handleAddErrorMessages={this.handleAddErrorMessages}
-            handleAddSuccessMessage={this.handleAddSuccessMessage}
-          /> */}
+          <LogoText size="large"/>
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />

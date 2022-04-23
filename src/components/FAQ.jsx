@@ -39,7 +39,6 @@ export default function FAQ({ data: { title, entries } }) {
   return (
     <Box
       sx={{
-        // padding: 1.5,
         paddingBottom: 10,
         maxWidth: { md: 500 },
         margin: "auto",

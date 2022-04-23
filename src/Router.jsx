@@ -15,9 +15,7 @@ import CreateDog from "./components/dogs/CreateDog";
 import { AuthProvider } from "./components/Auth";
 
 const {
-  // Brand: brandData,
   About: aboutData,
-  // Featured: featuredData,
   Gallery: galleryData,
   Testimonials: testimonialData,
   FAQ: FAQ_data,
@@ -71,10 +69,7 @@ const Router = ({ handleAddErrorMessages, handleAddSuccessMessage }) => {
             path="/create"
             element={
               <ProtectedRoute>
-                <CreateDog
-                  // handleAddErrorMessages={handleAddErrorMessages}
-                  // handleAddSuccessMessage={handleAddSuccessMessage}
-                />
+                <CreateDog />
               </ProtectedRoute>
             }
           />

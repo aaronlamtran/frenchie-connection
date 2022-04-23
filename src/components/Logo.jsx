@@ -1,5 +1,4 @@
 import React from "react";
-// import logo from "../images/logo.png";
 import tfc_top_logo from "../images/tfc_top_logo.svg";
 
 export default function Logo({ goToOnClick, className}) {
