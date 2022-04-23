@@ -8,8 +8,9 @@ import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import RouterNav from "./components/RouterNav";
 import AlertsView from "./utils/AlertsView";
 import Logo from "./components/Logo";
+import LogoText from "./components/LogoText";
 import "./config/firebase-config";
-import Router from "./Router";
+// import Router from "./Router";
 import Footer from "./components/Footer";
 import data from "./data/mock-data.json";
 import About from "./components/About";
@@ -138,13 +139,16 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme}>
         <LandingVideo />
+        <div className="layout">
+
         <Logo goToOnClick="/waitlist" className="logo-top" />
-        <div className="logo-bottom">
+        <div className="arrow-bottom">
           <ArrowDropDownIcon
             sx={{ fontSize: 100 }}
             onClick={this.handleScrollOneVh}
-          />
+            />
         </div>
+            </div>
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
@@ -155,7 +159,8 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          <RouterNav />
+          {/* <RouterNav /> */}
+          <LogoText size="large" />
           {/* <Router
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}

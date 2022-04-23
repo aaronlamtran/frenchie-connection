@@ -30,14 +30,14 @@ export default function About({ data: { title, description }, percentage }) {
     }
   };
   return (
-    <Box sx={{ minHeight: "100vh", maxWidth: 600, margin: "auto" }}>
+    <Box sx={{ minHeight: "70vh", maxWidth: 600, margin: "auto", padding: 4 }}>
       <Grid container justifyContent="center">
         <Grid item>
           {sentences.map((sentence, idx) => (
             <Box
               sx={{
                 color: `${
-                  isHighlighted(idx, percentage) ? "black" : "lightgrey"
+                  isHighlighted(idx, percentage) ? "black" : "#696969"
                 }`,
               }}
               key={idx + 1}

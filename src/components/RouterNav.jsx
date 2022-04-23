@@ -41,7 +41,7 @@ export default function RouterNav(props) {
     >
       <Container maxWidth="xl" sx={{ marginBottom: 1 }}>
         <Toolbar disableGutters>
-          <LogoText />
+          <LogoText size="small" />
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <Grid container>
               <Grid item xs={10}></Grid>
