@@ -126,10 +126,10 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <LandingVideo />
         <div className="overlay-logo-arrow">
-          <Logo goToOnClick="/waitlist" className="logo-top" />
+          <Logo goToOnClick="/" className="logo-top" />
           <div className="arrow-bottom">
             <ArrowDropDownIcon
-              sx={{ fontSize: 100 }}
+              sx={{ fontSize: 150, color:"white" }}
               onClick={this.handleScrollOneVh}
             />
           </div>
