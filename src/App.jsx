@@ -101,10 +101,10 @@ class App extends Component {
       window.document.body.scrollHeight <
       window.scrollY + totalWindowPixels + marginBottom;
     const shouldNavShow = isScrolledToBottom;
-    const isWindowInView = this.isAboutInView(
-      totalWindowPixels,
-      window.scrollY
-    );
+    // const isWindowInView = this.isAboutInView(
+    //   totalWindowPixels,
+    //   window.scrollY
+    // );
 
     const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
     // console.log({percentage})

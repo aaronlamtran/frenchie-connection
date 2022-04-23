@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -18,24 +18,34 @@ export default function About({ data: { title, description }, percentage }) {
   const isHighlighted = (index, scrollPercentage) => {
     const elements = sentences.length;
     const percentageInterval = (index / elements) * 100;
-    if (percentageInterval >= scrollPercentage){
-      return true
+    const percentageIntervalNextEl = ((index + 1) / elements) * 100;
+    if (Math.floor(scrollPercentage) < Math.floor(percentageInterval)) {
+      return false;
     }
-    return false
+    if (
+      Math.floor(scrollPercentage) >= Math.floor(percentageInterval) &&
+      Math.floor(scrollPercentage) < Math.floor(percentageIntervalNextEl)
+    ) {
+      return true;
+    }
   };
   return (
-    <Box sx={{ minHeight: "100vh", maxWidth: 700, margin: "auto" }}
-    >
+    <Box sx={{ minHeight: "100vh", maxWidth: 600, margin: "auto" }}>
       <Grid container justifyContent="center">
         <Grid item>
           {sentences.map((sentence, idx) => (
             <Box
-              sx={{ color: `${isHighlighted(idx, percentage) ? 'green' : 'black'}`}}
+              sx={{
+                color: `${
+                  isHighlighted(idx, percentage) ? "black" : "lightgrey"
+                }`,
+              }}
               key={idx + 1}
             >
               <Typography
                 key={idx}
                 variant="h5"
+                p={0.25}
                 sx={{
                   textAlign: "left",
                 }}
