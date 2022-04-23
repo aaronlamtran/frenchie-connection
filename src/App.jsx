@@ -114,7 +114,6 @@ class App extends Component {
     });
   };
   handleScroll = () => {
-    console.log(window);
     const marginBottom = 24;
     const totalWindowPixels = window.screen.height;
     const isScrolledToBottom =

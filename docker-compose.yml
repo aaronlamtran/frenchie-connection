@@ -16,4 +16,4 @@ services:
     networks:
      - nodeapp-network
     ports:
-      - "3000:3010"
+      - "5000:5000"
