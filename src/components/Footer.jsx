@@ -2,13 +2,14 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import Logo from "./Logo";
+// import Logo from "./Logo";
 const openInNewTab = (url) => {
   const newWindow = window.open(url, "_blank", "noopener,noreferrer");
   if (newWindow) newWindow.opener = null;
 };
 
-export default function Footer({isShowNav}) {
+export default function Footer({isShowNav }) {
+
   const url = "https://www.instagram.com/thefrenchieconnection.sd/";
   return (
     <Grid
@@ -19,14 +20,14 @@ export default function Footer({isShowNav}) {
         justifyContent: "center",
         alignItems: "center",
         pb: "24px",
-        display: isShowNav ? 'flex' : 'none',
-        position: "fixed",
+        display: true ? 'flex' : 'none',
+        // position: "",
         bottom: 0,
       }}
     >
-      <Grid item>
+      {/* <Grid item>
         <Logo />
-      </Grid>
+      </Grid> */}
       <Grid item>
         <MailOutlineIcon fontSize="large" />
       </Grid>

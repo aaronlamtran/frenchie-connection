@@ -1,33 +1,48 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-useless-escape */
+import React, { useEffect, useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-export default function About({ data: { title, description } }) {
+export default function About({ data: { title, description }, percentage }) {
   const [sentences, setSentences] = useState([]);
-
   useEffect(() => {
-    setSentences(splitToSentences(description));
+    const result = splitToSentences(description);
+    setSentences(result);
   }, []);
 
   const splitToSentences = (paragraph) => {
-    const result = description.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
-    console.log({ result });
-    return result;
+    return description.match(/\(?[^\.\?\!]+[\.!\?]\)?/g);
+  };
+
+  const isHighlighted = (index, scrollPercentage) => {
+    const elements = sentences.length;
+    const percentageInterval = (index / elements) * 100;
+    if (percentageInterval >= scrollPercentage){
+      return true
+    }
+    return false
   };
   return (
-    <Box sx={{ minHeight: "100vh", maxWidth:500, margin:"auto" }}>
+    <Box sx={{ minHeight: "100vh", maxWidth: 700, margin: "auto" }}
+    >
       <Grid container justifyContent="center">
         <Grid item>
           {sentences.map((sentence, idx) => (
-            <Typography
-              sx={{
-                textAlign: "left",
-                maxWidth: 500,
-              }}
+            <Box
+              sx={{ color: `${isHighlighted(idx, percentage) ? 'green' : 'black'}`}}
+              key={idx + 1}
             >
-              {sentence}
-            </Typography>
+              <Typography
+                key={idx}
+                variant="h5"
+                sx={{
+                  textAlign: "left",
+                }}
+              >
+                {sentence}
+              </Typography>
+            </Box>
           ))}
         </Grid>
       </Grid>

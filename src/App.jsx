@@ -49,6 +49,7 @@ class App extends Component {
       errorMessages: [],
       showAlert: true,
       isShowNav: false,
+      percentage: 0,
     };
   }
   componentDidMount() {
@@ -100,11 +101,37 @@ class App extends Component {
       window.document.body.scrollHeight <
       window.scrollY + totalWindowPixels + marginBottom;
     const shouldNavShow = isScrolledToBottom;
+    const isWindowInView = this.isAboutInView(
+      totalWindowPixels,
+      window.scrollY
+    );
+
+    const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
+    // console.log({percentage})
+    this.setState({ percentage: percentage });
+
     if (shouldNavShow) {
       this.setState({ isShowNav: true });
     } else {
       this.setState({ isShowNav: false });
     }
+  };
+
+  isAboutInView = (screenSize, yScrolled) => {
+    const increaseToDelay = 1.5;
+    if (
+      yScrolled > screenSize * 0.6 &&
+      yScrolled < screenSize * increaseToDelay
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  reportPercentage = (screenSize, yScrolled) => {
+    const totalYscrolled = yScrolled - screenSize * 0.5;
+    return (totalYscrolled / screenSize) * 100;
   };
 
   render() {
@@ -133,7 +160,7 @@ class App extends Component {
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
           /> */}
-          <About data={aboutData} />
+          <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
           <FAQ data={FAQ_data} />
