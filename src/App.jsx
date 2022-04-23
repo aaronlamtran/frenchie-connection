@@ -79,16 +79,42 @@ class App extends Component {
   };
 
   handleScrollOneVh = () => {
-    const toolBarPixels = 24;
-    const navBarPixel = 24;
-    const totalWindowPixels = window.screen.height;
-    const pixelsToScroll = totalWindowPixels - toolBarPixels - navBarPixel;
-    window.scroll({
-      top: pixelsToScroll,
+    const isMobile = this.detectMobile();
+    if (isMobile) {
+      const toolBarPixels = 24;
+      const navBarPixel = 24;
+      const totalWindowPixels = window.screen.height;
+      const pixelsToScroll = totalWindowPixels - toolBarPixels - navBarPixel;
+      window.scroll({
+        top: pixelsToScroll,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    window.scrollBy({
+      top: window.innerHeight,
       behavior: "smooth",
     });
   };
+
+  detectMobile = () => {
+    const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i,
+    ];
+
+    return toMatch.some((toMatchItem) => {
+      return navigator.userAgent.match(toMatchItem);
+    });
+  };
   handleScroll = () => {
+    console.log(window);
     const marginBottom = 24;
     const totalWindowPixels = window.screen.height;
     const isScrolledToBottom =
@@ -129,7 +155,7 @@ class App extends Component {
           <Logo goToOnClick="/" className="logo-top" />
           <div className="arrow-bottom">
             <ArrowDropDownIcon
-              sx={{ fontSize: 150, color:"white" }}
+              sx={{ fontSize: 150, color: "white" }}
               onClick={this.handleScrollOneVh}
             />
           </div>
@@ -144,7 +170,7 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          <LogoText size="large"/>
+          <LogoText size="large" />
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
