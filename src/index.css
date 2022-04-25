@@ -23,8 +23,8 @@ video {
   /* background-color: #000000cc; */
 }
 .overlay-logo-arrow {
-  align-items: center;
-  justify-items: center;
+  /* align-items: stretch; */
+  /* justify-items: center; */
   top: 0;
   position: absolute;
   width: 100vw;
@@ -38,7 +38,12 @@ video {
   gap: 8px;
 }
 
-.logo-top { grid-area: logo-top; }
+.logo-top {
+  justify-self: center;
+  align-self: start;
+  margin-top: 40px;
+  grid-area: logo-top;
+}
 
 .arrow-bottom { grid-area: arrow-bottom; }
 

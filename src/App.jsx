@@ -6,6 +6,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import AlertsView from "./utils/AlertsView";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Logo from "./components/Logo";
 import LogoText from "./components/LogoText";
 import "./config/firebase-config";
@@ -142,14 +143,38 @@ class App extends Component {
   };
 
   reportPercentage = (screenSize, yScrolled) => {
-    const totalYscrolled = yScrolled - screenSize * 0.80;
+    const totalYscrolled = yScrolled - screenSize * 0.8;
     return (totalYscrolled / screenSize) * 100;
   };
 
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <LandingVideo />
+        <Parallax pages={2} style={{ top: "0", left: "0" }}>
+          <ParallaxLayer
+            offset={0}
+            speed={2.5}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <LandingVideo />
+          </ParallaxLayer>
+          <ParallaxLayer
+            offset={1}
+            speed={0.5}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "white",
+            }}
+          >
+            <LogoText size="large" />
+          </ParallaxLayer>
+        </Parallax>
         <div className="overlay-logo-arrow">
           <Logo goToOnClick="/" className="logo-top" />
           <div className="arrow-bottom">
@@ -169,7 +194,6 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          <LogoText size="large" />
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
