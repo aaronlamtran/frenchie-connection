@@ -43,8 +43,8 @@ export const AuthProvider = ({
     signOut(authentication)
     .then(() => {
       console.log("logged out successfully");
-      handleAddSuccessMessage("logged out successfully");
       navigate("/");
+      handleAddSuccessMessage("logged out successfully");
     })
     .catch((error) => {
       console.log({ error });

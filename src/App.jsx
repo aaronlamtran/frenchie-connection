@@ -17,10 +17,12 @@ import CardSlider from "./components/Slider";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import JoinWaitlist from "./components/JoinWaitlist";
+
 import ScrollToTop from "./components/ScrollToTop";
 // import RouterNav from "./components/RouterNav";
 import AdminRouter from "./components/AdminRouter";
 import { Routes, Route } from "react-router-dom";
+
 
 const {
   About: aboutData,
