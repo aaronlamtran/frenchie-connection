@@ -156,7 +156,7 @@ class App extends Component {
           {/* <Logo goToOnClick="/" className="logo-top" /> */}
           <div className="arrow-bottom">
             <div className="arrow-logo">
-              <Logo goToOnClick="/" className="logo-bottom"/>
+              <Logo scroll={this.handleScrollOneVh} className="logo-bottom"/>
               <KeyboardArrowDownOutlinedIcon
                 sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
                 onClick={this.handleScrollOneVh}
