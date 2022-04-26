@@ -7,7 +7,6 @@ import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDown
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import AlertsView from "./utils/AlertsView";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Logo from "./components/Logo";
 import LogoText from "./components/LogoText";
 import "./config/firebase-config";
@@ -19,6 +18,9 @@ import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import JoinWaitlist from "./components/JoinWaitlist";
 import ScrollToTop from "./components/ScrollToTop";
+// import RouterNav from "./components/RouterNav";
+import AdminRouter from "./components/AdminRouter";
+import { Routes, Route } from "react-router-dom";
 
 const {
   About: aboutData,
@@ -132,44 +134,76 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <LandingVideo />
-        <div className="overlay-logo-arrow">
-          {/* <Logo goToOnClick="/" className="logo-top" /> */}
-          <div className="arrow-bottom">
-            <div className="arrow-logo">
-              <Logo scroll={this.handleScrollOneVh} className="logo-bottom" />
-              <KeyboardArrowDownOutlinedIcon
-                id="top"
-                sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
-                onClick={this.handleScrollOneVh}
+        <Routes>
+          <Route
+            path="/admin/*"
+            element={
+              <AdminRouter
+                handleAddErrorMessages={this.handleAddErrorMessages}
+                handleAddSuccessMessage={this.handleAddSuccessMessage}
               />
-            </div>
-          </div>
-        </div>
-        <LogoText size="large" />
-        <Box sx={{ minHeight: "100vh" }}>
-          <AlertsView
-            successMessages={this.state.successMessages}
-            errorMessages={this.state.errorMessages}
-            showAlert={this.state.showAlert}
-            handleDismissSuccessMessage={this.handleDismissSuccessMessage}
-            handleDismissErrorMessage={this.handleDismissErrorMessage}
-            setShowAlert={this.setShowAlert}
-            clearAlerts={this.clearAlerts}
+            }
           />
-          <About data={aboutData} percentage={this.state.percentage} isMobile={this.state.isMobile}/>
-          <CardSlider slides={galleryData} />
-          <Testimonials data={testimonialData} />
-          <FAQ data={FAQ_data} />
-          <JoinWaitlist
-            handleAddErrorMessages={this.handleAddErrorMessages}
-            handleAddSuccessMessage={this.handleAddSuccessMessage}
+          <Route
+            exact
+            path="/*"
+            element={
+              <>
+                <LandingVideo />
+                <div className="overlay-logo-arrow">
+                  {/* <Logo goToOnClick="/" className="logo-top" /> */}
+                  <div className="arrow-bottom">
+                    <div className="arrow-logo">
+                      <Logo
+                        scroll={this.handleScrollOneVh}
+                        className="logo-bottom"
+                      />
+                      <KeyboardArrowDownOutlinedIcon
+                        id="top"
+                        sx={{
+                          fontSize: 14,
+                          color: "white",
+                          alignSelf: "start",
+                        }}
+                        onClick={this.handleScrollOneVh}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <LogoText size="large" />
+                <Box sx={{ minHeight: "100vh" }}>
+                  <AlertsView
+                    successMessages={this.state.successMessages}
+                    errorMessages={this.state.errorMessages}
+                    showAlert={this.state.showAlert}
+                    handleDismissSuccessMessage={
+                      this.handleDismissSuccessMessage
+                    }
+                    handleDismissErrorMessage={this.handleDismissErrorMessage}
+                    setShowAlert={this.setShowAlert}
+                    clearAlerts={this.clearAlerts}
+                  />
+                  <About
+                    data={aboutData}
+                    percentage={this.state.percentage}
+                    isMobile={this.state.isMobile}
+                  />
+                  <CardSlider slides={galleryData} />
+                  <Testimonials data={testimonialData} />
+                  <FAQ data={FAQ_data} />
+                  <JoinWaitlist
+                    handleAddErrorMessages={this.handleAddErrorMessages}
+                    handleAddSuccessMessage={this.handleAddSuccessMessage}
+                  />
+                  <ScrollToTop
+                    shouldButtonShow={this.state.offsetY < this.state.vh}
+                  />
+                </Box>
+                <Footer isShowNav={this.state.isShowNav} />
+              </>
+            }
           />
-          <ScrollToTop
-            shouldButtonShow={this.state.offsetY < this.state.vh}
-          />
-        </Box>
-        <Footer isShowNav={this.state.isShowNav} />
+        </Routes>
       </ThemeProvider>
     );
   }

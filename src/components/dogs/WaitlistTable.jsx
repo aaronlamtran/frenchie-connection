@@ -50,7 +50,7 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
         </Table>
         <Button
           color="info"
-          onClick={() => navigate("/waitlist")}
+          onClick={() => navigate("/admin")}
         >
           Back
         </Button>

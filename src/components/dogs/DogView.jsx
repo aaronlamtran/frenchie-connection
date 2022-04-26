@@ -66,7 +66,7 @@ export default function DogView(props) {
       }}
     >
       <Typography variant="h5" align="center">Waitlist Details</Typography>
-      <Button color="info" onClick={() => navigate("/waitlist")}>
+      <Button color="info" onClick={() => navigate("/admin")}>
         Back
       </Button>
       <Box>

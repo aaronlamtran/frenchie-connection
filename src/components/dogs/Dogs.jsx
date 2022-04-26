@@ -57,7 +57,7 @@ export default function Dogs(props) {
         {dogs.map((dog) => (
           <Col xs="12" key={dog._id} className="product-card-outer">
             <Card
-              onClick={() => navigate(`/dogs/${dog._id}`)}
+              onClick={() => navigate(`dogs/${dog._id}`)}
               sx={{ marginTop: 1, marginBottom: 1 }}
             >
               <CardContent>
@@ -105,7 +105,7 @@ export default function Dogs(props) {
         {/* <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}> */}
         <Typography variant="h4" align='center'>Waitlists</Typography>
         <hr />
-        <Button color="info" onClick={() => navigate("/create")}>
+        <Button color="info" onClick={() => navigate("/admin/create")}>
           Create A New Waitlist
         </Button>
         <Box>
@@ -114,7 +114,7 @@ export default function Dogs(props) {
           {!spinner && dogs.length > 0 && renderDogs()}
         </Box>
       </Box>
-      <Logout />
+      {/* <Logout /> */}
     </Box>
   );
 }
