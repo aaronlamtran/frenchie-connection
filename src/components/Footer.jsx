@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+// import MailOutlineIcon from "@mui/icons-material/MailOutline";
 // import Logo from "./Logo";
 const openInNewTab = (url) => {
   const newWindow = window.open(url, "_blank", "noopener,noreferrer");
@@ -23,9 +23,9 @@ export default function Footer({ isShowNav }) {
         bottom: 0,
       }}
     >
-      <Grid item>
+      {/* <Grid item>
         <MailOutlineIcon fontSize="large" />
-      </Grid>
+      </Grid> */}
       <Grid item>
         <InstagramIcon fontSize="large" onClick={() => openInNewTab(url)} />
       </Grid>
