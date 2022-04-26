@@ -45,7 +45,7 @@ export default function About({ data: { title, description }, percentage, isMobi
             >
               <Typography
                 key={idx}
-                variant="h5"
+                variant={`${isMobile ? 'h5' : 'h4'}`}
                 p={0.25}
                 sx={{
                   textAlign: "left",
