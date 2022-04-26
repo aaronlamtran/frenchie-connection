@@ -18,14 +18,23 @@ export default function AdminRouter({
       <AdminNav />
       <AuthProvider>
         <Routes>
-          <Route path="create" element={<CreateDog />} />
+          <Route
+            path="create"
+            element={
+              <ProtectedRoute>
+                <CreateDog />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/dogs/:id"
             element={
-              <DogView
-                handleAddErrorMessages={handleAddErrorMessages}
-                handleAddSuccessMessage={handleAddSuccessMessage}
-              />
+              <ProtectedRoute>
+                <DogView
+                  handleAddErrorMessages={handleAddErrorMessages}
+                  handleAddSuccessMessage={handleAddSuccessMessage}
+                />
+              </ProtectedRoute>
             }
           />
           <Route path="/logout" element={<Logout />} />
@@ -34,10 +43,12 @@ export default function AdminRouter({
             exact
             path="/*"
             element={
-              <Dogs
-                handleAddErrorMessages={handleAddErrorMessages}
-                handleAddSuccessMessage={handleAddSuccessMessage}
-              />
+              <ProtectedRoute>
+                <Dogs
+                  handleAddErrorMessages={handleAddErrorMessages}
+                  handleAddSuccessMessage={handleAddSuccessMessage}
+                />
+              </ProtectedRoute>
             }
           />
         </Routes>

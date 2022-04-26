@@ -5,10 +5,10 @@ import SickSpinner from "../utils/SickSpinner";
 import Container from "@mui/material/Container";
 
 export default function ProtectedRoute({ children }) {
-  const { token, loading } = useAuth();
-  // console.log({ isAuth, user, token, loading });
-  if (!token) {
-    return <Navigate to="/login" />;
+  const { token, loading, user } = useAuth();
+
+  if (!token && !user) {
+    return <Navigate to="/admin/login" />;
   }
   return (
     <Container

@@ -43,6 +43,7 @@ export const AuthProvider = ({
     signOut(authentication)
     .then(() => {
       console.log("logged out successfully");
+      window.localStorage.setItem("auth", "false");
       navigate("/");
       handleAddSuccessMessage("logged out successfully");
     })
@@ -68,6 +69,7 @@ export const AuthProvider = ({
       } else {
         setUser(false);
         window.localStorage.setItem("auth", "false");
+        window.localStorage.setItem("token", "");
         setIsAuth(false);
       }
       setLoading(false);
