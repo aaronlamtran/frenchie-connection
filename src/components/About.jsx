@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
-export default function About({ data: { title, description }, percentage }) {
+export default function About({ data: { title, description }, percentage, isMobile }) {
   const [sentences, setSentences] = useState([]);
   useEffect(() => {
     const result = splitToSentences(description);
@@ -34,6 +34,7 @@ export default function About({ data: { title, description }, percentage }) {
       <Grid container justifyContent="center">
         <Grid item>
           {sentences.map((sentence, idx) => (
+            // {console.log(sentence)}
             <Box
               sx={{
                 color: `${

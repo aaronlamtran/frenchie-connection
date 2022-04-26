@@ -48,6 +48,7 @@ class App extends Component {
       isShowNav: false,
       percentage: 0,
       offsetY: 0,
+      isMobile: this.detectMobile(),
       vh: document.documentElement.clientHeight * 2,
     };
   }
@@ -84,8 +85,7 @@ class App extends Component {
   };
 
   handleScrollOneVh = () => {
-    const isMobile = this.detectMobile();
-    if (isMobile) {
+    if (this.state.isMobile) {
       const toolBarPixels = 24;
       const navBarPixel = 24;
       const totalWindowPixels = window.screen.height;
@@ -124,18 +124,6 @@ class App extends Component {
     this.setState({ percentage: percentage, offsetY: window.pageYOffset });
   };
 
-  isAboutInView = (screenSize, yScrolled) => {
-    const increaseToDelay = 1.5;
-    if (
-      yScrolled > screenSize * 0.6 &&
-      yScrolled < screenSize * increaseToDelay
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   reportPercentage = (screenSize, yScrolled) => {
     const totalYscrolled = yScrolled - screenSize * 0.8;
     return (totalYscrolled / screenSize) * 100;
@@ -169,7 +157,7 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          <About data={aboutData} percentage={this.state.percentage} />
+          <About data={aboutData} percentage={this.state.percentage} isMobile={this.state.isMobile}/>
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
           <FAQ data={FAQ_data} />
