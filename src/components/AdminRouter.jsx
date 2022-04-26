@@ -29,6 +29,7 @@ export default function AdminRouter({
             }
           />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/login" element={<Login />} />
           <Route
             exact
             path="/*"

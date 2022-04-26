@@ -33,7 +33,7 @@ export const AuthProvider = ({
         setUser(user);
         setLoading(false);
         window.localStorage.setItem("auth", "true");
-        navigate("/waitlist");
+        navigate("/admin");
       }
     });
     setLoading(false);

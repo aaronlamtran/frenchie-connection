@@ -172,7 +172,7 @@ class App extends Component {
                     </div>
                   </div>
                 </div>
-                <LogoText size="large" />
+                <LogoText size="large" className="logo-text"/>
                 <Box sx={{ minHeight: "100vh" }}>
                   <AlertsView
                     successMessages={this.state.successMessages}
