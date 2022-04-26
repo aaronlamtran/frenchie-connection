@@ -2,10 +2,12 @@
 /* eslint-disable no-console */
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+// import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import AlertsView from "./utils/AlertsView";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import Logo from "./components/Logo";
 import LogoText from "./components/LogoText";
 import "./config/firebase-config";
@@ -16,6 +18,7 @@ import CardSlider from "./components/Slider";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import JoinWaitlist from "./components/JoinWaitlist";
+import ScrollToTop from "./components/ScrollToTop";
 
 const {
   About: aboutData,
@@ -44,6 +47,8 @@ class App extends Component {
       showAlert: true,
       isShowNav: false,
       percentage: 0,
+      offsetY: 0,
+      vh: document.documentElement.clientHeight * 2,
     };
   }
   componentDidMount() {
@@ -114,19 +119,9 @@ class App extends Component {
     });
   };
   handleScroll = () => {
-    const marginBottom = 24;
     const totalWindowPixels = window.screen.height;
-    const isScrolledToBottom =
-      window.document.body.scrollHeight <
-      window.scrollY + totalWindowPixels + marginBottom;
-    const shouldNavShow = isScrolledToBottom;
     const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
-    this.setState({ percentage: percentage });
-    if (shouldNavShow) {
-      this.setState({ isShowNav: true });
-    } else {
-      this.setState({ isShowNav: false });
-    }
+    this.setState({ percentage: percentage, offsetY: window.pageYOffset });
   };
 
   isAboutInView = (screenSize, yScrolled) => {
@@ -142,7 +137,7 @@ class App extends Component {
   };
 
   reportPercentage = (screenSize, yScrolled) => {
-    const totalYscrolled = yScrolled - screenSize * 0.75;
+    const totalYscrolled = yScrolled - screenSize * 0.8;
     return (totalYscrolled / screenSize) * 100;
   };
 
@@ -151,14 +146,19 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <LandingVideo />
         <div className="overlay-logo-arrow">
-          <Logo goToOnClick="/" className="logo-top" />
+          {/* <Logo goToOnClick="/" className="logo-top" /> */}
           <div className="arrow-bottom">
-            <ArrowDropDownIcon
-              sx={{ fontSize: 150, color: "white" }}
-              onClick={this.handleScrollOneVh}
-            />
+            <div className="arrow-logo">
+              <Logo scroll={this.handleScrollOneVh} className="logo-bottom" />
+              <KeyboardArrowDownOutlinedIcon
+                id="top"
+                sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
+                onClick={this.handleScrollOneVh}
+              />
+            </div>
           </div>
         </div>
+        <LogoText size="large" />
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
@@ -169,7 +169,6 @@ class App extends Component {
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
           />
-          <LogoText size="large" />
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
@@ -177,6 +176,9 @@ class App extends Component {
           <JoinWaitlist
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
+          />
+          <ScrollToTop
+            shouldButtonShow={this.state.offsetY < this.state.vh}
           />
         </Box>
         <Footer isShowNav={this.state.isShowNav} />

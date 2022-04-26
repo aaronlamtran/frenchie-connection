@@ -1,9 +1,13 @@
 import React from "react";
 import tfc_top_logo from "../images/tfc_top_logo.svg";
 
-export default function Logo({ goToOnClick, className}) {
+export default function Logo({ goToOnClick, className, scroll}) {
   function handleClick(destination) {
-    window.location.href = destination;
+    if (typeof destination === !"function" ){
+      window.location.href = destination;
+      return
+    }
+    destination()
   }
 
   return (
@@ -11,7 +15,7 @@ export default function Logo({ goToOnClick, className}) {
         <img
           src={tfc_top_logo}
           alt="Logo"
-          onClick={() => handleClick(goToOnClick)}
+          onClick={() => handleClick(goToOnClick ? goToOnClick : scroll)}
         />
     </div>
   );

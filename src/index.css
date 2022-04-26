@@ -23,7 +23,7 @@ video {
   /* background-color: #000000cc; */
 }
 .overlay-logo-arrow {
-  align-items: center;
+  /* align-items: stretch; */
   justify-items: center;
   top: 0;
   position: absolute;
@@ -38,9 +38,34 @@ video {
   gap: 8px;
 }
 
-.logo-top { grid-area: logo-top; }
+.logo-top {
+  justify-self: center;
+  align-self: start;
+  margin-top: 40px;
+  grid-area: logo-top;
+}
+.logo-bottom {
+  justify-self: center;
+}
 
-.arrow-bottom { grid-area: arrow-bottom; }
+.arrow-bottom {
+  grid-area: arrow-bottom;
+  justify-items: center;
+  justify-content: center;
+  align-self: end;
+  margin-bottom: 100px;
+  /* background-color: aqua; */
+}
+
+.arrow-logo {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 50% 50%;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  justify-items: center;
+  align-items: end;
+}
 
 .logo-text {
   display: grid;
@@ -74,4 +99,84 @@ video {
   grid-row-gap: 1px;
   justify-items: center;
   align-items: stretch;
+}
+
+
+
+.scroll-up {
+  display: grid;
+  grid-template-columns: 99fr 1fr;
+  grid-template-rows: 2%;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: aqua;
+  justify-items: flex-end;
+  align-items: center;
+  max-width: 700px;
+}
+
+/* .overlay-scroll {
+
+  justify-items: center;
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid:
+    ". scroll-test ." 1fr;
+  gap: 8px;
+}
+
+.scroll-test {
+  justify-self: center;
+  align-self: flex-end;
+  margin-bottom: 40px;
+  grid-area: logo-top;
+} */
+.overlay-scroll {
+  position: relative;
+}
+
+.icon-position{
+  position: fixed;
+  bottom: 40px;
+  right: 25px;
+  z-index: 20;
+}
+.icon-style{
+  background-color: #787878;
+  /* border: 2px solid #fff; */
+  border-radius: 50%;
+  /* height: 50px; */
+  /* width: 50px; */
+  color: #fff;
+  cursor: pointer;
+  animation: movebtn 10s ease-in-out infinite;
+  transition: all .5s ease-in-out;
+  opacity: 20%;
+}
+.icon-style:hover{
+  animation: none;
+  background: #fff;
+  color: #777777;
+  /* border: 2px solid #551B54; */
+}
+
+@keyframes movebtn {
+  0%{
+    transform: translateY(0px);
+  }
+  25%{
+    transform: translateY(4px);
+  }
+  50%{
+    transform: translateY(0px);
+  }
+  75%{
+    transform: translateY(3px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
 }
