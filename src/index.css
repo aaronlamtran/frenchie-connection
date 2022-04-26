@@ -100,3 +100,37 @@ video {
   justify-items: center;
   align-items: stretch;
 }
+
+
+
+.scroll-up {
+  display: grid;
+  grid-template-columns: 99fr 1fr;
+  grid-template-rows: 2%;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: aqua;
+  justify-items: flex-end;
+  align-items: center;
+  max-width: 700px;
+}
+
+.overlay-scroll {
+  /* align-items: stretch; */
+  justify-items: center;
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid:
+    ". scroll-test ." 1fr;
+  gap: 8px;
+}
+
+.scroll-test {
+  justify-self: center;
+  align-self: flex-end;
+  margin-bottom: 40px;
+  grid-area: logo-top;
+}

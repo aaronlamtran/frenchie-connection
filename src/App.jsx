@@ -18,6 +18,7 @@ import CardSlider from "./components/Slider";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
 import JoinWaitlist from "./components/JoinWaitlist";
+import ScrollToTop from "./components/ScrollToTop";
 
 const {
   About: aboutData,
@@ -47,6 +48,7 @@ class App extends Component {
       isShowNav: false,
       percentage: 0,
       offsetY: 0,
+      vh:document.documentElement.clientHeight * 2,
     };
   }
   componentDidMount() {
@@ -119,7 +121,7 @@ class App extends Component {
   handleScroll = () => {
     const totalWindowPixels = window.screen.height;
     const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
-    this.setState({ percentage: percentage });
+    this.setState({ percentage: percentage, offsetY: window.pageYOffset });
   };
 
   isAboutInView = (screenSize, yScrolled) => {
@@ -149,6 +151,7 @@ class App extends Component {
             <div className="arrow-logo">
               <Logo scroll={this.handleScrollOneVh} className="logo-bottom"/>
               <KeyboardArrowDownOutlinedIcon
+               id="top"
                 sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
                 onClick={this.handleScrollOneVh}
               />
@@ -165,7 +168,7 @@ class App extends Component {
             handleDismissErrorMessage={this.handleDismissErrorMessage}
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
-          />
+            />
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
@@ -173,7 +176,8 @@ class App extends Component {
           <JoinWaitlist
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
-          />
+            />
+          <ScrollToTop offsetY={this.state.offsetY } vh={this.state.vh}/>
         </Box>
         <Footer isShowNav={this.state.isShowNav} />
       </ThemeProvider>
