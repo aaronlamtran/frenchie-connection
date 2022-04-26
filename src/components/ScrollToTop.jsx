@@ -8,7 +8,7 @@ export default function ScrollToTop({ offsetY, vh }) {
 
   return (
     <div className="overlay-scroll">
-      <div className="scroll-test">
+      <div className="icon-position icon-style">
         <ArrowCircleUpIcon
           onClick={scrollUp}
           sx={{ fontSize: 35, display: `${offsetY < vh && "none"}` }}
