@@ -23,7 +23,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import AdminRouter from "./components/AdminRouter";
 import { Routes, Route } from "react-router-dom";
 
-
 const {
   About: aboutData,
   Gallery: galleryData,
@@ -172,8 +171,16 @@ class App extends Component {
                     </div>
                   </div>
                 </div>
-                <LogoText size="large" className="logo-text"/>
+                <LogoText size="large" className="logo-text" />
                 <Box sx={{ minHeight: "100vh" }}>
+                  <About
+                    data={aboutData}
+                    percentage={this.state.percentage}
+                    isMobile={this.state.isMobile}
+                  />
+                  <CardSlider slides={galleryData} />
+                  <Testimonials data={testimonialData} />
+                  <FAQ data={FAQ_data} />
                   <AlertsView
                     successMessages={this.state.successMessages}
                     errorMessages={this.state.errorMessages}
@@ -185,14 +192,6 @@ class App extends Component {
                     setShowAlert={this.setShowAlert}
                     clearAlerts={this.clearAlerts}
                   />
-                  <About
-                    data={aboutData}
-                    percentage={this.state.percentage}
-                    isMobile={this.state.isMobile}
-                  />
-                  <CardSlider slides={galleryData} />
-                  <Testimonials data={testimonialData} />
-                  <FAQ data={FAQ_data} />
                   <JoinWaitlist
                     handleAddErrorMessages={this.handleAddErrorMessages}
                     handleAddSuccessMessage={this.handleAddSuccessMessage}

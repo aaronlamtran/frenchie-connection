@@ -57,7 +57,7 @@ export default function Dogs(props) {
         {dogs.map((dog) => (
           <Col xs="12" key={dog._id} className="product-card-outer">
             <Card
-              onClick={() => navigate(`dogs/${dog._id}`)}
+              onClick={() => navigate(`waitlists/${dog._id}`)}
               sx={{ marginTop: 1, marginBottom: 1 }}
             >
               <CardContent>

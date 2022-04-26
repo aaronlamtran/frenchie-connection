@@ -27,7 +27,7 @@ export default function AdminRouter({
             }
           />
           <Route
-            path="/dogs/:id"
+            path="/waitlists/:id"
             element={
               <ProtectedRoute>
                 <DogView
