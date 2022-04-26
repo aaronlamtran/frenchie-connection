@@ -46,6 +46,7 @@ class App extends Component {
       showAlert: true,
       isShowNav: false,
       percentage: 0,
+      offsetY: 0,
     };
   }
   componentDidMount() {
@@ -116,19 +117,9 @@ class App extends Component {
     });
   };
   handleScroll = () => {
-    const marginBottom = 24;
     const totalWindowPixels = window.screen.height;
-    const isScrolledToBottom =
-      window.document.body.scrollHeight <
-      window.scrollY + totalWindowPixels + marginBottom;
-    const shouldNavShow = isScrolledToBottom;
     const percentage = this.reportPercentage(totalWindowPixels, window.scrollY);
     this.setState({ percentage: percentage });
-    if (shouldNavShow) {
-      this.setState({ isShowNav: true });
-    } else {
-      this.setState({ isShowNav: false });
-    }
   };
 
   isAboutInView = (screenSize, yScrolled) => {
