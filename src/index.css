@@ -24,7 +24,7 @@ video {
 }
 .overlay-logo-arrow {
   /* align-items: stretch; */
-  /* justify-items: center; */
+  justify-items: center;
   top: 0;
   position: absolute;
   width: 100vw;
@@ -44,8 +44,28 @@ video {
   margin-top: 40px;
   grid-area: logo-top;
 }
+.logo-bottom {
+  justify-self: center;
+}
 
-.arrow-bottom { grid-area: arrow-bottom; }
+.arrow-bottom {
+  grid-area: arrow-bottom;
+  justify-items: center;
+  justify-content: center;
+  align-self: end;
+  margin-bottom: 50px;
+  /* background-color: aqua; */
+}
+
+.arrow-logo {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 50% 50%;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  justify-items: center;
+  align-items: end;
+}
 
 .logo-text {
   display: grid;

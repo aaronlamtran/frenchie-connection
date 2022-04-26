@@ -2,7 +2,8 @@
 /* eslint-disable no-console */
 import React, { Component } from "react";
 import Box from "@mui/material/Box";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+// import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { VideoComponent as LandingVideo } from "./components/VideoComponent";
 import AlertsView from "./utils/AlertsView";
@@ -150,40 +151,20 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme}>
-        <Parallax pages={2} style={{ top: "0", left: "0" }}>
-          <ParallaxLayer
-            offset={0}
-            speed={2.5}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <LandingVideo />
-          </ParallaxLayer>
-          <ParallaxLayer
-            offset={1}
-            speed={0.5}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              color: "white",
-            }}
-          >
-            <LogoText size="large" />
-          </ParallaxLayer>
-        </Parallax>
+        <LandingVideo />
         <div className="overlay-logo-arrow">
-          <Logo goToOnClick="/" className="logo-top" />
+          {/* <Logo goToOnClick="/" className="logo-top" /> */}
           <div className="arrow-bottom">
-            <ArrowDropDownIcon
-              sx={{ fontSize: 150, color: "white" }}
-              onClick={this.handleScrollOneVh}
-            />
+            <div className="arrow-logo">
+              <Logo goToOnClick="/" className="logo-bottom"/>
+              <KeyboardArrowDownOutlinedIcon
+                sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
+                onClick={this.handleScrollOneVh}
+              />
+            </div>
           </div>
         </div>
+        <LogoText size="large" />
         <Box sx={{ minHeight: "100vh" }}>
           <AlertsView
             successMessages={this.state.successMessages}
