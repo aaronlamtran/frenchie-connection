@@ -48,7 +48,7 @@ class App extends Component {
       isShowNav: false,
       percentage: 0,
       offsetY: 0,
-      vh:document.documentElement.clientHeight * 2,
+      vh: document.documentElement.clientHeight * 2,
     };
   }
   componentDidMount() {
@@ -149,9 +149,9 @@ class App extends Component {
           {/* <Logo goToOnClick="/" className="logo-top" /> */}
           <div className="arrow-bottom">
             <div className="arrow-logo">
-              <Logo scroll={this.handleScrollOneVh} className="logo-bottom"/>
+              <Logo scroll={this.handleScrollOneVh} className="logo-bottom" />
               <KeyboardArrowDownOutlinedIcon
-               id="top"
+                id="top"
                 sx={{ fontSize: 14, color: "white", alignSelf: "start" }}
                 onClick={this.handleScrollOneVh}
               />
@@ -168,7 +168,7 @@ class App extends Component {
             handleDismissErrorMessage={this.handleDismissErrorMessage}
             setShowAlert={this.setShowAlert}
             clearAlerts={this.clearAlerts}
-            />
+          />
           <About data={aboutData} percentage={this.state.percentage} />
           <CardSlider slides={galleryData} />
           <Testimonials data={testimonialData} />
@@ -176,8 +176,10 @@ class App extends Component {
           <JoinWaitlist
             handleAddErrorMessages={this.handleAddErrorMessages}
             handleAddSuccessMessage={this.handleAddSuccessMessage}
-            />
-          <ScrollToTop offsetY={this.state.offsetY } vh={this.state.vh}/>
+          />
+          <ScrollToTop
+            shouldButtonShow={this.state.offsetY < this.state.vh}
+          />
         </Box>
         <Footer isShowNav={this.state.isShowNav} />
       </ThemeProvider>

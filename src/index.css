@@ -53,7 +53,7 @@ video {
   justify-items: center;
   justify-content: center;
   align-self: end;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   /* background-color: aqua; */
 }
 
@@ -154,7 +154,7 @@ video {
   cursor: pointer;
   animation: movebtn 10s ease-in-out infinite;
   transition: all .5s ease-in-out;
-  opacity: 50%;
+  opacity: 20%;
 }
 .icon-style:hover{
   animation: none;
