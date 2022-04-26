@@ -33,7 +33,7 @@ export const AuthProvider = ({
         setUser(user);
         setLoading(false);
         window.localStorage.setItem("auth", "true");
-        navigate("/waitlist");
+        navigate("/admin");
       }
     });
     setLoading(false);
@@ -43,8 +43,9 @@ export const AuthProvider = ({
     signOut(authentication)
     .then(() => {
       console.log("logged out successfully");
-      handleAddSuccessMessage("logged out successfully");
+      window.localStorage.setItem("auth", "false");
       navigate("/");
+      handleAddSuccessMessage("logged out successfully");
     })
     .catch((error) => {
       console.log({ error });
@@ -68,6 +69,7 @@ export const AuthProvider = ({
       } else {
         setUser(false);
         window.localStorage.setItem("auth", "false");
+        window.localStorage.setItem("token", "");
         setIsAuth(false);
       }
       setLoading(false);

@@ -12,10 +12,11 @@ import MenuItem from "@mui/material/MenuItem";
 import LogoText from "./LogoText";
 import { useNavigate } from "react-router-dom";
 
-const pages = ["About", "Pups", "FAQ", "Contact", "Waitlist", "Admin Login"];
-const pageNavTo = ["About", "Pups", "FAQ", "Contact", "Join", "Login"];
+// const pages = ["About", "Pups", "FAQ", "Contact", "Waitlist", "Admin Login"];
+const pages = ["Waitlist", "Logout"];
+const pageNavTo = ["admin", "admin/logout"];
 
-export default function RouterNav(props) {
+export default function AdminNav(props) {
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
   const handleOpenNavMenu = (event) => {

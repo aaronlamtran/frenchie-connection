@@ -21,7 +21,7 @@ export default function CreateDog(props) {
       <Typography>create new waitlist coming soon</Typography>
       <Button
         color="info"
-        onClick={() => navigate("/waitlist")}
+        onClick={() => navigate("/admin")}
       >
         Back
       </Button>
