@@ -7,7 +7,9 @@ import Logout from "./Logout";
 import DogView from "./dogs/DogView";
 import Dogs from "./dogs/Dogs";
 import CreateDog from "./dogs/CreateDog";
+import UploadPhotoAnswer from "./UploadPhotoAnswer"
 import { AuthProvider } from "./Auth";
+import Typography from "@mui/material/Typography";
 
 export default function AdminRouter({
   handleAddErrorMessages,
@@ -16,6 +18,8 @@ export default function AdminRouter({
   return (
     <>
       <AdminNav />
+      <Typography variant='h6' align='center'>Logged in as Administator</Typography>
+      <UploadPhotoAnswer/>
       <AuthProvider>
         <Routes>
           <Route
