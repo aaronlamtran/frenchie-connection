@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import data from "../data/mock-data.json";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -7,19 +7,23 @@ import Typography from "@mui/material/Typography";
 import { storage } from "../config/firebase-config";
 import { ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
-console.log(data.Gallery);
+// console.log(data.Gallery);
 const tempGallery = data.Gallery;
 
 export default function UploadPhotoAnswer() {
-  const [photos, setPhotos] = useState([]);
+  const initialPreviewState = {};
+  useEffect(()=> {
+
+    tempGallery.forEach(element => initialPreviewState[element.name]='')
+    {console.log(initialPreviewState)}
+  },[])
   const [imageUpload, setImageUpload] = useState(null);
-  const [imagePreview, setImagePreview] = useState([]);
+  const [imagePreview, setImagePreview] = useState(initialPreviewState);
   const [imageCount, setImageCount] = useState(0);
   const handleFileUpload = (e, name) => {
     e.preventDefault();
     if (imageUpload === null) return;
     const imageRef = ref(storage, `${name}/${v4()}`);
-    console.log({ imageUpload });
     uploadBytes(imageRef, imageUpload)
       .then(() => {
         console.log("image uploaded");
@@ -29,38 +33,45 @@ export default function UploadPhotoAnswer() {
       });
     // }
   };
+
   const handlePreview = (e, name) => {
     setImageCount(imageCount + e.target.files.length);
     if (e.target.files.length) {
-      const newDisplay = imagePreview
+      const newDisplay = imagePreview[name]
         .slice()
         .concat(Object.values(e.target.files));
-      setImagePreview(newDisplay);
-      // preparePhotos(newDisplay);
+      setImagePreview(prev =>{ return {...prev, [name]: newDisplay}});
     }
   };
 
-  // const preparePhotos = (photoUploads) => {
-  //   const urls = photoUploads.map((photo) => URL.createObjectURL(photo));
-  //   setPhotos(urls);
-  // };
   const clearPreview = (e) => {
     e.preventDefault();
     setImagePreview([]);
     setImageCount(0);
-    // preparePhotos([]);
     setImageUpload([]);
   };
 
+  const isPreviewValid = imagePreview[0] !== undefined
   return (
     <>
-      <Box className="photo-upload">
+      <Box
+        className="photo-upload"
+        sx={{
+          padding: 0.1,
+          paddingTop: 2,
+          marginBottom: 1,
+          paddingBottom: 5,
+          margin: "auto",
+          marginTop: 1,
+          maxWidth: 900,
+        }}
+        >
         {tempGallery.map((dog, idx) => (
           <Paper sx={{ margin: 1 }}>
             <Typography> {dog.name}</Typography>
             <br />
             {"  "}
-            {imageCount < 5 && (
+            {imageCount < 20 && (
               <>
                 <input
                   type="file"
@@ -89,11 +100,13 @@ export default function UploadPhotoAnswer() {
             <br />
             <br />
             <Typography>You selected {imageCount} photos.</Typography>
-            {imagePreview.map((img) => (
+            {console.log(imagePreview[dog.name])}
+
+            {isPreviewValid &&  imagePreview[dog.name].map((dog, idx) => (
               <>
                 <img
-                  src={URL.createObjectURL(img)}
-                  value={URL.createObjectURL(img)}
+                  src={URL.createObjectURL(dog.name[idx])}
+                  value={URL.createObjectURL(dog)}
                   height="100"
                   alt=""
                 />

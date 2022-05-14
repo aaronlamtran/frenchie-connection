@@ -18,75 +18,43 @@
   },
   "Gallery": [
     {
-      "name": "Jarvis",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
+      "name": "Sky",
+      "largeImages": ["sky_1_cover.jpg", "sky_2.jpg", "sky_3.jpg", "sky_4.jpg"],
+      "smallImage": "sky_1_cover.jpg",
       "breed": "Frenchie",
-      "color": "Brindle",
+      "color": "Blue & Tan",
+      "sex": "Female"
+    },
+    {
+      "name": "Tommy",
+      "largeImages": ["tommy_1_cover.jpg", "tommy_2.jpg", "tommy_3.jpg", "tommy_4.jpg"],
+      "smallImage": "tommy_1_cover.jpg",
+      "breed": "Frenchie",
+      "color": "Blue Sable",
       "sex": "Male"
     },
     {
-      "name": "Juan",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
+      "name": "Kenny",
+      "largeImages": ["Kenny_1_cover.jpg", "Kenny_2.jpg", "Kenny_3.jpg", "Kenny_4.jpg"],
+      "smallImage": "Kenny_1_cover.jpg",
       "breed": "Frenchie",
-      "color": "Black",
-      "sex": "Female"
-    },
-    {
-      "name": "Asessment Andy",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "Frenchie",
-      "color": "Grey",
+      "color": "Black and Tan",
       "sex": "Male"
     },
     {
-      "name": "Bruh",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
+      "name": "Bobby",
+      "largeImages": ["Bobby_1_cover.jpg", "Bobby_2.jpg", "Bobby_3.jpg", "Bobby_4.jpg"],
+      "smallImage": "Bobby_1_cover.jpg",
       "breed": "Frenchie",
-      "color": "Red",
-      "sex": "Female"
-    },
-    {
-      "name": "Aaron",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "Doberman",
-      "color": "Brindle",
+      "color": "Black & Tan",
       "sex": "Male"
     },
     {
-      "name": "Liz",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "Chocolate Lab",
-      "color": "Brindle",
-      "sex": "Female"
-    },
-    {
-      "name": "Zuki",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "Pointer Mix",
-      "color": "Cow",
-      "sex": "Female"
-    },
-    {
-      "name": "Lola",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "German Shepherd Cattle Dog Mix",
-      "color": "Black",
-      "sex": "Female"
-    },
-    {
-      "name": "Jack",
-      "largeImages": ["images/large.jpeg", "images/large2.jpeg"],
-      "smallImage": "https://picsum.photos/200/300",
-      "breed": "Poodle Terrier Mix",
-      "color": "Blonde",
+      "name": "Tony",
+      "largeImages": ["Tony_1_cover.jpg", "Tony_2.jpg", "Tony_3.jpg", "Tony_4.jpg"],
+      "smallImage": "Tony_1_cover.jpg",
+      "breed": "Frenchie",
+      "color": "Sable",
       "sex": "Male"
     }
   ],
