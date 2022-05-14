@@ -9,7 +9,7 @@ const openInNewTab = (url) => {
 };
 
 export default function Footer({ isShowNav }) {
-  const url = "https://www.instagram.com/thefrenchieconnection.sd/";
+  const url = "https://www.instagram.com/thefrenchieconnectionsd/";
   return (
     <Grid
       container

@@ -35,24 +35,24 @@
     },
     {
       "name": "Kenny",
-      "largeImages": ["Kenny_1_cover.jpg", "Kenny_2.jpg", "Kenny_3.jpg", "Kenny_4.jpg"],
-      "smallImage": "Kenny_1_cover.jpg",
+      "largeImages": ["kenny_1_cover.jpg", "kenny_2.jpg", "kenny_3.jpg", "kenny_4.jpg"],
+      "smallImage": "kenny_1_cover.jpg",
       "breed": "Frenchie",
       "color": "Black and Tan",
       "sex": "Male"
     },
     {
       "name": "Bobby",
-      "largeImages": ["Bobby_1_cover.jpg", "Bobby_2.jpg", "Bobby_3.jpg", "Bobby_4.jpg"],
-      "smallImage": "Bobby_1_cover.jpg",
+      "largeImages": ["bobby_1_cover.jpg", "bobby_2.jpg", "bobby_3.jpg", "bobby_4.jpg"],
+      "smallImage": "bobby_1_cover.jpg",
       "breed": "Frenchie",
       "color": "Black & Tan",
       "sex": "Male"
     },
     {
       "name": "Tony",
-      "largeImages": ["Tony_1_cover.jpg", "Tony_2.jpg", "Tony_3.jpg", "Tony_4.jpg"],
-      "smallImage": "Tony_1_cover.jpg",
+      "largeImages": ["tony_1_cover.jpg", "tony_2.jpg", "tony_3.jpg", "tony_4.jpg"],
+      "smallImage": "tony_1_cover.jpg",
       "breed": "Frenchie",
       "color": "Sable",
       "sex": "Male"
@@ -102,7 +102,7 @@
     "youtube": "youtube.com",
     "instagram": {
       "url": "https://www.instagram.com/thefrenchieconnectionsd/",
-      "username": "thefrenchieconnection.sd"
+      "username": "thefrenchieconnectionsd"
     }
   },
   "FAQ": {
