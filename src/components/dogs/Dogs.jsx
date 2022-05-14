@@ -9,7 +9,6 @@ import axios from "axios";
 import dayjs from "dayjs";
 import SickSpinner from "../../utils/SickSpinner";
 import Typography from "@mui/material/Typography";
-import Logout from "../Logout";
 
 export default function Dogs(props) {
   const navigate = useNavigate();
