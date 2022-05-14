@@ -12,11 +12,12 @@ const tempGallery = data.Gallery;
 
 export default function UploadPhotoAnswer() {
   const initialPreviewState = {};
-  useEffect(()=> {
-
-    tempGallery.forEach(element => initialPreviewState[element.name]='')
-    {console.log(initialPreviewState)}
-  },[])
+  useEffect(() => {
+    tempGallery.forEach((element) => (initialPreviewState[element.name] = ""));
+    {
+      console.log(initialPreviewState);
+    }
+  }, []);
   const [imageUpload, setImageUpload] = useState(null);
   const [imagePreview, setImagePreview] = useState(initialPreviewState);
   const [imageCount, setImageCount] = useState(0);
@@ -40,7 +41,9 @@ export default function UploadPhotoAnswer() {
       const newDisplay = imagePreview[name]
         .slice()
         .concat(Object.values(e.target.files));
-      setImagePreview(prev =>{ return {...prev, [name]: newDisplay}});
+      setImagePreview((prev) => {
+        return { ...prev, [name]: newDisplay };
+      });
     }
   };
 
@@ -51,7 +54,7 @@ export default function UploadPhotoAnswer() {
     setImageUpload([]);
   };
 
-  const isPreviewValid = imagePreview[0] !== undefined
+  const isPreviewValid = imagePreview[0] !== undefined;
   return (
     <>
       <Box
@@ -65,7 +68,7 @@ export default function UploadPhotoAnswer() {
           marginTop: 1,
           maxWidth: 900,
         }}
-        >
+      >
         {tempGallery.map((dog, idx) => (
           <Paper sx={{ margin: 1 }}>
             <Typography> {dog.name}</Typography>
@@ -102,16 +105,17 @@ export default function UploadPhotoAnswer() {
             <Typography>You selected {imageCount} photos.</Typography>
             {console.log(imagePreview[dog.name])}
 
-            {isPreviewValid &&  imagePreview[dog.name].map((dog, idx) => (
-              <>
-                <img
-                  src={URL.createObjectURL(dog.name[idx])}
-                  value={URL.createObjectURL(dog)}
-                  height="100"
-                  alt=""
-                />
-              </>
-            ))}
+            {isPreviewValid &&
+              imagePreview[dog.name].map((dog, idx) => (
+                <>
+                  <img
+                    src={URL.createObjectURL(dog.name[idx])}
+                    value={URL.createObjectURL(dog)}
+                    height="100"
+                    alt=""
+                  />
+                </>
+              ))}
             <br />
             <Button
               component="a"
