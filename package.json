@@ -56,7 +56,7 @@
     "start": "node server.js",
     "start-dev": "react-scripts start",
     "start:prod": "npm run build && node server.js",
-    "build": "CI=false react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
