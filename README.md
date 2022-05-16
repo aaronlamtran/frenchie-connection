@@ -1,6 +1,8 @@
 # Frenchie Connection
 
-This is a mobile first web application for a client.
+This is a mobile first web application for a client.<br/><br/>
+It's hosted live here: [Frenchie Connection](https://www.frenchieconnection.dog) 🙂 <br/><br/>
+![screen-gif](./tfc_readme.gif)
 # Getting Started
 
 ### Prerequisites
