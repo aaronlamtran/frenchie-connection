@@ -20,11 +20,8 @@ To install dependencies
 Runs the application in development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### `make up`
-Builds and runs a devopment image in a container. Mapped to port 3000.
-
 ### `make up-prod`
-Builds and runs a production build image in a container. Mapped to port 80.
+Ensure Docker is running. This command builds and runs a production build image in a container. Mapped to port 80. After running the command, navigate to localhost in your browser.
 
 ### `npm run build`
 
