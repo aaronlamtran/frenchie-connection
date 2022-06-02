@@ -23,6 +23,7 @@ export default function UploadPhotoAnswer() {
   const [urls, setUrls] = useState([]);
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
+  const [imagesSelected, setImagesSelected] = useState([])
 
   useEffect(() => {
     tempGallery.forEach((element) => (initialPreviewState[element.name] = ""));
@@ -34,6 +35,8 @@ export default function UploadPhotoAnswer() {
       const promises = list.items.map((ref) => getDownloadURL(ref));
       const result = await Promise.all(promises);
       setImagePreview(result);
+      const array = new Array(result.length)
+      setImagesSelected(array)
     } catch (e) {
       console.log("err from getPreviews", e);
       switch (e.code) {
@@ -88,7 +91,7 @@ export default function UploadPhotoAnswer() {
     // console.log({urls})
     Promise.all(promises)
       .then((result) => {
-        alert("All images uploaded");
+        // alert("All images uploaded");
         console.log("the uploaded result:", result);
       })
       .catch((err) => console.log(err));
@@ -105,6 +108,16 @@ export default function UploadPhotoAnswer() {
       });
     }
   };
+  const handleSelection = (e) => {
+    e.preventDefault()
+    const newState = imagePreview.map((image, idx) => {
+      const isIndexMatch = idx === parseInt(e.target.id, 10)
+      if(isIndexMatch) return !imagesSelected[idx];
+    })
+
+    setImagesSelected(newState)
+
+  }
 
   const clearPreview = (e) => {
     // e.preventDefault();
@@ -125,6 +138,9 @@ export default function UploadPhotoAnswer() {
   const handleDogChange = (e) => {
     setDogName(e.target.value);
     getPreviews(e.target.value);
+    setProgress(0)
+    setImages([])
+    setUrls([])
   };
 
   const isPreviewValid = imagePreview[0] !== undefined;
@@ -210,7 +226,7 @@ export default function UploadPhotoAnswer() {
                 {imagePreview &&
                   imagePreview.map((url, idx) => (
                     <Box sx={{ margin: "auto" }}>
-                      <img key={idx} src={url} width="300" alt="firebase-img" />
+                      <img id={idx} name={idx} src={url} width="300" border={imagesSelected[idx] && 23} alt="firebase-img" onClick={handleSelection}/>
                     </Box>
                   ))}
               </Box>
