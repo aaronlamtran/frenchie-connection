@@ -18,7 +18,7 @@ export default function AdminRouter({
   return (
     <>
       <AdminNav />
-      <Typography variant='h6' align='center'>Logged in as Administator</Typography>
+      <Typography align='center'>Logged in as Administator</Typography>
       <UploadPhotoAnswer/>
       <AuthProvider>
         <Routes>
