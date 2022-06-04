@@ -14,15 +14,30 @@ export default function Dogs(props) {
   const navigate = useNavigate();
   const [dogs, setDogs] = useState([]);
   const [spinner, setSpinner] = useState(true);
+  const { handleAddErrorMessages, handleAddSuccessMessage } = props;
   useEffect(() => {
-    loadDogs();
+    // let abortController
+    // (async function () {
+    //   let url = `/dogs/all`
+    //   abortController = new AbortController();
+    //   let signal = abortController.signal;
+
+    //   const { data } = await axios.get(url, { signal: signal });
+    //   console.log({ data });
+    //   handleAddSuccessMessage(data.msg);
+    //   setSpinner(false);
+    //   setDogs(data.dogs);
+    // })();
+
+    // return () => abortController.abort();
+    loadDogs()
   }, []);
   const loadDogs = async () => {
     const { handleAddErrorMessages, handleAddSuccessMessage } = props;
     let url = `/dogs/all`;
-    if (process.env.NODE_ENV === "development") {
-      url = `${process.env.REACT_APP_SERVER_URL}/dogs/all`;
-    }
+    // if (process.env.NODE_ENV === "development") {
+    //   url = `${process.env.REACT_APP_SERVER_URL}/dogs/all`;
+    // }
     try {
       const response = await axios.get(url);
       handleAddSuccessMessage(response.data.msg);
@@ -102,7 +117,9 @@ export default function Dogs(props) {
     >
       <Box>
         {/* <Box sx={{ marginLeft: 0.25, marginRight: 0.25 }}> */}
-        <Typography variant="h4" align='center'>Waitlists</Typography>
+        <Typography variant="h4" align="center">
+          Waitlists
+        </Typography>
         <hr />
         <Button color="info" onClick={() => navigate("/admin/create")}>
           Create A New Waitlist

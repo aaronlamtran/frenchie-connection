@@ -13,7 +13,7 @@ if (NODE_ENV === "production"){
   uri = `mongodb+srv://${MONGO_USER}:${MONGO_PW}@frenchie-connection-db.nxc9c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 }
 console.log({ MONGO_USER, MONGO_PW, PORT, NODE_ENV });
-console.log('are uris the same?', MONGO_URI===uri);
+console.log('connected to prod db?', MONGO_URI===uri);
 
 const mongoose = require("mongoose");
 const dogRouter = require("./routes/dog-waitlist-routes");

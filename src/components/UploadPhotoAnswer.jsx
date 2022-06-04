@@ -13,6 +13,8 @@ import {
   listAll,
 } from "firebase/storage";
 import { v4 } from "uuid";
+import axios from "axios";
+
 const tempGallery = data.Gallery;
 
 export default function UploadPhotoAnswer() {
@@ -23,11 +25,24 @@ export default function UploadPhotoAnswer() {
   const [urls, setUrls] = useState([]);
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
-  const [imagesSelected, setImagesSelected] = useState([])
+  const [imagesSelected, setImagesSelected] = useState([]);
 
   useEffect(() => {
     tempGallery.forEach((element) => (initialPreviewState[element.name] = ""));
+    let abortController;
+    (async function () {
+      abortController = new AbortController();
+      let signal = abortController.signal;
+
+      // the signal is passed into the request(s) we want to abort using this controller
+      const { data } = await axios.get("/gallery", { signal: signal });
+      //  setCompany(data);
+      console.log({ data });
+    })();
+
+    return () => abortController.abort();
   }, []);
+
   const getPreviews = async (name) => {
     try {
       const listRef = ref(storage, `${name}/`);
@@ -35,8 +50,8 @@ export default function UploadPhotoAnswer() {
       const promises = list.items.map((ref) => getDownloadURL(ref));
       const result = await Promise.all(promises);
       setImagePreview(result);
-      const array = new Array(result.length)
-      setImagesSelected(array)
+      // const array = new Array(result.length);
+      // setImagesSelected(array);
     } catch (e) {
       console.log("err from getPreviews", e);
       switch (e.code) {
@@ -109,15 +124,14 @@ export default function UploadPhotoAnswer() {
     }
   };
   const handleSelection = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const newState = imagePreview.map((image, idx) => {
-      const isIndexMatch = idx === parseInt(e.target.id, 10)
-      if(isIndexMatch) return !imagesSelected[idx];
-    })
+      const isIndexMatch = idx === parseInt(e.target.id, 10);
+      if (isIndexMatch) return !imagesSelected[idx];
+    });
 
-    setImagesSelected(newState)
-
-  }
+    setImagesSelected(newState);
+  };
 
   const clearPreview = (e) => {
     // e.preventDefault();
@@ -138,9 +152,9 @@ export default function UploadPhotoAnswer() {
   const handleDogChange = (e) => {
     setDogName(e.target.value);
     getPreviews(e.target.value);
-    setProgress(0)
-    setImages([])
-    setUrls([])
+    setProgress(0);
+    setImages([]);
+    setUrls([]);
   };
 
   const isPreviewValid = imagePreview[0] !== undefined;
@@ -158,7 +172,9 @@ export default function UploadPhotoAnswer() {
           maxWidth: 900,
         }}
       >
-        <Typography align='center' variant="h4">Edit Pups</Typography>
+        <Typography align="center" variant="h4">
+          Edit Pups
+        </Typography>
         <Paper sx={{ margin: 1, padding: 2 }}>
           {progress > 0 && <progress value={progress} max="100" />}
           {/* <Typography align='center'> {dogNameMenu || "Select From Menu"}</Typography> */}
@@ -221,12 +237,21 @@ export default function UploadPhotoAnswer() {
               </Box>
               <Box alignItems="center" justifyContent="center">
                 <Typography>
-                  Already Existing Photos of {dogNameMenu}: {imagePreview.length === 0 && "N/A"}
+                  Already Existing Photos of {dogNameMenu}:{" "}
+                  {imagePreview.length === 0 && "N/A"}
                 </Typography>
                 {imagePreview &&
                   imagePreview.map((url, idx) => (
                     <Box sx={{ margin: "auto" }}>
-                      <img id={idx} name={idx} src={url} width="300" border={imagesSelected[idx] && 23} alt="firebase-img" onClick={handleSelection}/>
+                      <img
+                        id={idx}
+                        name={idx}
+                        src={url}
+                        width="300"
+                        border={imagesSelected[idx] && 23}
+                        alt="firebase-img"
+                        onClick={handleSelection}
+                      />
                     </Box>
                   ))}
               </Box>

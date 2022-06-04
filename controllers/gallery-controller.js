@@ -40,7 +40,10 @@ const addToGallery = async (req, res) => {
 const getOne = async (req, res) => {
   try {
     const all = await Gallery.find();
-    res.send(all);
+    return res.status(HttpStatus.StatusCodes.OK).json({
+      all,
+      success: true,
+    });
   } catch (e) {
     console.log("err from getOne:", e);
     return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
