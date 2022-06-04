@@ -6,32 +6,37 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { storage } from "../config/firebase-config";
-import { getDownloadURL, ref, uploadBytesResumable, listAll} from "firebase/storage";
+import {
+  getDownloadURL,
+  ref,
+  uploadBytesResumable,
+  listAll,
+} from "firebase/storage";
 import { v4 } from "uuid";
 const tempGallery = data.Gallery;
 
 export default function UploadPhotoAnswer() {
   const initialPreviewState = {};
   const [images, setImages] = useState([]);
-  const [imagePreview, setImagePreview] = useState(initialPreviewState);
+  const [imagePreview, setImagePreview] = useState(false);
   const [imageCount, setImageCount] = useState(0);
   const [urls, setUrls] = useState([]);
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
+  const [imagesSelected, setImagesSelected] = useState([])
 
   useEffect(() => {
     tempGallery.forEach((element) => (initialPreviewState[element.name] = ""));
   }, []);
   const getPreviews = async (name) => {
     try {
-      const listRef = ref(storage, `${name}/sky_1_cover.jpg`);
-      const urls = await getDownloadURL(listRef);
-
-      console.log(urls);
-      const list = await listAll(listRef)
-      console.log({list})
-      const folderRef = list.prefixes
-      console.log(folderRef)
+      const listRef = ref(storage, `${name}/`);
+      const list = await listAll(listRef);
+      const promises = list.items.map((ref) => getDownloadURL(ref));
+      const result = await Promise.all(promises);
+      setImagePreview(result);
+      const array = new Array(result.length)
+      setImagesSelected(array)
     } catch (e) {
       console.log("err from getPreviews", e);
       switch (e.code) {
@@ -45,9 +50,6 @@ export default function UploadPhotoAnswer() {
         case "storage/canceled":
           // User canceled the upload
           break;
-
-        // ...
-
         case "storage/unknown":
           // Unknown error occurred, inspect the server response
           break;
@@ -57,7 +59,6 @@ export default function UploadPhotoAnswer() {
 
   const handleUpload = (e) => {
     const promises = [];
-    const urlsArray = [];
     const dogName = e.target.id;
     if (dogNameMenu === null) {
       alert("select a name");
@@ -90,7 +91,7 @@ export default function UploadPhotoAnswer() {
     // console.log({urls})
     Promise.all(promises)
       .then((result) => {
-        alert("All images uploaded");
+        // alert("All images uploaded");
         console.log("the uploaded result:", result);
       })
       .catch((err) => console.log(err));
@@ -107,6 +108,16 @@ export default function UploadPhotoAnswer() {
       });
     }
   };
+  const handleSelection = (e) => {
+    e.preventDefault()
+    const newState = imagePreview.map((image, idx) => {
+      const isIndexMatch = idx === parseInt(e.target.id, 10)
+      if(isIndexMatch) return !imagesSelected[idx];
+    })
+
+    setImagesSelected(newState)
+
+  }
 
   const clearPreview = (e) => {
     // e.preventDefault();
@@ -115,7 +126,7 @@ export default function UploadPhotoAnswer() {
     // setImageUpload([]);
   };
   const handleChange = (e) => {
-    // console.log(e.target.id);
+    console.log(e.target.id);
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
       newImage["id"] = Math.random();
@@ -127,6 +138,9 @@ export default function UploadPhotoAnswer() {
   const handleDogChange = (e) => {
     setDogName(e.target.value);
     getPreviews(e.target.value);
+    setProgress(0)
+    setImages([])
+    setUrls([])
   };
 
   const isPreviewValid = imagePreview[0] !== undefined;
@@ -144,7 +158,8 @@ export default function UploadPhotoAnswer() {
           maxWidth: 900,
         }}
       >
-        <Paper sx={{ margin: 1 }}>
+        <Typography align='center' variant="h4">Edit Pups</Typography>
+        <Paper sx={{ margin: 1, padding: 2 }}>
           {progress > 0 && <progress value={progress} max="100" />}
           {/* <Typography align='center'> {dogNameMenu || "Select From Menu"}</Typography> */}
           <Box sx={{ margin: "auto" }}>
@@ -192,12 +207,31 @@ export default function UploadPhotoAnswer() {
               </Button>
             </>
           )}
-
-          {urls.map((url, idx) => (
-            <Box sx={{ margin: "auto" }}>
-              <img key={idx} src={url} height="300" alt="firebase-img" />
-            </Box>
-          ))}
+          {dogNameMenu && (
+            <>
+              <Box alignItems="center" justifyContent="center">
+                <Typography>
+                  Just Uploaded: {urls.length === 0 && "N/A"}
+                </Typography>
+                {urls.map((url, idx) => (
+                  <Box sx={{ margin: "auto" }}>
+                    <img key={idx} src={url} width="300" alt="firebase-img" />
+                  </Box>
+                ))}
+              </Box>
+              <Box alignItems="center" justifyContent="center">
+                <Typography>
+                  Already Existing Photos of {dogNameMenu}: {imagePreview.length === 0 && "N/A"}
+                </Typography>
+                {imagePreview &&
+                  imagePreview.map((url, idx) => (
+                    <Box sx={{ margin: "auto" }}>
+                      <img id={idx} name={idx} src={url} width="300" border={imagesSelected[idx] && 23} alt="firebase-img" onClick={handleSelection}/>
+                    </Box>
+                  ))}
+              </Box>
+            </>
+          )}
           <br />
           <Button
             component="a"
@@ -209,7 +243,7 @@ export default function UploadPhotoAnswer() {
             }}
             onClick={(e) => clearPreview(e)}
           >
-            <Typography>Clear Photos</Typography>
+            <Typography>Delete Selected Photos</Typography>
           </Button>
         </Paper>
       </Box>
