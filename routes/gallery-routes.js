@@ -5,8 +5,10 @@ const galleryControllers = require("../controllers/gallery-controller");
  **  .com/gallery/
  **
  */
-router.get('/', galleryControllers.getOne);
+
 router.delete('/:id', galleryControllers.removeFromGallery);
+router.put("/:id", galleryControllers.deleteGalleryImages)
+router.get('/', galleryControllers.getOne);
 router.post("/", galleryControllers.addToGallery);
 
 // router.get("/gallery/:id", galleryControllers);
