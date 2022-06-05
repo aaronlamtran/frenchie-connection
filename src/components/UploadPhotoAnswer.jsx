@@ -262,7 +262,7 @@ export default function UploadPhotoAnswer() {
             </>
           )}
           <br />
-          <Button
+          {/* <Button
             component="a"
             sx={{
               my: 1,
@@ -277,7 +277,7 @@ export default function UploadPhotoAnswer() {
                 ? ""
                 : `Delete ALL Photos of: ${dogNameMenu}`}
             </Typography>
-          </Button>
+          </Button> */}
           <Button
             component="a"
             sx={{

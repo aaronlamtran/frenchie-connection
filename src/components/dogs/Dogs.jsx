@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
-import { CardTitle, CardText, Col } from "reactstrap";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -16,7 +15,7 @@ export default function Dogs(props) {
   const [spinner, setSpinner] = useState(true);
   const { handleAddErrorMessages, handleAddSuccessMessage } = props;
   useEffect(() => {
-    loadDogs()
+    loadDogs();
   }, []);
   const loadDogs = async () => {
     const { handleAddErrorMessages, handleAddSuccessMessage } = props;
@@ -52,33 +51,30 @@ export default function Dogs(props) {
         }}
       >
         {dogs.map((dog) => (
-          <Col xs="12" key={dog._id} className="product-card-outer">
-            <Card
-              onClick={() => navigate(`waitlists/${dog._id}`)}
-              sx={{ marginTop: 1, marginBottom: 1 }}
-            >
-              <CardContent>
-                <CardTitle>
-                  <Typography variant="h6">{dog.dogName}</Typography>
-                </CardTitle>
-                <CardText>
-                  <Typography variant="body1">
-                    Waitlist Size: {dog.waitlist}
-                  </Typography>
-                </CardText>
-                <>
-                  <Typography variant="body1">
-                    Description: {dog.dogDescription}
-                  </Typography>
-                  <br />
-                  <Typography variant="body1">
-                    Created by {dog.creatorName} {<br />}
-                    on {dayjs(dog.createdAt).format("DD-MM-YYYY hh:mm A")}
-                  </Typography>
-                </>
-              </CardContent>
-            </Card>
-          </Col>
+          // <Col xs="12" key={dog._id} className="product-card-outer">
+          <Card
+            key={dog._id}
+            onClick={() => navigate(`waitlists/${dog._id}`)}
+            sx={{ marginTop: 1, marginBottom: 1 }}
+          >
+            <CardContent>
+              <Typography variant="h6">{dog.dogName}</Typography>
+              <Typography variant="body1">
+                Waitlist Size: {dog.waitlist}
+              </Typography>
+              <>
+                <Typography variant="body1">
+                  Description: {dog.dogDescription}
+                </Typography>
+                <br />
+                <Typography variant="body1">
+                  Created by {dog.creatorName} {<br />}
+                  on {dayjs(dog.createdAt).format("DD-MM-YYYY hh:mm A")}
+                </Typography>
+              </>
+            </CardContent>
+          </Card>
+          // </Col>
         ))}
       </Box>
     );
