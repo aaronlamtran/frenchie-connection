@@ -11,10 +11,10 @@ import {
   ref,
   uploadBytesResumable,
   listAll,
+  deleteObject
 } from "firebase/storage";
 // import { v4 } from "uuid";
 import axios from "axios";
-import { CurrencyBitcoin } from "@mui/icons-material";
 
 export default function UploadPhotoAnswer() {
   const [modal, setModal] = useState(false);
@@ -26,12 +26,12 @@ export default function UploadPhotoAnswer() {
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
   const [imagesSelected, setImagesSelected] = useState([]);
-  const [currentDog, setCurrentDog] = useState({});
   const [name, setName] = useState("");
   const [sex, setSex] = useState("");
   const [breed, setBreed] = useState("");
   const [color, setColor] = useState("");
   const [currentDogID, setCurrentDogID] = useState("");
+  const [optionChange, setOptionChange] = useState("");
   if (modal) {
     document.body.style.overflow = "hidden";
   } else {
@@ -54,26 +54,21 @@ export default function UploadPhotoAnswer() {
     setTempGallery(data.all);
     return data.all;
   };
-  const updateDBGalleryImages = async () => {
-    console.log({ currentDogID, urls, imagePreview });
-    await axios.put(`gallery/update/${currentDogID}`, { body: imagePreview });
-  };
-  const getPreviews = async (name, identificationNum) => {
+
+  const updateDbUrls = async (name, identificationNum) => {
     try {
       const listRef = ref(storage, `${name}/`);
       const list = await listAll(listRef);
       const promises = list.items.map((ref) => getDownloadURL(ref));
       const result = await Promise.all(promises);
-      console.log("from get Previews", result);
-      console.log({ identificationNum, result });
       const result_two = await axios.put(
         `gallery/update/${identificationNum}`,
         { urls: result }
       );
       console.log({ result_two });
-      setImagePreview(result);
+      // setImagePreview(result);
     } catch (e) {
-      console.log("err from getPreviews", e);
+      console.log("err from updateDbUrls", e);
       switch (e.code) {
         case "storage/object-not-found":
           // File doesn't exist
@@ -128,20 +123,8 @@ export default function UploadPhotoAnswer() {
       .then((result) => {
         console.log("the uploaded result:", result);
       })
-      .then(() => getPreviews(dogNameMenu, currentDogID))
+      .then(() => updateDbUrls(dogNameMenu, currentDogID))
       .catch((err) => console.log(err));
-  };
-
-  const handlePreview = (e, name) => {
-    setImageCount(imageCount + e.target.files.length);
-    if (e.target.files.length) {
-      const newDisplay = imagePreview[name]
-        .slice()
-        .concat(Object.values(e.target.files));
-      setImagePreview((prev) => {
-        return { ...prev, [name]: newDisplay };
-      });
-    }
   };
 
   const handleSelection = (e) => {
@@ -165,12 +148,15 @@ export default function UploadPhotoAnswer() {
   };
 
   const handleDogChange = (e) => {
+    setOptionChange(e.target.value);
     setDogName(e.target.value);
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
     const id = el.getAttribute("id");
     setCurrentDogID(id);
-    getPreviews(e.target.value, id);
+
+    const result = tempGallery.filter((dog) => dog._id === id)[0].largeImages;
+    setImagePreview(result);
     setProgress(0);
     setImages([]);
     setUrls([]);
@@ -190,12 +176,34 @@ export default function UploadPhotoAnswer() {
     const result = await axios.put(`/gallery/${currentDogID}`);
     // TODO also delete from firebase storage
     console.log("result from handle delete photos", result);
+    console.log(dogNameMenu)
+    deleteDirectory(dogNameMenu)
+    if (result.status) {
+      alert("successfully deleted");
+      setDogName(null);
+    }
+    await getGallery();
   };
+
+
+  // Delete the file
+  const deleteDirectory = (name) => {
+    const directoryRef = ref(storage, `${name}/`);
+    deleteObject(directoryRef)
+      .then((result) => {
+        // File deleted successfully
+        console.log('fromdelete directory', {result})
+      })
+      .catch((error) => {
+        // Uh-oh, an error occurred!
+        console.log(error)
+      });
+
+  }
 
   const handleAddDog = async () => {
     const newDog = { name, breed, color, sex };
     const result = await axios.post("/gallery/", newDog);
-    console.log({ result });
     if (result.status) {
       alert("success. go upload photos now.");
     }
@@ -207,7 +215,6 @@ export default function UploadPhotoAnswer() {
     await getGallery();
   };
   const toggleModal = () => {
-    // setProductName2(document.getElementById('product-name').innerHTML);
     setModal(!modal);
   };
 
@@ -231,7 +238,7 @@ export default function UploadPhotoAnswer() {
         <Paper sx={{ margin: 1, padding: 2 }}>
           {progress > 0 && <progress value={progress} max="100" />}
           <Box sx={{ margin: "auto" }}>
-            <select onChange={handleDogChange}>
+            <select onChange={handleDogChange} value={optionChange}>
               <option value="select"> -- select a dog -- </option>
               {tempGallery.map((dog, idx) => (
                 <option value={dog.name} id={dog._id}>
@@ -254,6 +261,34 @@ export default function UploadPhotoAnswer() {
             </>
           )}
           <br />
+          <Button
+            component="a"
+            sx={{
+              my: 1,
+              color: "black",
+              display: "block",
+              textAlign: "center",
+            }}
+            onClick={handleDeletePhotos}
+          >
+            <Typography>
+              {dogNameMenu === null || dogNameMenu === "select"
+                ? ""
+                : `Delete ALL Photos of: ${dogNameMenu}`}
+            </Typography>
+          </Button>
+          <Button
+            component="a"
+            sx={{
+              my: 1,
+              color: "black",
+              display: "block",
+              textAlign: "center",
+            }}
+            onClick={handleDeleteDog}
+          >
+            <Typography>Delete Selected Pup: {dogNameMenu}</Typography>
+          </Button>
           <br />
           {images.length > 0 && (
             <>
@@ -370,34 +405,6 @@ export default function UploadPhotoAnswer() {
             </Box>
           )}
           {/* end modal */}
-          <Button
-            component="a"
-            sx={{
-              my: 1,
-              color: "black",
-              display: "block",
-              textAlign: "center",
-            }}
-            onClick={handleDeletePhotos}
-          >
-            <Typography>
-              {dogNameMenu === null || dogNameMenu === "select"
-                ? ""
-                : `Delete ALL Photos of: ${dogNameMenu}`}
-            </Typography>
-          </Button>
-          <Button
-            component="a"
-            sx={{
-              my: 1,
-              color: "black",
-              display: "block",
-              textAlign: "center",
-            }}
-            onClick={handleDeleteDog}
-          >
-            <Typography>Delete Selected Pup: {dogNameMenu}</Typography>
-          </Button>
         </Paper>
         <Button
           component="a"
