@@ -10,7 +10,6 @@ const GallerySchema = new Schema(
     },
     largeImages: {
       type: [String],
-      required: true,
       trim: true,
     },
     smallImage: {

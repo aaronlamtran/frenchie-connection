@@ -21,29 +21,32 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
         <Typography>Name: {dogInfo.dogName}</Typography>
         <Typography>Description: {dogInfo.dogDescription}</Typography>
         <Typography>
-          updated at:{dayjs(dogInfo.updatedAt).format("DD-MM-YYYY hh:mm A")}
+          updated at:{dayjs(dogInfo.updatedAt).format("MM-DD-YYYY hh:mm A")}
         </Typography>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>#</TableCell>
+              {/* <TableCell>#</TableCell> */}
               <TableCell>Name</TableCell>
               {/* <TableCell>Waitlist</TableCell> */}
               <TableCell>Phone</TableCell>
               <TableCell>Email</TableCell>
+              <TableCell>Joined</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {waitlists.map((waitlist, index) => (
               // <tr key={waitlist._id}>
               <TableRow key={index}>
-                <TableCell scope="row" component="th">
+                {/* <TableCell scope="row" component="th">
                   {index + 1}
-                </TableCell>
-                <TableCell>{waitlist.name}</TableCell>
+                </TableCell> */}
+                <TableCell scope="row" component="th">{waitlist.name}</TableCell>
                 {/* <TableCell>{waitlist.waitlistPosition}</TableCell> */}
                 <TableCell>{waitlist.phone ? waitlist.phone : "N/A"}</TableCell>
                 <TableCell>{waitlist.email}</TableCell>
+
+                <TableCell>{dayjs(waitlist.createdAt).format("MM-DD-YYYY hh:mm A")}</TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -134,6 +134,40 @@ video {
   margin-bottom: 40px;
   grid-area: logo-top;
 } */
+
+.modal, .modal-overlay {
+  overflow-y: auto;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.modal-content {
+  z-index: 101;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* line-height: 1.4; */
+  background: #ffffff;
+  padding: 2% 5% 5% 5%;
+  border-radius: 3px;
+  max-width: 300px;
+  min-width: 300px;
+  /* min-height: 300px; */
+  /* max-height: 600px; */
+  color: black;
+}
+
 .overlay-scroll {
   position: relative;
 }

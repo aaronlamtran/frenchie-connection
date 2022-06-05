@@ -19,9 +19,6 @@ export default function DogView(props) {
   }, []);
   const loadDog = async () => {
     let url = `/dogs/${id}`;
-    if (process.env.NODE_ENV === "development") {
-      url = `${process.env.REACT_APP_SERVER_URL}/dogs/${id}`;
-    }
     try {
       const response = await axios.get(url);
       const { dog, waitlists } = response.data;
