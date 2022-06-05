@@ -101,12 +101,35 @@ const deleteGalleryImages = async (req, res) => {
   }
 };
 
-const editOne = async (req, res) => {};
-
+const updateGalleryImages = async (req, res) => {
+  try {
+    const { urls } = req.body
+    console.log({urls})
+    const gallery = await Gallery.findByIdAndUpdate(
+      { _id: req.params.id },
+      { largeImages: urls },
+      { new: true }
+    );
+    return res.status(HttpStatus.StatusCodes.OK).json({
+      gallery,
+      success: true,
+    });
+  } catch (e) {
+    console.log("err from deleteGalleryImages:", e);
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      errors: [
+        {
+          msg: "didnt work try again.",
+        },
+      ],
+    });
+  }
+};
 module.exports = {
   addToGallery,
   removeFromGallery,
-  editOne,
   getOne,
   deleteGalleryImages,
+  updateGalleryImages,
 };

@@ -16,28 +16,11 @@ export default function Dogs(props) {
   const [spinner, setSpinner] = useState(true);
   const { handleAddErrorMessages, handleAddSuccessMessage } = props;
   useEffect(() => {
-    // let abortController
-    // (async function () {
-    //   let url = `/dogs/all`
-    //   abortController = new AbortController();
-    //   let signal = abortController.signal;
-
-    //   const { data } = await axios.get(url, { signal: signal });
-    //   console.log({ data });
-    //   handleAddSuccessMessage(data.msg);
-    //   setSpinner(false);
-    //   setDogs(data.dogs);
-    // })();
-
-    // return () => abortController.abort();
     loadDogs()
   }, []);
   const loadDogs = async () => {
     const { handleAddErrorMessages, handleAddSuccessMessage } = props;
     let url = `/dogs/all`;
-    // if (process.env.NODE_ENV === "development") {
-    //   url = `${process.env.REACT_APP_SERVER_URL}/dogs/all`;
-    // }
     try {
       const response = await axios.get(url);
       handleAddSuccessMessage(response.data.msg);

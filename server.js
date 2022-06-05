@@ -19,6 +19,7 @@ const mongoose = require("mongoose");
 const dogRouter = require("./routes/dog-waitlist-routes");
 const waitlistRouter = require("./routes/waitlist-routes");
 const galleryRouter = require("./routes/gallery-routes");
+
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

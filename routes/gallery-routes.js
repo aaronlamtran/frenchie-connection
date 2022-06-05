@@ -8,6 +8,7 @@ const galleryControllers = require("../controllers/gallery-controller");
 
 router.delete('/:id', galleryControllers.removeFromGallery);
 router.put("/:id", galleryControllers.deleteGalleryImages)
+router.put("/update/:id", galleryControllers.updateGalleryImages)
 router.get('/', galleryControllers.getOne);
 router.post("/", galleryControllers.addToGallery);
 
