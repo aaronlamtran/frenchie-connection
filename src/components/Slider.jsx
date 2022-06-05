@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Container from "@mui/material/Container";
@@ -6,10 +6,12 @@ import Lightbox from "react-image-lightbox";
 import Typography from "@mui/material/Typography";
 import "./Slider.css";
 import "react-image-lightbox/style.css";
+import axios from 'axios'
 
 export default function CardSlider(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState([]);
+  const [gallery, setGallery] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0);
   const slideLeft = () => {
     var slider = document.getElementById("slider");
@@ -37,7 +39,20 @@ export default function CardSlider(props) {
       onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
     />
   );
+  useEffect(() => {
+    let abortController;
+    (async function () {
+      abortController = new AbortController();
+      let signal = abortController.signal;
+      const { data } = await axios.get("/gallery", { signal: signal });
+      setGallery(data.all);
+    })();
 
+    return () => abortController.abort();
+  }, []);
+
+  const slides = props.slides;
+  // const slides = gallery;
   return (
     <Container sx={{ pb: 2, padding: 0.25, marginTop: 1 }} id="Pups">
       {isOpen && modal()}
@@ -47,7 +62,7 @@ export default function CardSlider(props) {
           onClick={slideRight}
         />
         <div id="slider">
-          {props.slides.map((slide, index) => {
+          {slides.map((slide, index) => {
             return (
               <div
                 className="slider-card"
@@ -57,6 +72,7 @@ export default function CardSlider(props) {
                 <div
                   className="slider-card-image"
                   style={{
+                    // backgroundImage: `url(${slide.largeImages})`,
                     backgroundImage: `url(${slide.smallImage})`,
                     backgroundSize: "cover",
                   }}
