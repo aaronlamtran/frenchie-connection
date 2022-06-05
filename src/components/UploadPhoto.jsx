@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+// import  from "@mui/material/Button";
+import Input from "@mui/material/Input";
 import Typography from "@mui/material/Typography";
 import { storage } from "../config/firebase-config";
 import {
@@ -11,12 +13,12 @@ import {
   ref,
   uploadBytesResumable,
   listAll,
-  deleteObject
+  deleteObject,
 } from "firebase/storage";
 // import { v4 } from "uuid";
 import axios from "axios";
 
-export default function UploadPhotoAnswer() {
+export default function UploadPhoto() {
   const [modal, setModal] = useState(false);
   const [tempGallery, setTempGallery] = useState([]);
   const [images, setImages] = useState([]);
@@ -166,6 +168,7 @@ export default function UploadPhotoAnswer() {
     // TODO delete folder from firebase
     if (dogNameMenu === null) return;
     const result = await axios.delete(`/gallery/${currentDogID}`);
+    deleteDirectory(dogNameMenu);
     if (result.status) {
       alert("successfully deleted");
       setDogName(null);
@@ -173,19 +176,17 @@ export default function UploadPhotoAnswer() {
     await getGallery();
   };
 
-  const handleDeletePhotos = async () => {
-    const result = await axios.put(`/gallery/${currentDogID}`);
-    // TODO also delete from firebase storage
-    console.log("result from handle delete photos", result);
-    console.log(dogNameMenu)
-    deleteDirectory(dogNameMenu)
-    if (result.status) {
-      alert("successfully deleted");
-      setDogName(null);
-    }
-    await getGallery();
-  };
-
+  // const handleDeletePhotos = async () => {
+  //   const result = await axios.put(`/gallery/${currentDogID}`);
+  //   // TODO also delete from firebase storage
+  //   console.log("result from handle delete photos", result);
+  //   console.log(dogNameMenu);
+  //   if (result.status) {
+  //     alert("successfully deleted");
+  //     setDogName(null);
+  //   }
+  //   await getGallery();
+  // };
 
   // Delete the file
   const deleteDirectory = (name) => {
@@ -193,14 +194,13 @@ export default function UploadPhotoAnswer() {
     deleteObject(directoryRef)
       .then((result) => {
         // File deleted successfully
-        console.log('fromdelete directory', {result})
+        console.log("fromdelete directory", { result });
       })
       .catch((error) => {
         // Uh-oh, an error occurred!
-        console.log(error)
+        console.log(error);
       });
-
-  }
+  };
 
   const handleAddDog = async () => {
     const newDog = { name, breed, color, sex };
@@ -288,7 +288,9 @@ export default function UploadPhotoAnswer() {
             }}
             onClick={handleDeleteDog}
           >
-            <Typography>{dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}</Typography>
+            <Typography>
+              {dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}
+            </Typography>
           </Button>
           <br />
           {images.length > 0 && (
@@ -351,56 +353,79 @@ export default function UploadPhotoAnswer() {
             <Box className="modal" sx={{ margin: "auto" }}>
               <Box className="modal-overlay">
                 <Box className="modal-content">
-                  <form>
-                    <input
-                      placeholder="name"
-                      onChange={(e) => setName(e.target.value)}
-                    ></input>
-                    <br />
-                    <div onChange={(e) => setSex(e.target.value)}>
-                      <input type="radio" value="Male" name="gender" />{" "}
-                      <Typography>Male</Typography>
-                      <input type="radio" value="Female" name="gender" />{" "}
-                      <Typography>Female</Typography>
-                    </div>
-                    <br />
-                    <input
-                      placeholder="breed"
-                      onChange={(e) => setBreed(e.target.value)}
-                    ></input>
-                    <br />
-                    <input
-                      required
-                      placeholder="color"
-                      onChange={(e) => setColor(e.target.value)}
-                    ></input>
-                    <br />
-                    <Button
-                      component="a"
-                      type="submit"
-                      sx={{
-                        my: 1,
-                        color: "black",
-                        display: "block",
-                        textAlign: "center",
-                      }}
-                      onClick={handleAddDog}
-                    >
-                      <Typography>Submit</Typography>
-                    </Button>
-                  </form>
-                  <Button
-                    component="a"
-                    sx={{
-                      my: 1,
-                      color: "black",
-                      display: "block",
-                      textAlign: "center",
-                    }}
-                    onClick={toggleModal}
+                  <Box
+                    display="flex"
+                    // bgcolor="lightgreen"
+                    alignItems="center"
+                    justifyContent="center"
                   >
-                    <Typography>Cancel</Typography>
-                  </Button>
+                    <Box sx={{maxWidth: 200}}>
+                      <form>
+                        <Input
+                          sx={{ margin: 1 }}
+                          placeholder="name"
+                          onChange={(e) => setName(e.target.value)}
+                        ></Input>
+                        <Input
+                          sx={{ margin: 1 }}
+                          placeholder="breed"
+                          onChange={(e) => setBreed(e.target.value)}
+                        ></Input>
+                        <Input
+                          sx={{ margin: 1 }}
+                          required
+                          placeholder="color"
+                          onChange={(e) => setColor(e.target.value)}
+                        ></Input>
+                        <Box
+                          sx={{ margin: 1 }}
+                          onChange={(e) => setSex(e.target.value)}
+                        >
+                          <Typography
+                            variant="caption"
+                            sx={{ paddingRight: 1 }}
+                          >
+                            sex:
+                          </Typography>
+                          <input type="radio" value="Male" name="gender" />{" "}
+                          <Typography
+                            variant="caption"
+                            sx={{ paddingRight: 1 }}
+                          >
+                            Male
+                          </Typography>
+                          <input type="radio" value="Female" name="gender" />{" "}
+                          <Typography variant="caption">Female</Typography>
+                          <br />
+                        </Box>
+                        <Button
+                          component="a"
+                          type="submit"
+                          sx={{
+                            my: 1,
+                            color: "black",
+                            display: "block",
+                            textAlign: "center",
+                          }}
+                          onClick={handleAddDog}
+                        >
+                          <Typography>Submit</Typography>
+                        </Button>
+                        <Button
+                          component="a"
+                          sx={{
+                            my: 1,
+                            color: "black",
+                            display: "block",
+                            textAlign: "center",
+                          }}
+                          onClick={toggleModal}
+                        >
+                          <Typography>Cancel</Typography>
+                        </Button>
+                      </form>
+                    </Box>
+                  </Box>
                 </Box>
               </Box>
             </Box>

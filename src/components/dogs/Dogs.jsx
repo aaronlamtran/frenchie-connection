@@ -13,7 +13,7 @@ export default function Dogs(props) {
   const navigate = useNavigate();
   const [dogs, setDogs] = useState([]);
   const [spinner, setSpinner] = useState(true);
-  const { handleAddErrorMessages, handleAddSuccessMessage } = props;
+
   useEffect(() => {
     loadDogs();
   }, []);

@@ -7,7 +7,7 @@ import Logout from "./Logout";
 import DogView from "./dogs/DogView";
 import Dogs from "./dogs/Dogs";
 import CreateDog from "./dogs/CreateDog";
-import UploadPhotoAnswer from "./UploadPhotoAnswer"
+import UploadPhoto from "./UploadPhoto"
 import { AuthProvider } from "./Auth";
 import Typography from "@mui/material/Typography";
 
@@ -19,7 +19,7 @@ export default function AdminRouter({
     <>
       <AdminNav />
       <Typography align='center'>Logged in as Administator</Typography>
-      <UploadPhotoAnswer/>
+      <UploadPhoto/>
       <AuthProvider>
         <Routes>
           <Route
