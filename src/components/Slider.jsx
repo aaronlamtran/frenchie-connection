@@ -17,6 +17,7 @@ export default function CardSlider(props) {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft + 320;
   };
+  const isPreview = props.preview || false;
   const slideRight = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 320;
@@ -51,8 +52,8 @@ export default function CardSlider(props) {
     return () => abortController.abort();
   }, []);
 
-  const slides = props.slides;
-  // const slides = gallery;
+  // const slides = props.slides;
+  const slides = isPreview ? props.slides : gallery;
   return (
     <Container sx={{ pb: 2, padding: 0.25, marginTop: 1 }} id="Pups">
       {isOpen && modal()}
@@ -72,8 +73,8 @@ export default function CardSlider(props) {
                 <div
                   className="slider-card-image"
                   style={{
-                    // backgroundImage: `url(${slide.largeImages})`,
-                    backgroundImage: `url(${slide.smallImage})`,
+                    backgroundImage: `url(${slide.largeImages})`,
+                    // backgroundImage: `url(${slide.smallImage})`,
                     backgroundSize: "cover",
                   }}
                 ></div>

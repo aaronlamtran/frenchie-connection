@@ -9,6 +9,7 @@ import ProgressCustom from "./ProgressCustom";
 import Typography from "@mui/material/Typography";
 import SickSpinner from "../utils/SickSpinner";
 import { storage } from "../config/firebase-config";
+import Slider from "./Slider";
 import {
   getDownloadURL,
   ref,
@@ -37,6 +38,7 @@ export default function UploadPhoto() {
   const [optionChange, setOptionChange] = useState("");
   const [preparedDelete, setPreparedDelete] = useState([]);
   const selectIsNotSelected = dogNameMenu !== null && dogNameMenu !== "select";
+  const [carousel, setCarousel] = useState([])
   if (modal) {
     document.body.style.overflow = "hidden";
   } else {
@@ -58,8 +60,15 @@ export default function UploadPhoto() {
   const getGallery = async () => {
     const { data } = await axios.get("/gallery");
     setTempGallery(data.all);
-    return data.all;
+    // return data.all;
   };
+
+  const filterForGallery = (array, id) => {
+    array.forEach(dog => console.log(dog._id, id))
+    const result = array.filter(dog => dog._id === id)
+    console.log('68', result)
+    setCarousel(result)
+  }
 
   const updateDbUrls = async (name, identificationNum) => {
     try {
@@ -71,7 +80,7 @@ export default function UploadPhoto() {
         `gallery/update/${identificationNum}`,
         { urls: result }
       );
-      console.log("74",result_two);
+      console.log("74", result_two);
       // setImagePreview(result);
     } catch (e) {
       console.log("77", e);
@@ -169,6 +178,7 @@ export default function UploadPhoto() {
     setUrls([]);
     getGallery();
     setSpinner(false);
+    filterForGallery(tempGallery, id)
     const selectedDogImages = tempGallery.filter((dog) => dog._id === id)[0]
       .largeImages;
     setImagePreview(selectedDogImages);
@@ -242,7 +252,7 @@ export default function UploadPhoto() {
           Edit Pups
         </Typography>
         <Paper sx={{ margin: 1, padding: 2 }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
             <select onChange={handleDogChange} value={optionChange}>
               <option value="select"> -- select a dog -- </option>
               {tempGallery.map((dog, idx) => (
@@ -253,7 +263,11 @@ export default function UploadPhoto() {
             </select>
           </Box>
           <br />
-          <Box>
+          <Typography align="center" >
+            Preview
+          </Typography>
+          {selectIsNotSelected && <Slider slides={carousel} preview={true}/>}
+          <Box sx={{ justifyContent: "center", display: "flex" }}>
             {images.length > 0 && (
               <Typography sx={{ paddingTop: 1 }}>
                 {images.length} photos selected for {dogNameMenu}.
@@ -274,7 +288,7 @@ export default function UploadPhoto() {
                   onChange={handleChange}
                 />
               </label>
-            )}
+            )}<br/>
             {spinner && <SickSpinner />}
             {images.length > 0 && (
               <Button
@@ -303,7 +317,8 @@ export default function UploadPhoto() {
               <Box alignItems="center" justifyContent="center">
                 {selectIsNotSelected && (
                   <Typography>
-                    Just Uploaded: {selectIsNotSelected && "N/A"}
+                    Just uploaded:{" "}
+                    {urls.length > 0 ? urls.length + " images" : "N/A"}
                   </Typography>
                 )}
                 {urls.map((url, idx) => (
@@ -312,7 +327,7 @@ export default function UploadPhoto() {
                   </Box>
                 ))}
               </Box>
-              <Box alignItems="center" justifyContent="center">
+              <Box  sx={{ display: "flex", flexDirection:'column',  justifyContent:"center"}}>
                 <Typography>
                   {dogNameMenu === "select"
                     ? ""
@@ -425,40 +440,43 @@ export default function UploadPhoto() {
           )}
           {/* end modal */}
         </Paper>
-        {selectIsNotSelected && (
+        <Box sx={{ justifyContent: "center", display: "flex" }}>
           <Button
-            component="a"
             variant="contained"
+            component="span"
             sx={{
-              margin: 1,
               my: 1,
+              bgcolor: "lightgreen",
+              margin: 1,
               color: "black",
-              bgcolor: "salmon",
-              display: "block",
+              // display: "block",
               textAlign: "center",
             }}
-            onClick={handleDeleteDog}
+            onClick={toggleModal}
           >
-            <Typography>
-              {dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}
-            </Typography>
+            <Typography>Add A New Pup</Typography>
           </Button>
-        )}
-        <Button
-          variant="contained"
-          component="span"
-          sx={{
-            my: 1,
-            bgcolor: "lightgreen",
-            margin: 1,
-            color: "black",
-            display: "block",
-            textAlign: "center",
-          }}
-          onClick={toggleModal}
-        >
-          <Typography>Add A New Pup</Typography>
-        </Button>
+          {selectIsNotSelected && (
+            <Button
+              component="a"
+              variant="contained"
+              sx={{
+                margin: 1,
+                marginTop: 100,
+                my: 1,
+                color: "black",
+                bgcolor: "pink",
+                // display: "block",
+                textAlign: "center",
+              }}
+              onClick={handleDeleteDog}
+            >
+              <Typography>
+                {dogNameMenu && `Delete Pup: ${dogNameMenu}`}
+              </Typography>
+            </Button>
+          )}
+        </Box>
       </Box>
     </>
   );
