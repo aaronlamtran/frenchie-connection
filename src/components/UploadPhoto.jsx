@@ -4,9 +4,10 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-// import  from "@mui/material/Button";
 import Input from "@mui/material/Input";
+import ProgressCustom from "./ProgressCustom";
 import Typography from "@mui/material/Typography";
+import SickSpinner from "../utils/SickSpinner";
 import { storage } from "../config/firebase-config";
 import {
   getDownloadURL,
@@ -19,11 +20,11 @@ import {
 import axios from "axios";
 
 export default function UploadPhoto() {
+  const [spinner, setSpinner] = useState(true);
   const [modal, setModal] = useState(false);
   const [tempGallery, setTempGallery] = useState([]);
   const [images, setImages] = useState([]);
   const [imagePreview, setImagePreview] = useState(false);
-  const [imageCount, setImageCount] = useState(0);
   const [urls, setUrls] = useState([]);
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
@@ -34,6 +35,8 @@ export default function UploadPhoto() {
   const [color, setColor] = useState("");
   const [currentDogID, setCurrentDogID] = useState("");
   const [optionChange, setOptionChange] = useState("");
+  const [preparedDelete, setPreparedDelete] = useState([]);
+  const selectIsNotSelected = dogNameMenu !== null && dogNameMenu !== "select";
   if (modal) {
     document.body.style.overflow = "hidden";
   } else {
@@ -48,6 +51,7 @@ export default function UploadPhoto() {
       setTempGallery(data.all);
     })();
 
+    setSpinner(false);
     return () => abortController.abort();
   }, []);
 
@@ -67,10 +71,10 @@ export default function UploadPhoto() {
         `gallery/update/${identificationNum}`,
         { urls: result }
       );
-      console.log({ result_two });
+      console.log("74",result_two);
       // setImagePreview(result);
     } catch (e) {
-      console.log("err from updateDbUrls", e);
+      console.log("77", e);
       switch (e.code) {
         case "storage/object-not-found":
           // File doesn't exist
@@ -109,23 +113,26 @@ export default function UploadPhoto() {
           setProgress(progress);
         },
         (error) => {
-          console.log(error);
+          console.log("116", error);
         },
         async () => {
           await getDownloadURL(storageRef)
             .then((urls) => {
               setUrls((prevState) => [...prevState, urls]);
             })
-            .catch((err) => console.log("err from getDL URL", err));
+            .catch((err) => console.log("err getDL URL", err));
         }
       );
     });
 
     Promise.all(promises)
       .then((result) => {
-        console.log("the uploaded result:", result);
+        console.log("130:", result);
       })
       .then(() => updateDbUrls(dogNameMenu, currentDogID))
+      .then(() => setImages([]))
+      .then(() => setTimeout(() => setProgress(0), 10000))
+      .then(() => listDir())
       .catch((err) => console.log(err));
   };
 
@@ -140,35 +147,38 @@ export default function UploadPhoto() {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.id);
     for (let i = 0; i < e.target.files.length; i++) {
       const newImage = e.target.files[i];
       newImage["id"] = Math.random();
-      console.log({ newImage });
+      console.log("153", newImage);
       setImages((prevState) => [...prevState, newImage]);
     }
   };
 
   const handleDogChange = (e) => {
-    setOptionChange(e.target.value);
-    setDogName(e.target.value);
+    setSpinner(true);
+    listDir();
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
     const id = el.getAttribute("id");
     setCurrentDogID(id);
-
-    const result = tempGallery.filter((dog) => dog._id === id)[0].largeImages;
-    setImagePreview(result);
+    setOptionChange(e.target.value);
+    setDogName(e.target.value);
     setProgress(0);
     setImages([]);
     setUrls([]);
+    getGallery();
+    setSpinner(false);
+    const selectedDogImages = tempGallery.filter((dog) => dog._id === id)[0]
+      .largeImages;
+    setImagePreview(selectedDogImages);
   };
 
   const handleDeleteDog = async () => {
     // TODO delete folder from firebase
     if (dogNameMenu === null) return;
     const result = await axios.delete(`/gallery/${currentDogID}`);
-    deleteDirectory(dogNameMenu);
+    await deleteItemsInFirebaseDir();
     if (result.status) {
       alert("successfully deleted");
       setDogName(null);
@@ -176,37 +186,11 @@ export default function UploadPhoto() {
     await getGallery();
   };
 
-  // const handleDeletePhotos = async () => {
-  //   const result = await axios.put(`/gallery/${currentDogID}`);
-  //   // TODO also delete from firebase storage
-  //   console.log("result from handle delete photos", result);
-  //   console.log(dogNameMenu);
-  //   if (result.status) {
-  //     alert("successfully deleted");
-  //     setDogName(null);
-  //   }
-  //   await getGallery();
-  // };
-
-  // Delete the file
-  const deleteDirectory = (name) => {
-    const directoryRef = ref(storage, `${name}/`);
-    deleteObject(directoryRef)
-      .then((result) => {
-        // File deleted successfully
-        console.log("fromdelete directory", { result });
-      })
-      .catch((error) => {
-        // Uh-oh, an error occurred!
-        console.log(error);
-      });
-  };
-
   const handleAddDog = async () => {
     const newDog = { name, breed, color, sex };
     const result = await axios.post("/gallery/", newDog);
     if (result.status) {
-      alert("success. go upload photos now.");
+      alert("Dog added successfully. Go upload photos now.");
     }
     setModal(!modal);
     setName("");
@@ -217,6 +201,27 @@ export default function UploadPhoto() {
   };
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const listDir = () => {
+    if (!selectIsNotSelected) return;
+    const listRef = ref(storage, `/${dogNameMenu}/`);
+    listAll(listRef)
+      .then((result) => setPreparedDelete(result))
+      .catch((err) => console.log("211:", err));
+  };
+
+  const deleteItemsInFirebaseDir = () => {
+    const promises = preparedDelete.items.map((item) => {
+      const imageRef = ref(storage, item._location.path);
+      return deleteObject(imageRef)
+        .then((result) => console.log("261:", { result }))
+        .catch((err) => console.log("262:", err));
+    });
+    console.log({ promises });
+    Promise.all(promises)
+      .then((result) => console.log("264:", { result }))
+      .catch((err) => console.log("265:", err));
   };
 
   return (
@@ -237,8 +242,7 @@ export default function UploadPhoto() {
           Edit Pups
         </Typography>
         <Paper sx={{ margin: 1, padding: 2 }}>
-          {progress > 0 && <progress value={progress} max="100" />}
-          <Box sx={{ margin: "auto" }}>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <select onChange={handleDogChange} value={optionChange}>
               <option value="select"> -- select a dog -- </option>
               {tempGallery.map((dog, idx) => (
@@ -249,76 +253,59 @@ export default function UploadPhoto() {
             </select>
           </Box>
           <br />
-          {"  "}
-          {imageCount < 20 && (
-            <>
-              <input
-                type="file"
-                id={`${dogNameMenu}`}
-                accept=".png, .jpg, .jpeg"
-                multiple
-                onChange={handleChange}
-              />
-            </>
-          )}
-          <br />
-          {/* <Button
-            component="a"
-            sx={{
-              my: 1,
-              color: "black",
-              display: "block",
-              textAlign: "center",
-            }}
-            onClick={handleDeletePhotos}
-          >
-            <Typography>
-              {dogNameMenu === null || dogNameMenu === "select"
-                ? ""
-                : `Delete ALL Photos of: ${dogNameMenu}`}
-            </Typography>
-          </Button> */}
-          <Button
-            component="a"
-            sx={{
-              my: 1,
-              color: "black",
-              display: "block",
-              textAlign: "center",
-            }}
-            onClick={handleDeleteDog}
-          >
-            <Typography>
-              {dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}
-            </Typography>
-          </Button>
-          <br />
-          {images.length > 0 && (
-            <>
-              <Typography align="center">
+          <Box>
+            {images.length > 0 && (
+              <Typography sx={{ paddingTop: 1 }}>
                 {images.length} photos selected for {dogNameMenu}.
               </Typography>
+            )}
+            {selectIsNotSelected && (
+              <label htmlFor={dogNameMenu}>
+                <Button sx={{ margin: 1 }} variant="contained" component="span">
+                  Choose Photos
+                </Button>
+                <input
+                  style={{ display: "none" }}
+                  name="contained-button-file"
+                  type="file"
+                  id={`${dogNameMenu}`}
+                  accept=".png, .jpg, .jpeg"
+                  multiple
+                  onChange={handleChange}
+                />
+              </label>
+            )}
+            {spinner && <SickSpinner />}
+            {images.length > 0 && (
               <Button
                 component="a"
+                variant="contained"
                 id={`${dogNameMenu}`}
                 onClick={handleUpload}
                 sx={{
+                  margin: 1,
                   my: 1,
-                  color: "black",
-                  display: "block",
+                  // color: "black",
+                  bgcolor: "lightgreen",
+                  // display: "block",
                   textAlign: "center",
                 }}
               >
                 Upload
               </Button>
-            </>
-          )}
+            )}
+            <br />
+            {progress > 0 && <ProgressCustom value={progress} />}
+            {/* {progress > 0 && <progress value={progress} max="100" />} */}
+          </Box>
           {dogNameMenu && (
             <>
               <Box alignItems="center" justifyContent="center">
-                <Typography>
-                  Just Uploaded: {urls.length === 0 && "N/A"}
-                </Typography>
+                {selectIsNotSelected && (
+                  <Typography>
+                    Just Uploaded: {selectIsNotSelected && "N/A"}
+                  </Typography>
+                )}
                 {urls.map((url, idx) => (
                   <Box sx={{ margin: "auto" }}>
                     <img key={url} src={url} width="300" alt="firebase-img" />
@@ -327,14 +314,17 @@ export default function UploadPhoto() {
               </Box>
               <Box alignItems="center" justifyContent="center">
                 <Typography>
-                  Already Existing Photos of {dogNameMenu}:{" "}
+                  {dogNameMenu === "select"
+                    ? ""
+                    : `Already Existing Photos of ${dogNameMenu}:`}
                   {imagePreview.length === 0 && "N/A"}
                 </Typography>
-                {imagePreview &&
+                {dogNameMenu !== "select" &&
                   imagePreview.map((url, idx) => (
                     <Box sx={{ margin: "auto" }}>
                       <img
                         id={url}
+                        key={url}
                         name={idx}
                         src={url}
                         width="300"
@@ -353,13 +343,16 @@ export default function UploadPhoto() {
             <Box className="modal" sx={{ margin: "auto" }}>
               <Box className="modal-overlay">
                 <Box className="modal-content">
+                  <Typography variant="h5" align="center">
+                    Add A Pup
+                  </Typography>
                   <Box
                     display="flex"
                     // bgcolor="lightgreen"
                     alignItems="center"
                     justifyContent="center"
                   >
-                    <Box sx={{maxWidth: 200}}>
+                    <Box sx={{ maxWidth: 200 }}>
                       <form>
                         <Input
                           sx={{ margin: 1 }}
@@ -432,10 +425,32 @@ export default function UploadPhoto() {
           )}
           {/* end modal */}
         </Paper>
+        {selectIsNotSelected && (
+          <Button
+            component="a"
+            variant="contained"
+            sx={{
+              margin: 1,
+              my: 1,
+              color: "black",
+              bgcolor: "salmon",
+              display: "block",
+              textAlign: "center",
+            }}
+            onClick={handleDeleteDog}
+          >
+            <Typography>
+              {dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}
+            </Typography>
+          </Button>
+        )}
         <Button
-          component="a"
+          variant="contained"
+          component="span"
           sx={{
             my: 1,
+            bgcolor: "lightgreen",
+            margin: 1,
             color: "black",
             display: "block",
             textAlign: "center",
