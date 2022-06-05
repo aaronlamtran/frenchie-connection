@@ -164,6 +164,7 @@ export default function UploadPhotoAnswer() {
 
   const handleDeleteDog = async () => {
     // TODO delete folder from firebase
+    if (dogNameMenu === null) return;
     const result = await axios.delete(`/gallery/${currentDogID}`);
     if (result.status) {
       alert("successfully deleted");
@@ -241,7 +242,7 @@ export default function UploadPhotoAnswer() {
             <select onChange={handleDogChange} value={optionChange}>
               <option value="select"> -- select a dog -- </option>
               {tempGallery.map((dog, idx) => (
-                <option value={dog.name} id={dog._id}>
+                <option key={dog._id} value={dog.name} id={dog._id}>
                   {dog.name}
                 </option>
               ))}
@@ -287,7 +288,7 @@ export default function UploadPhotoAnswer() {
             }}
             onClick={handleDeleteDog}
           >
-            <Typography>Delete Selected Pup: {dogNameMenu}</Typography>
+            <Typography>{dogNameMenu && `Delete Selected Pup: ${dogNameMenu}`}</Typography>
           </Button>
           <br />
           {images.length > 0 && (
@@ -318,7 +319,7 @@ export default function UploadPhotoAnswer() {
                 </Typography>
                 {urls.map((url, idx) => (
                   <Box sx={{ margin: "auto" }}>
-                    <img key={idx} src={url} width="300" alt="firebase-img" />
+                    <img key={url} src={url} width="300" alt="firebase-img" />
                   </Box>
                 ))}
               </Box>
@@ -331,7 +332,7 @@ export default function UploadPhotoAnswer() {
                   imagePreview.map((url, idx) => (
                     <Box sx={{ margin: "auto" }}>
                       <img
-                        id={idx}
+                        id={url}
                         name={idx}
                         src={url}
                         width="300"
