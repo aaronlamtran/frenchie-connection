@@ -241,7 +241,7 @@ export default function UploadPhoto() {
 
   const justUploaded = () => (
     <Box>
-      <Typography align='center'>
+      <Typography align="center">
         Just uploaded: {urls.length > 0 ? urls.length + " images" : "N/A"}
       </Typography>
       {/* <Box alignItems="center" justifyContent="center">
@@ -281,7 +281,7 @@ export default function UploadPhoto() {
           margin: 1,
           my: 1,
           // color: "black",
-          bgcolor: "lightgreen",
+          // bgcolor: "lightgreen",
           // display: "block",
           textAlign: "center",
         }}
@@ -315,7 +315,7 @@ export default function UploadPhoto() {
   const numPhotosSelected = () =>
     images.length > 0 && (
       <Box>
-        <Typography align='center' sx={{ paddingTop: 1 }}>
+        <Typography align="center" sx={{ paddingTop: 1 }}>
           {images.length} photos selected for {dogNameMenu}.
         </Typography>
       </Box>
@@ -370,7 +370,7 @@ export default function UploadPhoto() {
             >
               {selectIsNotSelected && choosePhotos()}
             </Box>
-             {selectIsNotSelected && justUploaded()}
+            {selectIsNotSelected && justUploaded()}
             {/* {progress > 0 && <progress value={progress} max="100" />} */}
           </Box>
           {dogNameMenu && (
