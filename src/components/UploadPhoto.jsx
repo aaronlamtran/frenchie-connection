@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import Input from "@mui/material/Input";
 import ProgressCustom from "./ProgressCustom";
 import Typography from "@mui/material/Typography";
-import SickSpinner from "../utils/SickSpinner";
 import { storage } from "../config/firebase-config";
 import Slider from "./Slider";
 import {
@@ -21,7 +20,6 @@ import {
 import axios from "axios";
 
 export default function UploadPhoto() {
-  const [spinner, setSpinner] = useState(true);
   const [modal, setModal] = useState(false);
   const [tempGallery, setTempGallery] = useState([]);
   const [images, setImages] = useState([]);
@@ -52,7 +50,6 @@ export default function UploadPhoto() {
       setTempGallery(data.all);
     })();
 
-    setSpinner(false);
     return () => abortController.abort();
   }, []);
 
@@ -109,6 +106,10 @@ export default function UploadPhoto() {
     const dogName = e.target.id;
     if (dogNameMenu === null) {
       alert("select a name");
+      return;
+    }
+    if (images.length === 0) {
+      alert("select photos to upload");
       return;
     }
     images.map((image) => {
@@ -168,7 +169,6 @@ export default function UploadPhoto() {
 
   const handleDogChange = (e) => {
     const name = e.target.value;
-    setSpinner(true);
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
     const id = el.getAttribute("id");
@@ -179,7 +179,6 @@ export default function UploadPhoto() {
     setProgress(0);
     setImages([]);
     setUrls([]);
-    setSpinner(false);
     const selectedDogImages = tempGallery.filter((dog) => dog._id === id)[0]
       .largeImages;
     setImagePreview(selectedDogImages);
@@ -240,6 +239,88 @@ export default function UploadPhoto() {
       .catch((err) => console.log("265:", err));
   };
 
+  const justUploaded = () => (
+    <Box>
+      <Typography align='center'>
+        Just uploaded: {urls.length > 0 ? urls.length + " images" : "N/A"}
+      </Typography>
+      {/* <Box alignItems="center" justifyContent="center">
+        {urls.map((url, idx) => (
+          <Box sx={{ margin: "auto" }}>
+            <img key={url} src={url} width="100" alt="firebase-img" />
+          </Box>
+        ))}
+      </Box> */}
+    </Box>
+  );
+
+  const choosePhotos = () => (
+    <Box sx={{ minWidth: 250 }}>
+      <label htmlFor={dogNameMenu}>
+        {progress > 0 && <ProgressCustom value={progress} />}
+        <Button sx={{ margin: 1 }} variant="contained" component="span">
+          Choose Photos
+        </Button>
+        <input
+          style={{ display: "none" }}
+          name="contained-button-file"
+          type="file"
+          id={`${dogNameMenu}`}
+          accept=".png, .jpg, .jpeg"
+          multiple
+          onChange={handleChange}
+        />
+      </label>
+
+      <Button
+        component="a"
+        variant="contained"
+        id={`${dogNameMenu}`}
+        onClick={handleUpload}
+        sx={{
+          margin: 1,
+          my: 1,
+          // color: "black",
+          bgcolor: "lightgreen",
+          // display: "block",
+          textAlign: "center",
+        }}
+      >
+        Upload
+      </Button>
+    </Box>
+  );
+
+  const uploadPhotos = () => (
+    <Box>
+      <Button
+        component="a"
+        variant="contained"
+        id={`${dogNameMenu}`}
+        onClick={handleUpload}
+        sx={{
+          margin: 1,
+          my: 1,
+          // color: "black",
+          bgcolor: "lightgreen",
+          // display: "block",
+          textAlign: "center",
+        }}
+      >
+        Upload
+      </Button>
+    </Box>
+  );
+
+  const numPhotosSelected = () =>
+    images.length > 0 && (
+      <Box>
+        <Typography align='center' sx={{ paddingTop: 1 }}>
+          {images.length} photos selected for {dogNameMenu}.
+        </Typography>
+      </Box>
+    );
+
   return (
     <>
       <Box
@@ -271,75 +352,25 @@ export default function UploadPhoto() {
           <br />
           <Typography align="center">Preview</Typography>
           {selectIsNotSelected && <Slider slides={carousel} preview={true} />}
-          <Box sx={{ justifyContent: "center", display: "flex" }}>
-            {images.length > 0 && (
-              <Box>
-                <Typography sx={{ paddingTop: 1 }}>
-                  {images.length} photos selected for {dogNameMenu}.
-                </Typography>
-              </Box>
-            )}
-            {selectIsNotSelected && (
-              <Box>
-                <label htmlFor={dogNameMenu}>
-                  <Button
-                    sx={{ margin: 1 }}
-                    variant="contained"
-                    component="span"
-                  >
-                    Choose Photos
-                  </Button>
-                  <input
-                    style={{ display: "none" }}
-                    name="contained-button-file"
-                    type="file"
-                    id={`${dogNameMenu}`}
-                    accept=".png, .jpg, .jpeg"
-                    multiple
-                    onChange={handleChange}
-                  />
-                </label>
-              </Box>
-            )}
-            <br />
-            {spinner && <SickSpinner />}
-            {images.length > 0 && (
-              <Box>
-                <Button
-                  component="a"
-                  variant="contained"
-                  id={`${dogNameMenu}`}
-                  onClick={handleUpload}
-                  sx={{
-                    margin: 1,
-                    my: 1,
-                    // color: "black",
-                    bgcolor: "lightgreen",
-                    // display: "block",
-                    textAlign: "center",
-                  }}
-                >
-                  Upload
-                </Button>
-              </Box>
-            )}
-            <br />
-            {progress > 0 && (
-              <Box>
-                <ProgressCustom value={progress} />
-                <Typography>
-                  Just uploaded:{" "}
-                  {urls.length > 0 ? urls.length + " images" : "N/A"}
-                </Typography>
-                <Box alignItems="center" justifyContent="center">
-                  {urls.map((url, idx) => (
-                    <Box sx={{ margin: "auto" }}>
-                      <img key={url} src={url} width="100" alt="firebase-img" />
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-            )}
+          <Box
+            sx={{
+              justifyContent: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {numPhotosSelected()}
+
+            <Box
+              sx={{
+                justifyContent: "center",
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              {selectIsNotSelected && choosePhotos()}
+            </Box>
+             {selectIsNotSelected && justUploaded()}
             {/* {progress > 0 && <progress value={progress} max="100" />} */}
           </Box>
           {dogNameMenu && (
