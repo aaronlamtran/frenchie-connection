@@ -373,47 +373,6 @@ export default function UploadPhoto() {
             {selectIsNotSelected && justUploaded()}
             {/* {progress > 0 && <progress value={progress} max="100" />} */}
           </Box>
-          {dogNameMenu && (
-            <>
-              {/* <Box alignItems="center" justifyContent="center">
-                {urls.map((url, idx) => (
-                  <Box sx={{ margin: "auto" }}>
-                    <img key={url} src={url} width="300" alt="firebase-img" />
-                  </Box>
-                ))}
-              </Box> */}
-              {/* vvvv existing images vvvv */}
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}
-              >
-                <Typography>
-                  {dogNameMenu === "select"
-                    ? ""
-                    : `Already Existing Photos of ${dogNameMenu}:`}
-                  {imagePreview.length === 0 && "N/A"}
-                </Typography>
-                {dogNameMenu !== "select" &&
-                  imagePreview.map((url, idx) => (
-                    <Box sx={{ margin: "auto" }}>
-                      <img
-                        id={url}
-                        key={url}
-                        name={idx}
-                        src={url}
-                        width="300"
-                        border={imagesSelected[idx] && 23}
-                        alt="firebase-img"
-                        onClick={handleSelection}
-                      />
-                    </Box>
-                  ))}
-              </Box> */}
-            </>
-          )}
           <br />
 
           {modal && (

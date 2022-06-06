@@ -9,12 +9,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export default function WaitlistTableView({ waitlists, dogInfo }) {
+export default function WaitlistTableView({ waitlists, dogInfo, handleDeleteEntry }) {
   const navigate = useNavigate();
   function renderNoWaitlist() {
     return <Typography variant="h6"> No waitlist info 🐶 </Typography>;
   }
+
   function renderTable() {
     return (
       <TableContainer>
@@ -32,6 +34,7 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
               <TableCell>Phone</TableCell>
               <TableCell>Email</TableCell>
               <TableCell>Joined</TableCell>
+              <TableCell>Delete?</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -41,20 +44,30 @@ export default function WaitlistTableView({ waitlists, dogInfo }) {
                 {/* <TableCell scope="row" component="th">
                   {index + 1}
                 </TableCell> */}
-                <TableCell scope="row" component="th">{waitlist.name}</TableCell>
+                <TableCell scope="row" component="th">
+                  {waitlist.name}
+                </TableCell>
                 {/* <TableCell>{waitlist.waitlistPosition}</TableCell> */}
                 <TableCell>{waitlist.phone ? waitlist.phone : "N/A"}</TableCell>
                 <TableCell>{waitlist.email}</TableCell>
 
-                <TableCell>{dayjs(waitlist.createdAt).format("MM-DD-YYYY hh:mm A")}</TableCell>
+                <TableCell>
+                  {dayjs(waitlist.createdAt).format("MM-DD-YYYY hh:mm A")}
+                </TableCell>
+                <TableCell id={waitlist._id}>
+                  <Button
+                    variant="contained"
+                    id={waitlist._id}
+                    onClick={(e) => handleDeleteEntry(e)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-        <Button
-          color="info"
-          onClick={() => navigate("/admin")}
-        >
+        <Button color="info" onClick={() => navigate("/admin")}>
           Back
         </Button>
       </TableContainer>

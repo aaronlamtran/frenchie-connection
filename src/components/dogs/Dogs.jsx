@@ -17,6 +17,8 @@ export default function Dogs(props) {
   useEffect(() => {
     loadDogs();
   }, []);
+
+
   const loadDogs = async () => {
     const { handleAddErrorMessages, handleAddSuccessMessage } = props;
     let url = `/dogs/all`;

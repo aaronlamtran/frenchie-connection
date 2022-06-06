@@ -109,4 +109,35 @@ const getDetails = async (req, res) => {
   }
 };
 
-module.exports = { joinWaitlist, getDetails };
+const deleteWaitlistEntry = async (req, res) => {
+  try {
+    console.log(req.params)
+    const _id = req.params.id;
+    const entry = await Waitlist.deleteOne({ _id });
+    if (!entry) {
+      return res.status(HttpStatus.NOT_FOUND).json({
+        errors: [
+          {
+            msg: "user has not joined the waitlist.",
+          },
+        ],
+      });
+    }
+    return res.json({
+      entry,
+      msg: "waitlist entry deleted successfully.",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      errors: [
+        {
+          msg: "Something went wrong. Please try again.",
+        },
+      ],
+    });
+  }
+};
+
+module.exports = { joinWaitlist, getDetails, deleteWaitlistEntry };
