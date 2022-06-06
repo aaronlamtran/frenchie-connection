@@ -29,14 +29,13 @@ export default function UploadPhoto() {
   const [urls, setUrls] = useState([]);
   const [progress, setProgress] = useState(0);
   const [dogNameMenu, setDogName] = useState(null);
-  const [imagesSelected, setImagesSelected] = useState([]);
+  // const [imagesSelected, setImagesSelected] = useState([]);
   const [name, setName] = useState("");
   const [sex, setSex] = useState("");
   const [breed, setBreed] = useState("");
   const [color, setColor] = useState("");
   const [currentDogID, setCurrentDogID] = useState("");
   const [optionChange, setOptionChange] = useState("");
-  const [preparedDelete, setPreparedDelete] = useState([]);
   const [carousel, setCarousel] = useState([]);
   const selectIsNotSelected = dogNameMenu !== null && dogNameMenu !== "select";
   if (modal) {
@@ -148,15 +147,15 @@ export default function UploadPhoto() {
       .catch((err) => console.log(err));
   };
 
-  const handleSelection = (e) => {
-    e.preventDefault();
-    const newState = imagePreview.map((image, idx) => {
-      const isIndexMatch = idx === parseInt(e.target.id, 10);
-      if (isIndexMatch) return !imagesSelected[idx];
-    });
+  // const handleSelection = (e) => {
+  //   e.preventDefault();
+  //   const newState = imagePreview.map((image, idx) => {
+  //     const isIndexMatch = idx === parseInt(e.target.id, 10);
+  //     if (isIndexMatch) return !imagesSelected[idx];
+  //   });
 
-    setImagesSelected(newState);
-  };
+  //   setImagesSelected(newState);
+  // };
 
   const handleChange = (e) => {
     for (let i = 0; i < e.target.files.length; i++) {
@@ -222,7 +221,6 @@ export default function UploadPhoto() {
   const toggleModal = () => {
     setModal(!modal);
   };
-
 
   const deleteItemsInFirebaseDir = (name) => {
     if (!selectIsNotSelected) return;
@@ -336,7 +334,7 @@ export default function UploadPhoto() {
                 <Box alignItems="center" justifyContent="center">
                   {urls.map((url, idx) => (
                     <Box sx={{ margin: "auto" }}>
-                      <img key={url} src={url} width="300" alt="firebase-img" />
+                      <img key={url} src={url} width="100" alt="firebase-img" />
                     </Box>
                   ))}
                 </Box>
