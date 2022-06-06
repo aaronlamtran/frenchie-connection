@@ -17,6 +17,15 @@ export default function DogView(props) {
   useEffect(() => {
     loadDog();
   }, []);
+  const handleDeleteEntry = (e) => {
+    const { id } = e.target;
+    axios
+      .delete(`/waitlist/${id}`)
+      .then((result) => console.log(result))
+      .then(() => loadDog())
+      .catch((err) => console.log(err));
+  };
+
   const loadDog = async () => {
     let url = `/dogs/${id}`;
     try {
@@ -46,7 +55,11 @@ export default function DogView(props) {
   const renderDog = () => {
     return (
       <>
-        <WaitlistTable waitlists={waitlists} dogInfo={dog} />
+        <WaitlistTable
+          waitlists={waitlists}
+          handleDeleteEntry={handleDeleteEntry}
+          dogInfo={dog}
+        />
       </>
     );
   };
@@ -62,7 +75,9 @@ export default function DogView(props) {
         marginTop: 1,
       }}
     >
-      <Typography variant="h5" align="center">Waitlist Details</Typography>
+      <Typography variant="h5" align="center">
+        Waitlist Details
+      </Typography>
       <Button color="info" onClick={() => navigate("/admin")}>
         Back
       </Button>
