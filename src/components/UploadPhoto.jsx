@@ -37,8 +37,8 @@ export default function UploadPhoto() {
   const [currentDogID, setCurrentDogID] = useState("");
   const [optionChange, setOptionChange] = useState("");
   const [preparedDelete, setPreparedDelete] = useState([]);
+  const [carousel, setCarousel] = useState([]);
   const selectIsNotSelected = dogNameMenu !== null && dogNameMenu !== "select";
-  const [carousel, setCarousel] = useState([])
   if (modal) {
     document.body.style.overflow = "hidden";
   } else {
@@ -57,18 +57,21 @@ export default function UploadPhoto() {
     return () => abortController.abort();
   }, []);
 
-  const getGallery = async () => {
+  const getGallery = async (id) => {
     const { data } = await axios.get("/gallery");
+    if (id) {
+      filterForGallery(data.all, id);
+    }
     setTempGallery(data.all);
     // return data.all;
   };
 
   const filterForGallery = (array, id) => {
-    array.forEach(dog => console.log(dog._id, id))
-    const result = array.filter(dog => dog._id === id)
-    console.log('68', result)
-    setCarousel(result)
-  }
+    array.forEach((dog) => console.log(dog._id, id));
+    const result = array.filter((dog) => dog._id === id);
+    console.log("68", result);
+    setCarousel(result);
+  };
 
   const updateDbUrls = async (name, identificationNum) => {
     try {
@@ -141,7 +144,7 @@ export default function UploadPhoto() {
       .then(() => updateDbUrls(dogNameMenu, currentDogID))
       .then(() => setImages([]))
       .then(() => setTimeout(() => setProgress(0), 10000))
-      .then(() => listDir())
+      .then(() => getGallery(currentDogID))
       .catch((err) => console.log(err));
   };
 
@@ -165,20 +168,19 @@ export default function UploadPhoto() {
   };
 
   const handleDogChange = (e) => {
+    const name = e.target.value;
     setSpinner(true);
-    listDir();
     const index = e.target.selectedIndex;
     const el = e.target.childNodes[index];
     const id = el.getAttribute("id");
     setCurrentDogID(id);
-    setOptionChange(e.target.value);
-    setDogName(e.target.value);
+    getGallery(id);
+    setOptionChange(name);
+    setDogName(name);
     setProgress(0);
     setImages([]);
     setUrls([]);
-    getGallery();
     setSpinner(false);
-    filterForGallery(tempGallery, id)
     const selectedDogImages = tempGallery.filter((dog) => dog._id === id)[0]
       .largeImages;
     setImagePreview(selectedDogImages);
@@ -187,13 +189,21 @@ export default function UploadPhoto() {
   const handleDeleteDog = async () => {
     // TODO delete folder from firebase
     if (dogNameMenu === null) return;
-    const result = await axios.delete(`/gallery/${currentDogID}`);
-    await deleteItemsInFirebaseDir();
-    if (result.status) {
-      alert("successfully deleted");
-      setDogName(null);
+    try {
+      await deleteItemsInFirebaseDir(dogNameMenu);
+    } catch (e) {
+      console.log("203:", e);
     }
-    await getGallery();
+    try {
+      const result = await axios.delete(`/gallery/${currentDogID}`);
+      if (result.status) {
+        alert("successfully deleted");
+        setDogName(null);
+      }
+      await getGallery();
+    } catch (e) {
+      console.log("207", e);
+    }
   };
 
   const handleAddDog = async () => {
@@ -213,22 +223,20 @@ export default function UploadPhoto() {
     setModal(!modal);
   };
 
-  const listDir = () => {
-    if (!selectIsNotSelected) return;
-    const listRef = ref(storage, `/${dogNameMenu}/`);
-    listAll(listRef)
-      .then((result) => setPreparedDelete(result))
-      .catch((err) => console.log("211:", err));
-  };
 
-  const deleteItemsInFirebaseDir = () => {
-    const promises = preparedDelete.items.map((item) => {
-      const imageRef = ref(storage, item._location.path);
-      return deleteObject(imageRef)
-        .then((result) => console.log("261:", { result }))
-        .catch((err) => console.log("262:", err));
-    });
-    console.log({ promises });
+  const deleteItemsInFirebaseDir = (name) => {
+    if (!selectIsNotSelected) return;
+    const listRef = ref(storage, `/${name}/`);
+    let promises = [];
+    listAll(listRef)
+      .then((result) => {
+        result.items.forEach((item) => {
+          const imageRef = ref(storage, item._location.path);
+          promises.push(deleteObject(imageRef));
+        });
+      })
+      .catch((err) => console.log("211:", err));
+    console.log(promises);
     Promise.all(promises)
       .then((result) => console.log("264:", { result }))
       .catch((err) => console.log("265:", err));
@@ -263,71 +271,96 @@ export default function UploadPhoto() {
             </select>
           </Box>
           <br />
-          <Typography align="center" >
-            Preview
-          </Typography>
-          {selectIsNotSelected && <Slider slides={carousel} preview={true}/>}
+          <Typography align="center">Preview</Typography>
+          {selectIsNotSelected && <Slider slides={carousel} preview={true} />}
           <Box sx={{ justifyContent: "center", display: "flex" }}>
             {images.length > 0 && (
-              <Typography sx={{ paddingTop: 1 }}>
-                {images.length} photos selected for {dogNameMenu}.
-              </Typography>
+              <Box>
+                <Typography sx={{ paddingTop: 1 }}>
+                  {images.length} photos selected for {dogNameMenu}.
+                </Typography>
+              </Box>
             )}
             {selectIsNotSelected && (
-              <label htmlFor={dogNameMenu}>
-                <Button sx={{ margin: 1 }} variant="contained" component="span">
-                  Choose Photos
-                </Button>
-                <input
-                  style={{ display: "none" }}
-                  name="contained-button-file"
-                  type="file"
-                  id={`${dogNameMenu}`}
-                  accept=".png, .jpg, .jpeg"
-                  multiple
-                  onChange={handleChange}
-                />
-              </label>
-            )}<br/>
-            {spinner && <SickSpinner />}
-            {images.length > 0 && (
-              <Button
-                component="a"
-                variant="contained"
-                id={`${dogNameMenu}`}
-                onClick={handleUpload}
-                sx={{
-                  margin: 1,
-                  my: 1,
-                  // color: "black",
-                  bgcolor: "lightgreen",
-                  // display: "block",
-                  textAlign: "center",
-                }}
-              >
-                Upload
-              </Button>
+              <Box>
+                <label htmlFor={dogNameMenu}>
+                  <Button
+                    sx={{ margin: 1 }}
+                    variant="contained"
+                    component="span"
+                  >
+                    Choose Photos
+                  </Button>
+                  <input
+                    style={{ display: "none" }}
+                    name="contained-button-file"
+                    type="file"
+                    id={`${dogNameMenu}`}
+                    accept=".png, .jpg, .jpeg"
+                    multiple
+                    onChange={handleChange}
+                  />
+                </label>
+              </Box>
             )}
             <br />
-            {progress > 0 && <ProgressCustom value={progress} />}
+            {spinner && <SickSpinner />}
+            {images.length > 0 && (
+              <Box>
+                <Button
+                  component="a"
+                  variant="contained"
+                  id={`${dogNameMenu}`}
+                  onClick={handleUpload}
+                  sx={{
+                    margin: 1,
+                    my: 1,
+                    // color: "black",
+                    bgcolor: "lightgreen",
+                    // display: "block",
+                    textAlign: "center",
+                  }}
+                >
+                  Upload
+                </Button>
+              </Box>
+            )}
+            <br />
+            {progress > 0 && (
+              <Box>
+                <ProgressCustom value={progress} />
+                <Typography>
+                  Just uploaded:{" "}
+                  {urls.length > 0 ? urls.length + " images" : "N/A"}
+                </Typography>
+                <Box alignItems="center" justifyContent="center">
+                  {urls.map((url, idx) => (
+                    <Box sx={{ margin: "auto" }}>
+                      <img key={url} src={url} width="300" alt="firebase-img" />
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
             {/* {progress > 0 && <progress value={progress} max="100" />} */}
           </Box>
           {dogNameMenu && (
             <>
-              <Box alignItems="center" justifyContent="center">
-                {selectIsNotSelected && (
-                  <Typography>
-                    Just uploaded:{" "}
-                    {urls.length > 0 ? urls.length + " images" : "N/A"}
-                  </Typography>
-                )}
+              {/* <Box alignItems="center" justifyContent="center">
                 {urls.map((url, idx) => (
                   <Box sx={{ margin: "auto" }}>
                     <img key={url} src={url} width="300" alt="firebase-img" />
                   </Box>
                 ))}
-              </Box>
-              <Box  sx={{ display: "flex", flexDirection:'column',  justifyContent:"center"}}>
+              </Box> */}
+              {/* vvvv existing images vvvv */}
+              {/* <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
                 <Typography>
                   {dogNameMenu === "select"
                     ? ""
@@ -349,7 +382,7 @@ export default function UploadPhoto() {
                       />
                     </Box>
                   ))}
-              </Box>
+              </Box> */}
             </>
           )}
           <br />
