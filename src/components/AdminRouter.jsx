@@ -7,7 +7,7 @@ import Logout from "./Logout";
 import DogView from "./dogs/DogView";
 import Dogs from "./dogs/Dogs";
 import CreateDog from "./dogs/CreateDog";
-import UploadPhoto from "./UploadPhoto"
+import UploadPhoto from "./UploadPhoto";
 import { AuthProvider } from "./Auth";
 import Typography from "@mui/material/Typography";
 
@@ -18,14 +18,15 @@ export default function AdminRouter({
   return (
     <>
       <AdminNav />
-      <Typography align='center'>Logged in as Administator</Typography>
-      <UploadPhoto/>
       <AuthProvider>
         <Routes>
           <Route
             path="create"
             element={
               <ProtectedRoute>
+                <Typography align="center">
+                  Logged in as Administator
+                </Typography>
                 <CreateDog />
               </ProtectedRoute>
             }
@@ -34,6 +35,9 @@ export default function AdminRouter({
             path="/waitlists/:id"
             element={
               <ProtectedRoute>
+                <Typography align="center">
+                  Logged in as Administator
+                </Typography>
                 <DogView
                   handleAddErrorMessages={handleAddErrorMessages}
                   handleAddSuccessMessage={handleAddSuccessMessage}
@@ -48,6 +52,10 @@ export default function AdminRouter({
             path="/*"
             element={
               <ProtectedRoute>
+                <Typography align="center">
+                  Logged in as Administator
+                </Typography>
+                <UploadPhoto />
                 <Dogs
                   handleAddErrorMessages={handleAddErrorMessages}
                   handleAddSuccessMessage={handleAddSuccessMessage}
