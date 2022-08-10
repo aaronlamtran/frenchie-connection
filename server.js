@@ -19,6 +19,7 @@ const mongoose = require("mongoose");
 const dogRouter = require("./routes/dog-waitlist-routes");
 const waitlistRouter = require("./routes/waitlist-routes");
 const galleryRouter = require("./routes/gallery-routes");
+const emailRouter = require("./routes/email-routes");
 
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
@@ -26,10 +27,14 @@ app.use(express.json());
 app.use("/dogs", dogRouter);
 app.use("/waitlist", waitlistRouter);
 app.use("/gallery", galleryRouter);
+app.use("/email", emailRouter)
 app.use(express.static(path.join(__dirname, "/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/build/index.html"));
-});
+
+if (NODE_ENV === "production"){
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/build/index.html"));
+  });
+}
 
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

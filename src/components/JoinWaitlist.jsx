@@ -35,11 +35,17 @@ export default class JoinWaitlist extends Component {
       return;
     }
     try {
-      const general = { _id: "6258e5b0e351100c23230d02" };
-      let url = `/waitlist/join/${general._id}`;
+      let general = {};
+      let url;
       if (process.env.NODE_ENV === "development") {
-        url = `${process.env.REACT_APP_SERVER_URL}/waitlist/join/${general._id}`;
+        general._id = "629bf1f900f28a69f882c327";
+        // url = `${process.env.REACT_APP_SERVER_URL}/waitlist/join/${general._id}`;
       }
+      if (process.env.NODE_ENV === "production") {
+        general._id = "6258e5b0e351100c23230d02";
+        // url = `/waitlist/join/${general._id}`;
+      }
+      url = `/waitlist/join/${general._id}`;
       const response = await axios.post(url, {
         name,
         email,
@@ -47,6 +53,7 @@ export default class JoinWaitlist extends Component {
       });
       this.setState({ waiting: false, name: "", email: "", phone: "" });
       handleAddSuccessMessage(response.data.msg);
+      await axios.get('/email')
       this.setState({
         name: "",
         email: "",
